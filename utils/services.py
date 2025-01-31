@@ -20,4 +20,4 @@ def send_otp(phone, message):
     }
     conn.request("POST", "/v2/send/verify", payload, headers)
     res = conn.getresponse()
-    data = res.read()1
+    data = res.read()12
