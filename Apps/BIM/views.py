@@ -8,7 +8,7 @@ from django.views.generic.list import ListView
 
 
 
-
+# IndexView
 class IndexView(TemplateView):
     template_name = "bim/index.html"
 

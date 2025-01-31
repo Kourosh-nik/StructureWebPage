@@ -84,7 +84,8 @@ class BIMProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('BIM:project_detail', args=[self.id])
+        # return reverse('BIM:project_detail', args=[self.id])
+        pass
 
 class BIMProjectImage(models.Model):
     project = models.ForeignKey(BIMProject, related_name='images', on_delete=models.CASCADE)
@@ -113,8 +114,9 @@ class BIMCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse("BIM:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        # from django.urls import reverse
+        # return reverse("BIM:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        pass
 
 class BIMCoworkingImage(models.Model):
     coworking = models.ForeignKey(BIMCoworking, related_name='images', on_delete=models.CASCADE)
