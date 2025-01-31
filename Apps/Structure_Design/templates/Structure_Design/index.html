@@ -1,260 +1,371 @@
-{% extends "base.html" %}
+{% extends 'parent/base.html' %}
 {% load static %}
-{% block title %}Index{% endblock title %}
+{% block title %}{% endblock %}
 {% block content %}
-
-		<!-- SECTION -->
-		<section class="welcome-section">
-			<div class="container text-center">
-				<h1>به وب‌سایت تخصصی طراحی سازه خوش آمدید</h1>
-				<p>اینجا جایی است که پروژه‌های ساختمانی و صنعتی شما با دقت و حرفه‌ای‌گری طراحی و بهینه‌سازی می‌شوند.
-					ما با تکیه بر تجربه و دانش به‌روز، خدماتی از قبیل طراحی سازه‌های فولادی و بتن‌آرمه،
-					تحلیل سازه‌ها و طراحی براساس استانداردهای داخلی و بین‌المللی را ارائه می‌دهیم.</p>
-			</div>
-		</section>
-		<!-- /SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-				<div class="container">
-					<div class="row" dir="rtl" align="center">
-						<div class="col-md-4">
-							<i class="icon-consult"></i>
-							<h3>مشاوره تخصصی</h3>
-							<p>همراهی شما در تمامی مراحل طراحی و اجرا.</p>
-						</div>
-						<div class="col-md-4">
-							<i class="icon-analysis"></i>
-							<h3>بهینه‌سازی سازه</h3>
-							<p>تحلیل دقیق و اقتصادی برای پروژه‌های شما.</p>
-						</div>
-						<div class="col-md-4">
-							<i class="icon-design"></i>
-							<h3>طراحی سازه‌</h3>
-							<p>طراحی بر اساس استانداردهای داخلی و بین‌المللی.</p>
-						</div>
-					</div>
-				</div>
-		</div>
-		<!-- /SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- Structure_Design -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src=" {% static './img/SteelStructure01.png' %}" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Steel<br>Structures<br>Collection</h3>
-								<a href="{% url 'Structure_Design:store' %}?category=سازه های فولادی" class="cta-btn">More... <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Structure_Design -->
-
-					<!-- Structure_Design -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src=" {% static './img/ConcreteStructure.png' %}" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Concrete Structures<br>Collection</h3>
-								<a href="{% url 'Structure_Design:store' %}?category=سازه های بتن آرمه" class="cta-btn">More... <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Structure_Design -->
-
-					<!-- Structure_Design -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src=" {% static './img/SteelGableFrame.png' %}" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Industrial Structures<br>Collection</h3>
-								<a href="{% url 'Structure_Design:store' %}?category=سازه های صنعتی" class="cta-btn">More... <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Structure_Design -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
+    <section class="mx-5 bg-primary-new radius-30">
+        <div class="flat-img-with-text">
+            <div class="content-left img-animation wow">
+                <img alt="{{ banner.image_title }}" class="lazyload" data-src="{{ banner.image.url }}" src="{{ banner.image.url }}"/>
+            </div>
+            <div class="content-right">
+                <div class="box-title wow fadeInUp">
+                    <div class="text-subtitle text-primary"></div>
+                    <h3 class="title mt-4">{{ banner.title }}</h3>
+                    <p class="desc text-variant-1">{{banner.description }}</p>
+                </div>
+                <div class="flat-service wow fadeInUp" data-wow-delay=".2s">
+                    <a class="box-benefit hover-btn-view" href="#">
+                        <div class="icon-box">
+                            <span class="icon icon-proven"></span>
+                        </div>
+                        <div class="content">
+                            <h5 class="title">{{ banner.mini_title1 }}</h5>
+                            <p class="description">
+                                {{ banner.mini_description1 }}
+                            </p>
+                        </div>
+                    </a>
+                    <a class="box-benefit hover-btn-view" href="#">
+                        <div class="icon-box">
+                            <span class="icon icon-customize"></span>
+                        </div>
+                        <div class="content">
+                            <h5 class="title">{{ banner.mini_title2 }}</h5>
+                            <p class="description">
+                                {{ banner.mini_description2}}
+                            </p>
+                        </div>
+                    </a>
+                    <a class="box-benefit hover-btn-view" href="#">
+                        <div class="icon-box">
+                            <span class="icon icon-partnership"></span>
+                        </div>
+                        <div class="content">
+                            <h5 class="title">{{ banner.mini_title3 }}</h5>
+                            <p class="description">
+                                {{ banner.mini_description3 }}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Benefit -->
+    <br>
+    <br>
 
 
-					<!-- section title -->
-					<div class="section-nav" id="projects" dir="rtl" style="text-align: justify;">
-						<h3 class="title">پروژه ها</h3>
-						<p style="line-height: 1.8; font-size: 18px;">
-                            در این بخش به معرفی خدمات طراحی سازه‌های ساختمانی و صنعتی می‌پردازم.
-							هدف من ارائه طراحی‌های بهینه و اقتصادی با رعایت اصول فنی و ایمنی است. سازه‌های فولادی و بتن‌آرمه
-							را بر اساس آیین‌نامه‌های به‌روز داخلی و بین‌المللی طراحی می‌کنم تا نیازهای متنوع مشتریان را در پروژه‌های مختلف برآورده سازم.
-							با تجربه‌ای گسترده در طراحی و تحلیل سازه‌ها، تلاش می‌کنم بهترین راهکارها را برای اجرای پروژه‌ها ارائه دهم.
-							<ul class="custom-list">
-								<li>خدمات ارائه‌شده شامل موارد زیر است:</li>
-								<li>طراحی سازه‌های فولادی</li>
-								<li>طراحی سازه‌های بتن‌آرمه</li>
-								<li>تحلیل و بهینه‌سازی سازه‌ها</li>
-								<li>طراحی بر اساس آیین‌نامه‌های داخلی (مانند مبحث نهم و آیین‌نامه 2800)</li>
-								<li>طراحی بر اساس آیین‌نامه‌های بین‌المللی (مانند ACI و AISC)</li>
-							</ul>
-						</p>
-					</div>
-					<!-- /section title -->
+    {#    <!-- Filter -->#}
+    <div class="flat-control-search abs">
+        <div class="container">
+            <div class="flat-tab flat-tab-form">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" role="tabpanel">
+                        <div class="form-sl">
+                            <form method="post">
+                                <div class="wd-find-select shadow-3">
+                                    <div class="inner-group">
+                                        <div class="form-group-2 form-style">
+                                            <label>محل</label>
+                                            <div class="group-ip">
+                                                <input class="form-control" name="s"
+                                                        placeholder="محل جستجو"
+                                                        required=""
+                                                        title="Search for"
+                                                        type="text"
+                                                        value=""
+                                                />
+                                                <a class="icon icon-location" href="#"> </a>
+                                            </div>
+                                        </div>
+                                        <button
+                                                class="tf-btn btn-search primary"
+                                                type="submit"
+                                        >
+                                            جستجو<i class="icon icon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Filter -->
+
+    <br>
+    <br>
+
+    <!-- Slider -->
+    <section class="px-10">
+        <div class="box-title text-center wow fadeInUp">
+            <h3 class="mt-4 title">دسته بندی</h3>
+            <div class="text-subtitle text-primary">{{ banner.slider1_description }}</div>
+        </div>
+        <div class="wow fadeInUp" data-wow-delay=".2s">
+            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
+                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
+                    data-space-lg="8" data-space-md="8" data-tablet="3">
+                <div class="swiper-wrapper">
+
+                    {% for category in categories %}
+                    <div class="swiper-slide">
+                        <div class="box-location">
+                            <a class="image img-style" href="{{ category.get_absolute_url }}">
+                                <img
+                                        alt="image-location"
+                                        class="lazyload"
+                                        data-src="{{ category.image.url }}"
+                                        src="{{ category.image.url }}"
+                                />
+                            </a>
+                            <div class="content">
+                                <div class="inner-left">
+                                    <span class="sub-title fw-6"></span>
+                                    <h6 class="title text-line-clamp-1 link">{{ category.title }}</h6>
+                                </div>
+                                <a
+                                        class="box-icon line w-44 round"
+                                        href="{{ category.get_absolute_url }}"
+                                ><i class="icon icon-arrow-left2"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
 
 
-					<!-- project tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="project-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="project-slick" data-nav="#slick-nav-1">
-										{% for project in STRProject %}
-											<!-- project -->
-											<div class="project">
-												<div class="project-img">
-													<img src=" {{project.image.url}}" alt="">
-												</div>
-												<div class="project-body">
-													<p class="project-category">{{ project.category }}</p>
-													<h3 class="project-name"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
-												</div>
-											</div>
-											<!-- /project -->
-										{% endfor %}
-									</div>
-									<div id="slick-nav-1" class="project-slick-nav"></div>
-								</div>
-								<!-- /tab -->
-							</div>
-						</div>
-					</div>
-					<!-- project tab & slick -->
+                </div>
+                <div
+                        class="sw-pagination sw-pagination-location text-center"
+                ></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Slider -->
 
 
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
+    <!-- Recommended -->
+    <section class="flat-section flat-recommended">
+        <div class="container">
+            <div class="box-title text-center wow fadeInUp">
+                <div class="text-subtitle text-primary"></div>
+                <h3 class="title mt-4">
+                    {{ banner.project_base_title }}
+                </h3>
+            </div>
+            <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
+                <div class="tab-content">
+                    <div>
+                        <div class="row">
 
-		<!-- Cooperation in the Design of the Structure -->
-		<section id="collaboration">
-				<div id="hot-deal" class="section" style="background-color: #f4f4f4; padding: 20px 0;">
-					<div class="container" dir="rtl">
-						<div class="row justify-content-center">
-							<div class="col-md-12">
-								<h3 class="title text-right" style="margin-bottom: 20px;">همکاری در طرح</h3>
-								<div class="section-nav" dir="rtl" style="text-align: justify;">
-									<p style="line-height: 1.8; font-size: 18px;">
-										در بخش همکاری در طراحی سازه، ما با ارائه خدمات مشاوره و همکاری نزدیک با تیم‌های مهندسی و معماری،
-										به بهینه‌سازی طرح‌های سازه‌ای کمک می‌کنیم. هدف ما ایجاد سازه‌هایی ایمن، اقتصادی و پایدار است
-										که مطابق با استانداردهای روز و نیازهای پروژه باشند. ما با بهره‌گیری از دانش فنی و تجربه‌ عملی،
-										به تیم‌های پروژه کمک می‌کنیم تا راهکارهای مناسب و عملیاتی را برای مسائل سازه‌ای خود پیدا کنند.
-										همکاری ما در تمامی مراحل طراحی و محاسبات سازه‌ای از ابتدا تا پایان پروژه ادامه دارد.
-										در ادامه میتوانید نمونه هایی از همکاری در طراحی سازه ها با دیگر همکاران سازه را ملاحظه بفرمایید.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+                            {% for project in projects %}
+                            <div class="col-xl-4 col-lg-6 col-md-6">
+                                <div class="homelengo-box">
+                                    <div class="archive-top">
+                                        <a class="images-group" href="{{ project.get_absolute_url }}">
+                                            <div class="images-style">
+                                                <img alt="img" class="lazyload" data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
+                                            </div>
+                                            <div class="top">
+                                                <ul class="d-flex gap-6">
+                                                    <li class="flag-tag primary"></li>
+                                                    <li class="flag-tag style-1"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="bottom">
+                                                <svg
+                                                        fill="none"
+                                                        height="16"
+                                                        viewbox="0 0 16 16"
+                                                        width="16"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                            d="M10 7C10 7.53043 9.78929 8.03914 9.41421 8.41421C9.03914 8.78929 8.53043 9 8 9C7.46957 9 6.96086 8.78929 6.58579 8.41421C6.21071 8.03914 6 7.53043 6 7C6 6.46957 6.21071 5.96086 6.58579 5.58579C6.96086 5.21071 7.46957 5 8 5C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7Z"
+                                                            stroke="white"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="1.5"
+                                                    ></path>
+                                                    <path
+                                                            d="M13 7C13 11.7613 8 14.5 8 14.5C8 14.5 3 11.7613 3 7C3 5.67392 3.52678 4.40215 4.46447 3.46447C5.40215 2.52678 6.67392 2 8 2C9.32608 2 10.5979 2.52678 11.5355 3.46447C12.4732 4.40215 13 5.67392 13 7Z"
+                                                            stroke="white"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="1.5"
+                                                    ></path>
+                                                </svg
+                                                >
 
-					<div class="container">
-						<!-- Project Tab & Slick -->
-							<div class="row">
-								<div class="col-md-12">
-									<div class="project-tabs">
-										<div id="tab2" class="tab-pane active">
-											<div class="project-slick" data-nav="#slick-nav-3">
-												{% for coworking in Coworking %}
-													<div class="project">
-														<div class="project-img">
-															<!-- Use coworking.image.url -->
-															<img src="{{ coworking.image.url }}" alt="{{ coworking.title }}">
-														</div>
-														<div class="project-body">
-															<p class="project-category">{{ coworking.category }}</p>
-															<h3 class="project-name">
-																<a href="{{ coworking.get_absolute_url }}">{{ coworking.title }}</a>
-															</h3>
-														</div>
-													</div>
-												{% endfor %}
-											</div>
-											<div id="slick-nav-3" class="project-slick-nav"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						<!-- /Project Tab & Slick -->
-					</div>
-
-				</div>
-		</section>
-		<!-- /Cooperation in the Design of the Structure -->
-
-		<!-- Mentoring -->
-		<div class="container" id="mentoring" dir="rtl">
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<h3 class="title text-right" style="margin-bottom: 20px;">منتورینگ در طراحی سازه</h3>
-					<div class="section-nav" dir="rtl" style="text-align: justify;">
-						<p style="line-height: 1.8; font-size: 18px;">
-							در خدمات منتورینگ طراحی سازه، هدف ما توانمندسازی مهندسان و دانشجویان در یادگیری اصول طراحی و تحلیل سازه‌هاست.
-							با ارائه راهنمایی‌های عملی و پاسخ به سؤالات تخصصی، شما را در مسیر حرفه‌ای‌تان همراهی می‌کنیم. این خدمات شامل آموزش
-							نرم‌افزارهای تخصصی، بررسی پروژه‌ها، و بهبود مهارت‌های فنی شما می‌باشد. ما با تجربه‌ای گسترده، تلاش می‌کنیم تا شما را در رسیدن
-							به اهداف حرفه‌ای‌تان یاری کنیم. برای دریافت مشاوره یا شرکت در جلسات آموزشی با ما تماس بگیرید.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Mentoring -->
-
-		<!-- Contact Us Section -->
-		<section class="welcome-section" id="contact">
-			<div class="container text-center">
-				<div class="container" dir="rtl">
-					<div class="row justify-content-center">
-						<div class="col-md-8">
-							<!-- Section Title -->
-							<h4 class="title text-right mb-4">تماس با من</h4>
-
-							<!-- Contact Info -->
-							<div class="contact-info" dir="rtl" style="text-align: justify; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-								<ul class="custom-list">
-									<li><i class="fas fa-phone-alt"></i> تلفن تماس: <span dir="ltr">0912-000-00-00</span></li>
-									<li><i class="fas fa-envelope"></i> ایمیل: <a href="mailto:structure@gmail.com">structure@gmail.com</a></li>
-									<li><i class="fab fa-instagram"></i> اینستاگرام: <a href="https://www.instagram.com/agrgregregrg" target="_blank">agrgregregrg</a></li>
-									<li><i class="fab fa-telegram-plane"></i> تلگرام: <a href="https://t.me/rewtwertwert" target="_blank">@rewtwertwert</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- /Contact Us Section -->
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="archive-bottom">
+                                        <div class="content-top">
+                                            <h6 class="text-capitalize">
+                                                <a class="link" href="{{ project.get_absolute_url }}">{{ project.title }}</a>
+                                            </h6>
+{#                                            <ul class="meta-list">#}
+{#                                                <li class="item">#}
+{#                                                    <i class="icon icon-bed"></i>#}
+{#                                                    <span class="text-variant-1">تخت ها:</span>#}
+{#                                                    <span class="fw-6">3</span>#}
+{#                                                </li>#}
+{#                                                <li class="item">#}
+{#                                                    <i class="icon icon-bath"></i>#}
+{#                                                    <span class="text-variant-1">حمام ها:</span>#}
+{#                                                    <span class="fw-6">2</span>#}
+{#                                                </li>#}
+{#                                                <li class="item">#}
+{#                                                    <i class="icon icon-متر مربع"></i>#}
+{#                                                    <span class="text-variant-1">متر مربع:</span>#}
+{#                                                    <span class="fw-6">1150</span>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+                                        </div>
+{#                                        <div class="content-bottom">#}
+{#                                            <div class="d-flex gap-8 align-items-center">#}
+{#                                                <div class="avatar avt-40 round">#}
+{#                                                    <img#}
+{#                                                            alt="avt"#}
+{#                                                            src="{% static 'images/avatar/avt-png2.png' %}"#}
+{#                                                    />#}
+{#                                                </div>#}
+{#                                                <span>آرلین مک کوی</span>#}
+{#                                            </div>#}
+{#                                            <h6 class="price">7250،00 تومان</h6>#}
+{#                                        </div>#}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
 
 
-{% endblock content %}
+                        </div>
+                        <div class="text-center">
+                            <a
+                                    class="tf-btn btn-view primary size-1 hover-btn-view"
+                                    href="sidebar-grid.html"
+                            >مشاهده ویژگی ها<span
+                                    class="icon icon-arrow-left2"
+                            ></span
+                            ></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Recommended -->
+
+
+    <!-- Slider -->
+    <section class="px-10">
+        <div class="box-title text-center wow fadeInUp">
+            <h3 class="mt-4 title">همکاری در طرح</h3>
+            <div class="text-subtitle text-primary">{{ banner.slider2_description }}</div>
+        </div>
+        <div class="wow fadeInUp" data-wow-delay=".2s">
+            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
+                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
+                    data-space-lg="8" data-space-md="8" data-tablet="3">
+                <div class="swiper-wrapper">
+
+                    {% for object in coworking %}
+                    <div class="swiper-slide">
+                        <div class="box-location">
+                            <a class="image img-style" href="{{ object.get_absolute_url }}">
+                                <img
+                                        alt="image-location"
+                                        class="lazyload"
+                                        data-src="{{ object.image.url }}"
+                                        src="{{ object.image.url }}"
+                                />
+                            </a>
+                            <div class="content">
+                                <div class="inner-left">
+                                    <span class="sub-title fw-6"></span>
+                                    <h6 class="title text-line-clamp-1 link">{{ object.title }}</h6>
+                                </div>
+                                <a
+                                        class="box-icon line w-44 round"
+                                        href="{{ object.get_absolute_url }}"
+                                ><i class="icon icon-arrow-left2"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+                <div
+                        class="sw-pagination sw-pagination-location text-center"
+                ></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Slider -->
+
+<br>
+    <br>
+    <br>
+
+    <!-- Slider -->
+    <section class="px-10">
+        <div class="box-title text-center wow fadeInUp">
+            <h3 class="mt-4 title">آموزش ها</h3>
+            <div class="text-subtitle text-primary">{{ banner.slider2_description }}</div>
+        </div>
+        <div class="wow fadeInUp" data-wow-delay=".2s">
+            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
+                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
+                    data-space-lg="8" data-space-md="8" data-tablet="3">
+                <div class="swiper-wrapper">
+
+                    {% for train in trainings %}
+                    <div class="swiper-slide">
+                        <div class="box-location">
+                            <a class="image img-style" href="{{ train.link }}">
+                                <img
+                                        alt="image-location"
+                                        class="lazyload"
+                                        data-src="{{ train.image.url }}"
+                                        src="{{ train.image.url }}"
+                                />
+                            </a>
+                            <div class="content">
+                                <div class="inner-left">
+                                    <span class="sub-title fw-6"></span>
+                                    <h6 class="title text-line-clamp-1 link">{{ train.title }}</h6>
+                                </div>
+                                <a
+                                        class="box-icon line w-44 round"
+                                        href="{{ train.link }}"
+                                ><i class="icon icon-arrow-left2"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+                <div
+                        class="sw-pagination sw-pagination-location text-center"
+                ></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Slider -->
+
+
+
+
+
+{% endblock %}
