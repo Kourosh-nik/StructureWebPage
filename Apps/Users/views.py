@@ -11,6 +11,18 @@ from utils.services import send_otp
 from django.utils.timezone import now, timedelta
 
 
+class HeaderView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'Users/header.html')
+
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'Users/profile.html'
+
+
+class DocumentView(LoginRequiredMixin, TemplateView):
+    template_name = 'Users/documents.html'
+
 
 class UserLoginView(View):
     def post(self, request):

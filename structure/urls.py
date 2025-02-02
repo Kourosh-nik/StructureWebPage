@@ -10,7 +10,7 @@ urlpatterns = [
     path('structure_design/', include('Apps.Structure_Design.urls', namespace='Structure_Design')),
     path('retrofit/', include('Apps.Retrofit.urls', namespace='Retrofit')),
     path('software/', include('Apps.Software.urls', namespace='Software')),
-    path('users/', include('Apps.Users.urls', namespace='Users')),
+    path('user/', include('Apps.Users.urls', namespace='user')),
 
 
 ]

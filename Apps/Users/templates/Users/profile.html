@@ -1,0 +1,180 @@
+{% extends 'Users/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="main-content">
+        <div class="main-content-inner wrap-dashboard-content-2">
+            <div class="button-show-hide show-mb">
+                <span class="body-1">نمایش داشبورد</span>
+            </div>
+            <div class="widget-box-2">
+                <div class="box">
+                    <h5 class="title">آواتار</h5>
+                    <div class="box-agent-avt">
+                        <div class="avatar">
+                            {% if user.profile_image %}
+                                <img alt="avatar" height="128" loading="lazy"
+                                 src="{{ user.profile_image.url }}" width="128"
+                            />
+
+                                {% else %}
+                                <img alt="avatar" height="128" loading="lazy"
+                                 src="{% static 'images/avatar/account.jpg' %}" width="128"
+                            />
+                            {% endif %}
+
+                        </div>
+                        <div class="content uploadfile">
+                            <p>یک آواتار جدید آپلود کنید</p>
+                            <div class="box-ip">
+                                <input class="ip-file" type="file"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="title">اطلاعات</h5>
+                <div class="box box-fieldset">
+                    <label>نام کامل:<span>*</span></label>
+                    <input
+                            class="form-control style-1"
+                            type="text"
+                            value="نام ایجنت دمو"
+                    />
+                </div>
+
+                <div class="box grid-4 gap-30">
+                    <div class="box-fieldset">
+                        <label>شرکت شما:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="text"
+                                value="کمپانی شما"
+                        />
+                    </div>
+                    <div class="box-fieldset">
+                        <label>موقعیت:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="text"
+                                value="کمپانی شما"
+                        />
+                    </div>
+                    <div class="box-fieldset">
+                        <label>شماره دفتر:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="number"
+                                value="1332565894"
+                        />
+                    </div>
+                    <div class="box-fieldset">
+                        <label>آدرس دفتر:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="text"
+                                value="لورم ایپسوم متن ساختگی با تول"
+                        />
+                    </div>
+                </div>
+                <div class="box grid-4 gap-30 box-info-2">
+                    <div class="box-fieldset">
+                        <label>شغل:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="text"
+                                value="نجار"
+                        />
+                    </div>
+                    <div class="box-fieldset">
+                        <label>آدرس ایمیل:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="text"
+                                value="themeflat@gmail.com"
+                        />
+                    </div>
+                    <div class="box-fieldset">
+                        <label>تلفن شما:<span>*</span></label>
+                        <input
+                                class="form-control style-1"
+                                type="number"
+                                value="1332565894"
+                        />
+                    </div>
+                </div>
+                <div class="box box-fieldset">
+                    <label>مکان:<span>*</span></label>
+                    <input
+                            class="form-control style-1"
+                            type="text"
+                            value="لورم ایپسوم متن ساختگی با تولید"
+                    />
+                </div>
+                <div class="box box-fieldset">
+                    <label>فیس بوک:<span>*</span></label>
+                    <input class="form-control style-1" type="text" value="#"/>
+                </div>
+                <div class="box box-fieldset">
+                    <label>توییتر:<span>*</span></label>
+                    <input class="form-control style-1" type="text" value="#"/>
+                </div>
+                <div class="box box-fieldset">
+                    <label>لینکدین:<span>*</span></label>
+                    <input class="form-control style-1" type="text" value="#"/>
+                </div>
+                <div class="box">
+                    <a class="tf-btn primary" href="#">ذخیره و به روز رسانی</a>
+                </div>
+                <h5 class="title">رمز عبور را تغییر دهید</h5>
+                <div class="box grid-3 gap-30">
+                    <div class="box-fieldset">
+                        <label>رمز قدیمی:<span>*</span></label>
+                        <div class="box-password">
+                            <input
+                                    class="form-contact style-1 password-field"
+                                    placeholder="رمز عبور"
+                                    type="password"
+                            />
+                            <span class="show-pass">
+                        <i class="icon-pass icon-eye"></i>
+                        <i class="icon-pass icon-eye-off"></i>
+                      </span>
+                        </div>
+                    </div>
+                    <div class="box-fieldset">
+                        <label>رمز عبور جدید:<span>*</span></label>
+                        <div class="box-password">
+                            <input
+                                    class="form-contact style-1 password-field2"
+                                    placeholder="رمز عبور"
+                                    type="password"
+                            />
+                            <span class="show-pass2">
+                        <i class="icon-pass icon-eye"></i>
+                        <i class="icon-pass icon-eye-off"></i>
+                      </span>
+                        </div>
+                    </div>
+                    <div class="box-fieldset">
+                        <label>تایید رمز عبور:<span>*</span></label>
+                        <div class="box-password">
+                            <input
+                                    class="form-contact style-1 password-field3"
+                                    placeholder="رمز عبور"
+                                    type="password"
+                            />
+                            <span class="show-pass3">
+                        <i class="icon-pass icon-eye"></i>
+                        <i class="icon-pass icon-eye-off"></i>
+                      </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <a class="tf-btn primary" href="#">رمز عبور را به روز کنید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-dashboard"></div>
+{% endblock %}
