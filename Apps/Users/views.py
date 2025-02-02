@@ -24,6 +24,11 @@ class DocumentView(LoginRequiredMixin, TemplateView):
     template_name = 'Users/documents.html'
 
 
+class AddDocumentView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'Users/add-document.html')
+
+
 class UserLoginView(View):
     def post(self, request):
         form = UserLoginForm(request.POST)
@@ -101,7 +106,7 @@ class UserRegisterActivationView(View):
 class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        return redirect('index')
+        return redirect('home_page:index')
 
 
 class SendOtpCodeView(View):
