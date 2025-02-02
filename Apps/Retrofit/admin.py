@@ -1,5 +1,17 @@
 from django.contrib import admin
-from .models import RetroProject, RetroProjectImage, RetroCoworking, RetroCoworkingImage, RetroCategory, RetroLateralSys, RetroGravitySys
+from .models import *
+
+
+@admin.register(RetroPanelModel)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
+
+
+@admin.register(RetroTraining)
+class BIMTrainingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
 
 
 class CategoryAdmin(admin.ModelAdmin):

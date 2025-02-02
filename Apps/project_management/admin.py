@@ -1,5 +1,17 @@
 from django.contrib import admin
-from .models import ProjManProject, ProjManProjectImage, ProjManCoworking, ProjManCoworkingImage, ProjManCategory
+from .models import *
+
+
+@admin.register(ProjManPanelModel)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
+
+
+@admin.register(ProjManTraining)
+class BIMTrainingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
 
 
 class CategoryAdmin(admin.ModelAdmin):

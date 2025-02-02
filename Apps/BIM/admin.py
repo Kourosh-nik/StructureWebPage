@@ -6,6 +6,11 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']
     search_fields = ['title']
 
+@admin.register(BIMTraining)
+class BIMTrainingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']

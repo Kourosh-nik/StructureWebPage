@@ -1,5 +1,17 @@
 from django.contrib import admin
-from .models import STRProject, STRProjectImage, STRCoworking, STRCoworkingImage, STRCategory, STRLateralSys, STRGravitySys
+from .models import *
+
+
+@admin.register(STRPanelModel)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
+
+
+@admin.register(STRTraining)
+class BIMTrainingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    search_fields = ['title']
 
 
 class CategoryAdmin(admin.ModelAdmin):
