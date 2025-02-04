@@ -6,9 +6,9 @@ app_name = 'bim'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-
-
     path('project/<slug>/', views.ProjectDetailView.as_view(), name='project_detail'),
+
+
     path('coworkings_detail/<int:id>/<slug:title>/', views.CoworkingDetailView.as_view(), name='coworking_detail'),
     path('store/', views.StoreView.as_view(), name='store'),
     path('search/', views.SearchView.as_view(), name='search'),

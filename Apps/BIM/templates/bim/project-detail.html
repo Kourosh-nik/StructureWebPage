@@ -167,15 +167,15 @@
                                 </div>
                             </li>
                         </ul>
-                    </div >
+                    </div>
 
                     {% if project.video %}
                         <div class="single-property-element single-property-video">
                             <h5 class="title fw-6">ویدیو</h5>
-                                <video class="w-100" height="500px" src="{{ project.video.url }}"
-                                       controls>
-                                    <source src="{{ project.video.url }}">
-                                </video>
+                            <video class="w-100" height="500px" src="{{ project.video.url }}"
+                                   controls>
+                                <source src="{{ project.video.url }}">
+                            </video>
 
 
                         </div>
@@ -277,50 +277,34 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map" class="single-property-element single-property-map" style="height: 400px">
-                        <h5 class="title fw-6">مکان نقشه</h5>
-                        <div class="info-map">
-                            <ul class="box-left">
-                                <li>
-                                    <span class="label fw-6">آدرس</span>
-                                    <div class="text text-variant-1">150 فوت مربع</div>
-                                </li>
-                                <li>
-                                    <span class="label fw-6">شهر</span>
-                                    <div class="text text-variant-1">#1234</div>
-                                </li>
-                                <li>
-                                    <span class="label fw-6">ایالت / شهرستان</span>
-                                    <div class="text text-variant-1">7،500 تومان</div>
-                                </li>
-                            </ul>
-                            <ul class="box-right">
-                                <li>
-                                    <span class="label fw-6">کد پستی</span>
-                                    <div class="text text-variant-1">7.328</div>
-                                </li>
-                                <li>
-                                    <span class="label fw-6">منطقه</span>
-                                    <div class="text text-variant-1">7.328</div>
-                                </li>
-                                <li>
-                                    <span class="label fw-6">کشور</span>
-                                    <div class="text text-variant-1">1403</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                <script>
-    const testLMap = new L.Map("map", {
-        key: 'web.2fd66238f28645ecbc9060601e09b56f',
-        maptype: "neshan",
-        poi: false,
-        traffic: false,
-        center: [35.699756, 51.338076],
-        zoom: 14,
-    })
-</script>
+                    {% if project.latitude and project.longitude %}
+                        <style>
+                            #map {
+                                height: 500px;
+                                width: 100%;
+                            }
+                        </style>
 
+                        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+                        <div id="map" class="single-property-element single-property-map" style="height: 400px">
+                            <h5 class="title fw-6">مکان نقشه</h5>
+
+                        </div>
+                        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                        <script>
+                            // تنظیمات نقشه
+                            var map = L.map('map').setView([{{ project.longitude }}, {{ project.latitude }}], 12); // تهران
+
+                            // اضافه کردن لایه نقشه از OpenStreetMap
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; OpenStreetMap contributors'
+                            }).addTo(map);
+
+                            // اضافه کردن نشانگر (Marker) روی نقشه
+                            L.marker([{{ project.longitude }}, {{ project.latitude }}]).addTo(map)
+                                .openPopup();
+                        </script>
+                    {% endif %}
                     <div class="single-property-element single-property-floor">
                         <h5 class="title fw-6">پلان طبقات</h5>
                         <ul class="box-floor" id="parent-floor">
@@ -346,30 +330,17 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div
-                                        class="collapse show"
-                                        data-bs-parent="#parent-floor"
-                                        id="floor-one"
-                                >
+                                <div class="collapse show" data-bs-parent="#parent-floor" id="floor-one">
                                     <div class="faq-body">
                                         <div class="box-img">
-                                            <img
-                                                    alt="img-floor"
-                                                    src="images/banner/floor.png"
-                                            />
+                                            <img alt="img-floor" src="images/banner/floor.png"/>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="floor-item">
-                                <div
-                                        aria-controls="floor-two"
-                                        aria-expanded="false"
-                                        class="floor-header collapsed"
-                                        data-bs-target="#floor-two"
-                                        data-bs-toggle="collapse"
-                                        role="button"
-                                >
+                                <div aria-controls="floor-two" aria-expanded="false" class="floor-header collapsed"
+                                     data-bs-target="#floor-two" data-bs-toggle="collapse" role="button">
                                     <div class="inner-left">
                                         <i class="icon icon-arr-r"></i>
                                         <span class="text-btn">طبقه دوم</span>
@@ -383,11 +354,9 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div
-                                        class="collapse"
-                                        data-bs-parent="#parent-floor"
-                                        id="floor-two"
-                                >
+                                <div class="collapse"
+                                     data-bs-parent="#parent-floor"
+                                     id="floor-two">
                                     <div class="faq-body">
                                         <div class="box-img">
                                             <img
