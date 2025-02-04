@@ -4,12 +4,15 @@ from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "Software/index.html"
+    context_object_name = 'projects'
+    model = SoftProject
+    queryset = SoftProject.objects.all().order_by('-id')
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['projects'] = SoftProject.objects.all()
         context['banner'] = SoftPanelModel.objects.first()
         context['categories'] = SoftCategory.objects.all()
         context['coworking'] = SoftCoworking.objects.all()

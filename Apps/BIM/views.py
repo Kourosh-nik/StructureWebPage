@@ -8,7 +8,7 @@ class IndexView(ListView):
     context_object_name = "projects"
     model = BIMProject
     queryset = BIMProject.objects.all().order_by('-id')
-    paginate_by = 9
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

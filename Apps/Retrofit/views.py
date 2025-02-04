@@ -3,12 +3,15 @@ from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "Retrofit/index.html"
+    context_object_name = "projects"
+    model = RetroProject
+    queryset = RetroProject.objects.all().order_by('-id')
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['projects'] = RetroProject.objects.all()
         context['banner'] = RetroPanelModel.objects.first()
         context['categories'] = RetroCategory.objects.all()
         context['coworking'] = RetroCoworking.objects.all()

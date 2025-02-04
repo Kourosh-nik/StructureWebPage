@@ -3,12 +3,15 @@ from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "project_management/index.html"
+    context_object_name = "projects"
+    model = ProjManProject
+    queryset = ProjManProject.objects.all().order_by("-id")
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['projects'] = ProjManProject.objects.all()
         context['banner'] = ProjManPanelModel.objects.first()
         context['categories'] = ProjManCategory.objects.all()
         context['coworking'] = ProjManCoworking.objects.all()
