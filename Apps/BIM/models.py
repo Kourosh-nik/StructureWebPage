@@ -65,7 +65,8 @@ class BIMLateralSys(BaseModel):
 class BIMProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=False, null=True, blank=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
@@ -84,8 +85,8 @@ class BIMProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        # return reverse('BIM:project_detail', args=[self.id])
-        pass
+        return reverse('bim:project_detail', args=[self.slug])
+
 
 class BIMProjectImage(models.Model):
     project = models.ForeignKey(BIMProject, related_name='images', on_delete=models.CASCADE)
@@ -114,9 +115,9 @@ class BIMCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        # from django.urls import reverse
         # return reverse("BIM:coworking_detail", kwargs={"id": self.id, "title": self.slug})
         pass
+
 
 class BIMCoworkingImage(models.Model):
     coworking = models.ForeignKey(BIMCoworking, related_name='images', on_delete=models.CASCADE)

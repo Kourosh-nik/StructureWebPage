@@ -3,12 +3,15 @@ from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
 
 # IndexView
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "bim/index.html"
+    context_object_name = "projects"
+    model = BIMProject
+    queryset = BIMProject.objects.all().order_by('-id')
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['projects'] = BIMProject.objects.all()
         context['banner'] = BimPanelModel.objects.first()
         context['categories'] = BIMCategory.objects.all()
         context['coworking'] = BIMCoworking.objects.all()
@@ -18,8 +21,8 @@ class IndexView(TemplateView):
 
 class ProjectDetailView(DetailView):
     model = BIMProject
-    template_name = 'bim/detail.html'
-    context_object_name = 'Project'
+    template_name = 'bim/project-detail.html'
+    context_object_name = 'project'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,6 +30,9 @@ class ProjectDetailView(DetailView):
             category=self.object.category
         ).exclude(id=self.object.id)[:4]
         return context
+
+    def get_queryset(self):
+        return BIMProject.objects.prefetch_related('images').all()
 
 
 class CoworkingDetailView(DetailView):
