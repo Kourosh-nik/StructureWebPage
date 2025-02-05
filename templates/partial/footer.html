@@ -3,114 +3,89 @@
         <div class="container">
             <div class="content-footer-top">
                 <div class="footer-logo">
-                    <a href="index.html"
-                    ><img
-                            alt="logo"
-                            height="48"
-                            src="images/logo/logo-footer@2x.png"
-                            width="166"
-                    /></a>
+                    <a href="{% url 'home_Page:index' %}">
+                        <img alt="logo" height="48" src="{{ panel.logo.url }}" width="166"/></a>
                 </div>
                 <div class="wd-social">
                     <span>ما را دنبال کنید:</span>
                     <ul class="list-social d-flex align-items-center">
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        class="icon"
-                                        fill="none"
-                                        height="16"
-                                        viewbox="0 0 9 16"
-                                        width="9"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M7.60547 9L8.00541 6.10437H5.50481V4.22531C5.50481 3.43313 5.85413 2.66094 6.97406 2.66094H8.11087V0.195625C8.11087 0.195625 7.07925 0 6.09291 0C4.03359 0 2.68753 1.38688 2.68753 3.8975V6.10437H0.398438V9H2.68753V16H5.50481V9H7.60547Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        fill="none"
-                                        height="16"
-                                        viewbox="0 0 16 16"
-                                        width="16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M3.58151 16H0.264292V5.31762H3.58151V16ZM1.92111 3.86044C0.860376 3.86044 0 2.98185 0 1.92111C7.59231e-09 1.4116 0.140303 0.92296 0.562681 0.562681C0.92296 0.140303 1.4116 0 1.92111 0C2.43063 0 2.91927 0.140303 3.27955 0.562681C3.63983 0.92296 3.84223 1.4116 3.84223 1.92111C3.84223 2.98185 2.98149 3.86044 1.92111 3.86044ZM15.9968 16H12.6867V10.7999C12.6867 9.56057 12.6617 7.97125 10.962 7.97125C9.23735 7.97125 8.97306 9.31771 8.97306 10.7106V16H5.65941V5.31762H8.84091V6.77479H8.88734C9.33021 5.93549 10.412 5.04976 12.026 5.04976C15.3832 5.04976 16.0004 7.26052 16.0004 10.132V16H15.9968Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        fill="none"
-                                        height="14"
-                                        viewbox="0 0 14 14"
-                                        width="14"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M8.30314 5.92804L13.4029 0H12.1944L7.7663 5.14724L4.22958 0H0.150391L5.4986 7.78354L0.150391 14H1.35894L6.03514 8.56434L9.77017 14H13.8494L8.30284 5.92804H8.30314ZM6.64787 7.85211L6.10598 7.07705L1.79439 0.909771H3.65065L7.13015 5.88696L7.67204 6.66202L12.195 13.1316H10.3387L6.64787 7.85241V7.85211Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        fill="none"
-                                        height="16"
-                                        viewbox="0 0 13 16"
-                                        width="13"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M6.53967 0C3.2506 0 0 2.19271 0 5.74145C0 7.99827 1.26947 9.28056 2.03884 9.28056C2.3562 9.28056 2.53893 8.39578 2.53893 8.14574C2.53893 7.8476 1.77918 7.21287 1.77918 5.97226C1.77918 3.39486 3.74108 1.5676 6.28001 1.5676C8.4631 1.5676 10.0788 2.80821 10.0788 5.08748C10.0788 6.78972 9.39597 9.98261 7.18402 9.98261C6.3858 9.98261 5.70298 9.40558 5.70298 8.57851C5.70298 7.36675 6.54929 6.19345 6.54929 4.94322C6.54929 2.82103 3.53912 3.20572 3.53912 5.7703C3.53912 6.30886 3.60644 6.90512 3.84686 7.3956C3.40448 9.2998 2.50046 12.1369 2.50046 14.0988C2.50046 14.7046 2.58702 15.3009 2.64472 15.9068C2.75371 16.0286 2.69922 16.0158 2.86591 15.9549C4.4816 13.7429 4.42389 13.3102 5.1548 10.4154C5.5491 11.1655 6.56852 11.5694 7.37636 11.5694C10.7808 11.5694 12.31 8.25152 12.31 5.26059C12.31 2.07731 9.55946 0 6.53967 0Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        fill="none"
-                                        height="14"
-                                        viewbox="0 0 14 14"
-                                        width="14"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M6.99812 4.66567C5.71277 4.66567 4.66383 5.71463 4.66383 7C4.66383 8.28537 5.71277 9.33433 6.99812 9.33433C8.28346 9.33433 9.3324 8.28537 9.3324 7C9.3324 5.71463 8.28346 4.66567 6.99812 4.66567ZM13.9992 7C13.9992 6.03335 14.008 5.07545 13.9537 4.11055C13.8994 2.98979 13.6437 1.99512 12.8242 1.17556C12.0029 0.35426 11.01 0.100338 9.88927 0.0460516C8.92263 -0.00823506 7.96475 0.000520879 6.99987 0.000520879C6.03323 0.000520879 5.07536 -0.00823506 4.11047 0.0460516C2.98973 0.100338 1.99508 0.356011 1.17554 1.17556C0.354253 1.99687 0.100336 2.98979 0.0460508 4.11055C-0.00823491 5.0772 0.00052087 6.0351 0.00052087 7C0.00052087 7.9649 -0.00823491 8.92455 0.0460508 9.88945C0.100336 11.0102 0.356004 12.0049 1.17554 12.8244C1.99683 13.6457 2.98973 13.8997 4.11047 13.9539C5.07711 14.0082 6.03499 13.9995 6.99987 13.9995C7.9665 13.9995 8.92438 14.0082 9.88927 13.9539C11.01 13.8997 12.0047 13.644 12.8242 12.8244C13.6455 12.0031 13.8994 11.0102 13.9537 9.88945C14.0097 8.92455 13.9992 7.96665 13.9992 7ZM6.99812 10.5917C5.01056 10.5917 3.40651 8.98759 3.40651 7C3.40651 5.01241 5.01056 3.40832 6.99812 3.40832C8.98567 3.40832 10.5897 5.01241 10.5897 7C10.5897 8.98759 8.98567 10.5917 6.99812 10.5917ZM10.7368 4.10004C10.2728 4.10004 9.89802 3.72529 9.89802 3.26122C9.89802 2.79716 10.2728 2.42241 10.7368 2.42241C11.2009 2.42241 11.5756 2.79716 11.5756 3.26122C11.5758 3.37142 11.5542 3.48056 11.5121 3.58239C11.47 3.68422 11.4082 3.77675 11.3303 3.85467C11.2523 3.93258 11.1598 3.99437 11.058 4.03647C10.9562 4.07858 10.847 4.10018 10.7368 4.10004Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="box-icon w-40 social" href="#">
-                                <svg
-                                        fill="none"
-                                        height="12"
-                                        viewbox="0 0 16 12"
-                                        width="16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M15.6657 1.76024C15.4817 1.06737 14.9395 0.521689 14.2511 0.336504C13.0033 0 8 0 8 0C8 0 2.99669 0 1.7489 0.336504C1.06052 0.521718 0.518349 1.06737 0.334336 1.76024C0 3.01611 0 5.63636 0 5.63636C0 5.63636 0 8.25661 0.334336 9.51248C0.518349 10.2053 1.06052 10.7283 1.7489 10.9135C2.99669 11.25 8 11.25 8 11.25C8 11.25 13.0033 11.25 14.2511 10.9135C14.9395 10.7283 15.4817 10.2053 15.6657 9.51248C16 8.25661 16 5.63636 16 5.63636C16 5.63636 16 3.01611 15.6657 1.76024ZM6.36363 8.01535V3.25737L10.5454 5.63642L6.36363 8.01535Z"
-                                            fill="white"
-                                    ></path>
-                                </svg>
-                            </a>
-                        </li>
+                        {% if panel.facebook %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.facebook }}">
+                                    <svg class="icon" fill="none" height="16" viewbox="0 0 9 16" width="9"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.60547 9L8.00541 6.10437H5.50481V4.22531C5.50481 3.43313 5.85413 2.66094 6.97406 2.66094H8.11087V0.195625C8.11087 0.195625 7.07925 0 6.09291 0C4.03359 0 2.68753 1.38688 2.68753 3.8975V6.10437H0.398438V9H2.68753V16H5.50481V9H7.60547Z"
+                                              fill="white"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.instagram %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.instagram }}">
+                                    <svg fill="none" height="16" viewbox="0 0 16 16" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.58151 16H0.264292V5.31762H3.58151V16ZM1.92111 3.86044C0.860376 3.86044 0 2.98185 0 1.92111C7.59231e-09 1.4116 0.140303 0.92296 0.562681 0.562681C0.92296 0.140303 1.4116 0 1.92111 0C2.43063 0 2.91927 0.140303 3.27955 0.562681C3.63983 0.92296 3.84223 1.4116 3.84223 1.92111C3.84223 2.98185 2.98149 3.86044 1.92111 3.86044ZM15.9968 16H12.6867V10.7999C12.6867 9.56057 12.6617 7.97125 10.962 7.97125C9.23735 7.97125 8.97306 9.31771 8.97306 10.7106V16H5.65941V5.31762H8.84091V6.77479H8.88734C9.33021 5.93549 10.412 5.04976 12.026 5.04976C15.3832 5.04976 16.0004 7.26052 16.0004 10.132V16H15.9968Z"
+                                              fill="white"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.twitter %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.twitter }}">
+                                    <svg fill="none" height="14" viewbox="0 0 14 14" width="14"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.30314 5.92804L13.4029 0H12.1944L7.7663 5.14724L4.22958 0H0.150391L5.4986 7.78354L0.150391 14H1.35894L6.03514 8.56434L9.77017 14H13.8494L8.30284 5.92804H8.30314ZM6.64787 7.85211L6.10598 7.07705L1.79439 0.909771H3.65065L7.13015 5.88696L7.67204 6.66202L12.195 13.1316H10.3387L6.64787 7.85241V7.85211Z"
+                                              fill="white"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.linkedin %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.linkedin }}">
+                                    <svg fill="none" height="12" viewBox="0 0 16 12" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.3 0H0.7C0.3 0 0 0.3 0 0.7V15.4C0 15.7 0.3 16 0.7 16H15.4C15.8 16 16.1 15.7 16.1 15.3V0.7C16 0.3 15.7 0 15.3 0ZM4.7 13.6H2.4V6H4.7V13.6ZM3.6 5C2.8 5 2.2 4.3 2.2 3.6C2.2 2.8 2.8 2.2 3.6 2.2C4.4 2.2 5 2.8 5 3.6C5 4.3 4.4 5 3.6 5ZM13.6 13.6H11.2V9.9C11.2 9 11.2 7.9 10 7.9C8.8 7.9 8.6 8.9 8.6 9.9V13.6H6.2V6H8.5V7H8.6C8.9 6.4 9.7 5.8 10.8 5.8C13.1 5.8 13.6 7.4 13.6 9.4V13.6Z"
+                                              fill="white"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.telegram %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.telegram }}">
+                                    <svg fill="none" height="12" viewBox="0 0 16 12" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM11.9 5.2L10.7 11.5C10.6 12 10.3 12.1 10 11.9L7.9 10.2L6.8 11.3C6.7 11.4 6.6 11.5 6.4 11.5L6.6 9.3L10.3 6C10.5 5.8 10.3 5.7 10 5.9L5.3 8.8L3.1 8.1C2.6 7.9 2.6 7.6 3.1 7.3L11.3 4.1C11.7 3.9 12 4.1 11.9 4.6V5.2Z"
+                                              fill="white"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.youtube %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.youtube }}">
+                                    <svg fill="none" height="12" viewbox="0 0 16 12" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.6657 1.76024C15.4817 1.06737 14.9395 0.521689 14.2511 0.336504C13.0033 0 8 0 8 0C8 0 2.99669 0 1.7489 0.336504C1.06052 0.521718 0.518349 1.06737 0.334336 1.76024C0 3.01611 0 5.63636 0 5.63636C0 5.63636 0 8.25661 0.334336 9.51248C0.518349 10.2053 1.06052 10.7283 1.7489 10.9135C2.99669 11.25 8 11.25 8 11.25C8 11.25 13.0033 11.25 14.2511 10.9135C14.9395 10.7283 15.4817 10.2053 15.6657 9.51248C16 8.25661 16 5.63636 16 5.63636C16 5.63636 16 3.01611 15.6657 1.76024ZM6.36363 8.01535V3.25737L10.5454 5.63642L6.36363 8.01535Z"
+                                              fill="white"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if panel.whatsapp %}
+                            <li>
+                                <a class="box-icon w-40 social" href="{{ panel.whatsapp }}">
+                                    <svg fill="none" height="12" viewBox="0 0 16 12" width="16"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM11.9 12.1C11.9 12.1 11.3 13.4 11.1 13.8C10.9 14.2 10.5 14.3 10 14.1C9.5 13.9 7.9 13.2 6.7 12.1C5.5 11 4.8 9.4 4.6 8.9C4.4 8.4 4.6 8 5 7.8C5.4 7.6 6.7 7 6.7 7C7.1 6.8 7.3 6.5 7.3 6.1C7.3 5.7 7 5.4 6.6 5.4C6.2 5.4 5.7 5.5 5.2 5.8C4.7 6.1 3.9 6.7 3.9 7.9C3.9 9.1 4.7 10.3 5.8 11.4C6.9 12.5 8.1 13.3 9.3 13.3C10.5 13.3 11.1 12.6 11.4 12.1C11.7 11.6 11.9 11.7 11.9 12.1Z"
+                                              fill="white"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -122,8 +97,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-cl-1">
                         <p class="text-variant-2">
-                            متخصص در ارائه تورهای با کلاس بالا برای افراد نیازمند.
-                            تماس با ما
+                            {{ panel.footer_text }}
                         </p>
                         <ul class="mt-12">
                             <li class="mt-12 d-flex align-items-center gap-8">
@@ -131,20 +105,20 @@
                                         class="icon icon-mapPinLine fs-20 text-variant-2"
                                 ></i>
                                 <p class="text-white">
-                                    101 E 129th St, East Chicago, IN 46312, US
+                                    {{ panel.address }}
                                 </p>
                             </li>
                             <li class="mt-12 d-flex align-items-center gap-8">
                                 <i class="icon icon-phone2 fs-20 text-variant-2"></i>
                                 <a
                                         class="text-white caption-1"
-                                        href="tel:1-333-345-6868"
-                                >1-333-345-6868</a
+                                        href="tel:{{ panel.phone }}"
+                                >{{ panel.phone }}</a
                                 >
                             </li>
                             <li class="mt-12 d-flex align-items-center gap-8">
                                 <i class="icon icon-mail fs-20 text-variant-2"></i>
-                                <p class="text-white">themesflat@gmail.com</p>
+                                <p class="text-white">{{ panel.email }}</p>
                             </li>
                         </ul>
                     </div>
@@ -152,37 +126,29 @@
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-cl-2 footer-col-block">
                         <div class="fw-7 text-white footer-heading-mobile">
-                            دسته
+                            خدمات ما
                         </div>
                         <div class="tf-collapse-content">
                             <ul class="mt-10 navigation-menu-footer">
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="pricing.html"
-                                    >طرح های قیمت گذاری</a
+                                    <a class="caption-1 text-variant-2" href="{% url 'Structure_Design:index' %}">خدمات
+                                        طراحی سازه</a>
+                                </li>
+                                <li>
+                                    <a class="caption-1 text-variant-2" href="{% url 'bim:index' %}">خدمات BIM </a
                                     >
                                 </li>
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="our-service.html"
-                                    >خدمات ما</a
-                                    >
+                                    <a class="caption-1 text-variant-2" href="{% url 'Retrofit:index' %}">خدمات بهسازی و
+                                        مقاومسازی سازه</a>
                                 </li>
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="about-us.html"
-                                    >درباره ما</a
-                                    >
+                                    <a class="caption-1 text-variant-2" href="{% url 'project_management:index' %}">خدمات
+                                        مدیریت پروژه</a>
                                 </li>
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="contact.html"
-                                    >با ما تماس بگیرید</a
-                                    >
+                                    <a class="caption-1 text-variant-2" href="{% url 'Software:index' %}">نرم
+                                        افزارها</a>
                                 </li>
                             </ul>
                         </div>
@@ -196,102 +162,16 @@
                         <div class="tf-collapse-content">
                             <ul class="mt-10 navigation-menu-footer">
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="topmap-list.html"
-                                    >املاک برای فروش</a
-                                    >
+                                    <a class="caption-1 text-variant-2" href="{% url 'home_Page:about' %}">درباره ما</a>
                                 </li>
                                 <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="topmap-grid.html"
-                                    >ملک برای اجاره</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="topmap-grid.html"
-                                    >ملک برای خرید</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                            class="caption-1 text-variant-2"
-                                            href="topmap-grid.html"
-                                    >عوامل ما</a
-                                    >
+                                    <a class="caption-1 text-variant-2" href="{% url 'home_Page:contact' %}">تماس با
+                                        ما</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-cl-4 footer-col-block">
-                        <div class="fw-7 text-white footer-heading-mobile">
-                            خبرنامه
-                        </div>
-                        <div class="tf-collapse-content">
-                            <p class="mt-12 text-variant-2">
-                                دوز هفتگی/ماهانه دانش و الهام شما
-                            </p>
-                            <form
-                                    accept-charset="utf-8"
-                                    action="#"
-                                    class="mt-12"
-                                    data-mailchimp="true"
-                                    id="subscribe-form"
-                                    method="post"
-                            >
-                                <div id="subscribe-content">
-                                    <input
-                                            id="subscribe-email"
-                                            name="email-form"
-                                            placeholder="آدرس ایمیل شما"
-                                            type="email"
-                                    />
-                                    <button
-                                            class="button-subscribe"
-                                            id="subscribe-button"
-                                            type="button"
-                                    >
-                                        <svg
-                                                fill="none"
-                                                height="20"
-                                                viewbox="0 0 20 20"
-                                                width="20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                    d="M5.00044 9.99935L2.72461 2.60352C8.16867 4.18685 13.3024 6.68806 17.9046 9.99935C13.3027 13.3106 8.16921 15.8118 2.72544 17.3952L5.00044 9.99935ZM5.00044 9.99935H11.2504"
-                                                    stroke="#1563DF"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="1.5"
-                                            ></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div id="subscribe-msg"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-footer">
-        <div class="container">
-            <div class="content-footer-bottom">
-                <div class="copyright">
-                    ©1403 Homelengo. تمامی حقوق محفوظ است.
-                </div>
-                <ul class="menu-bottom">
-                    <li><a href="our-service.html">شرایط خدمات</a></li>
-                    <li><a href="pricing.html">سیاست حفظ حریم</a></li>
-                    <li><a href="contact.html">خط مشی کوکی</a></li>
-                </ul>
             </div>
         </div>
     </div>

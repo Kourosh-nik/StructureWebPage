@@ -31,7 +31,12 @@ class HeaderView(View):
 
 class FooterView(View):
     def get(self, request):
-        return render(request, 'partial/footer.html')
+        panel = SiteDetailModel.objects.first()
+
+        context = {
+            'panel': panel
+        }
+        return render(request, 'partial/footer.html', context)
 
 class IndexView(View):
     def get(self, request):
@@ -41,3 +46,8 @@ class IndexView(View):
 class AboutUsView(View):
     def get(self, request):
         return render(request, 'home_Page/about-us.html')
+
+
+class ContactUsView(View):
+    def get(self, request):
+        return render(request, 'home_Page/contact.html')

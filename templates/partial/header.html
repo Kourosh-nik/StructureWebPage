@@ -8,13 +8,9 @@
                     <div class="inner-header-left">
                         <div class="logo-box flex">
                             <div class="logo">
-                                <a href="{% url 'home_Page:index' %}"
-                                ><img
-                                        alt="logo"
-                                        height="48"
-                                        src="{{ panel.logo.url }}"
-                                        width="166"
-                                /></a>
+                                <a href="{% url 'home_Page:index' %}">
+                                    <img alt="logo" height="48" src="{{ panel.logo.url }}" width="166"/>
+                                </a>
                             </div>
                         </div>
                         <div class="nav-outer flex align-center">
@@ -114,9 +110,7 @@
                                 </p>
 
                             </a>
-
                         </div>
-
                     {% else %}
                         <div class="inner-header-right header-account">
                             <a class="tf-btn btn-line btn-login" data-bs-toggle="modal" href="#modalLogin">
