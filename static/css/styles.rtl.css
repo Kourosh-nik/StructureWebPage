@@ -11753,3 +11753,67 @@ tr {
     animation: none;
   }
 }
+
+
+.swiper-container {
+    width: 80%;  /* Adjust this value as needed */
+    max-width: 1200px;  /* Prevent excessive stretching */
+    margin: auto;  /* Center it */
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 340px;  /* Adjust height */
+    object-fit: cover;
+    border-radius: 10px;  /* Keep images rounded */
+}
+
+.swiper-slide {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+/* Ensure buttons are centered below the slider */
+.swiper-navigation {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Align vertically */
+    gap: 15px;                /* Space between buttons */
+    margin-top: 15px;         /* Add space below the slider */
+}
+
+/* Style navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+    position: static !important;  /* Remove absolute positioning */
+    width: 20px !important;
+    height: 20px !important;
+    background-color: #d9d9d9;  /* Customize button color */
+    border-radius: 50%;  /* Make it circular */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px !important;
+    cursor: pointer;
+}
+
+/* Add hover effect */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: #d9d9d9;
+}
+
+.swiper-button-prev::after {
+    content: '\2039' !important; /* Unicode for '>' */
+    font-size: 16px !important; /* Reduce arrow size */
+}
+
+.swiper-button-next::after {
+    content: '\203A' !important; /* Unicode for '>' */
+    font-size: 16px !important; /* Reduce arrow size */
+}
+
+

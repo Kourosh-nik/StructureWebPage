@@ -11,7 +11,7 @@
                                 ><img
                                         alt="logo"
                                         height="48"
-                                        src="images/logo/logo@2x.png"
+                                        src="images/logo/LOGO.png"
                                         width="166"
                                 /></a>
                             </div>
@@ -24,21 +24,25 @@
                                         id="navbarSupportedContent"
                                 >
                                     <ul class="navigation clearfix">
-                                        <li class="dropdown2 home current">
-                                            <a href="#">خانه</a>
+                                        <!--خدمات طراحی سازه-->
+
+                                        <li class="dropdown2">
+                                            <a href="#">خدمات طراحی سازه</a>
                                             <ul>
-                                                <li class="current">
-                                                    <a href="index.html">صفحه اصلی 01</a>
+                                                <li>
+                                                    <a href="property-details-v1.html">طراحی سازه های فولادی</a>
                                                 </li>
-                                                <li><a href="home-02.html">صفحه اصلی 02</a></li>
-                                                <li><a href="home-03.html">صفحه اصلی 03</a></li>
-                                                <li><a href="home-04.html">صفحه اصلی 04</a></li>
-                                                <li><a href="home-05.html">صفحه اصلی 05</a></li>
-                                                <li><a href="home-06.html">صفحه اصلی 06</a></li>
+                                                <li>
+                                                    <a href="property-details-v2.html">طراحی سازه های بتن آرمه</a>
+                                                </li>
+                                                <li>
+                                                    <a href="property-details-v3.html">طراحی سازه های صنعتی</a>
+                                                </li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown2">
-                                            <a href="#">لیست</a>
+                                        <!--BIM خدمات-->
+                                        <li class="dropdown2"><a href="{% url 'bim:index' %}">
+                                            خدمات BIM </a>
                                             <ul>
                                                 <li>
                                                     <a href="property-halfmap-grid.html"
@@ -72,33 +76,9 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <!--خدمات بهسازی و مقاومسازی سازه-->
                                         <li class="dropdown2">
-                                            <a href="#">ویژگی ها</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="property-details-v1.html"
-                                                    >جزئیات ملک 1</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="property-details-v2.html"
-                                                    >جزئیات ملک 2</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="property-details-v3.html"
-                                                    >جزئیات ملک 3</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="property-details-v4.html"
-                                                    >جزئیات ملک 4</a
-                                                    >
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown2">
-                                            <a href="#">صفحات</a>
+                                            <a href="#">خدمات بهسازی و مقاومسازی سازه</a>
                                             <ul>
                                                 <li><a href="about-us.html">درباره ما</a></li>
                                                 <li><a href="our-service.html">خدمات ما</a></li>
@@ -114,20 +94,9 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <!--خدمات مدیریت پروژه-->
                                         <li class="dropdown2">
-                                            <a href="#">وبلاگ</a>
-                                            <ul>
-                                                <li><a href="blog.html">پیش فرض وبلاگ</a></li>
-                                                <li><a href="blog-grid.html">گرید وبلاگ</a></li>
-                                                <li>
-                                                    <a href="blog-detail.html"
-                                                    >جزئیات پست وبلاگ</a
-                                                    >
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown2">
-                                            <a href="#">داشبورد</a>
+                                            <a href="#">خدمات مدیریت پروژه</a>
                                             <ul>
                                                 <li><a href="dashboard.html">داشبورد</a></li>
                                                 <li><a href="my-property.html">ویژگی ها من</a></li>
@@ -146,6 +115,21 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <!--نرم افزارها-->
+                                        <li class="dropdown2">
+                                            <a href="#">نرم افزارها</a>
+                                            <ul>
+                                                <li><a href="blog.html">پیش فرض وبلاگ</a></li>
+                                                <li><a href="blog-grid.html">گرید وبلاگ</a></li>
+                                                <li>
+                                                    <a href="blog-detail.html"
+                                                    >جزئیات پست وبلاگ</a
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
                                     </ul>
                                 </div>
                             </nav>
@@ -185,11 +169,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="flat-bt-top">
-                                <a class="tf-btn primary" href="add-property.html">
-                                    خروج از سیستم</a
-                                >
-                            </div>
+
                         </div>
 
                     {% else %}
@@ -208,13 +188,8 @@
                             ورود به سیستم
 
                         </a>
+                        </div>
                     {% endif %}
-
-                    </div>
-
-
-
-
                     <div class="mobile-nav-toggler mobile-button">
                         <span></span>
                     </div>
@@ -235,7 +210,7 @@
                 ><img
                         alt="nav-logo"
                         height="44"
-                        src="images/logo/logo@2x.png"
+                        src="images/logo/LOGO.png"
                         width="174"
                 /></a>
             </div>

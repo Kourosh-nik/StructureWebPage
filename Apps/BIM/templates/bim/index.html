@@ -2,16 +2,18 @@
 {% load static %}
 {% block title %}{% endblock %}
 {% block content %}
+    <!--Wellcome to this page section-->
     <section class="mx-5 bg-primary-new radius-30">
         <div class="flat-img-with-text">
             <div class="content-left img-animation wow">
-                <img alt="{{ banner.image_title }}" class="lazyload" data-src="{{ banner.image.url }}" src="{{ banner.image.url }}"/>
+                <img alt="{{ banner.image_title }}" class="lazyload" data-src="{{ banner.image.url }}"
+                     src="{{ banner.image.url }}"/>
             </div>
             <div class="content-right">
                 <div class="box-title wow fadeInUp">
                     <div class="text-subtitle text-primary"></div>
                     <h3 class="title mt-4">{{ banner.title }}</h3>
-                    <p class="desc text-variant-1">{{banner.description }}</p>
+                    <p class="desc text-variant-1">{{ banner.description }}</p>
                 </div>
                 <div class="flat-service wow fadeInUp" data-wow-delay=".2s">
                     <a class="box-benefit hover-btn-view" href="#">
@@ -32,7 +34,7 @@
                         <div class="content">
                             <h5 class="title">{{ banner.mini_title2 }}</h5>
                             <p class="description">
-                                {{ banner.mini_description2}}
+                                {{ banner.mini_description2 }}
                             </p>
                         </div>
                     </a>
@@ -51,12 +53,10 @@
             </div>
         </div>
     </section>
-    <!-- End Benefit -->
+    <!-- End Wellcome to this page section -->
     <br>
     <br>
-
-
-    {#    <!-- Filter -->#}
+    {#    <!-- Search -->#}
     <div class="flat-control-search abs">
         <div class="container">
             <div class="flat-tab flat-tab-form">
@@ -70,11 +70,11 @@
                                             <label>محل</label>
                                             <div class="group-ip">
                                                 <input class="form-control" name="s"
-                                                        placeholder="محل جستجو"
-                                                        required=""
-                                                        title="Search for"
-                                                        type="text"
-                                                        value=""
+                                                       placeholder="محل جستجو"
+                                                       required=""
+                                                       title="Search for"
+                                                       type="text"
+                                                       value=""
                                                 />
                                                 <a class="icon icon-location" href="#"> </a>
                                             </div>
@@ -94,278 +94,206 @@
             </div>
         </div>
     </div>
-    <!-- /Filter -->
-
+    <!-- End Search -->
     <br>
     <br>
-
-    <!-- Slider -->
-    <section class="px-10">
+    <!-- Slider Categories Section-->
+    <section class="px-10 w-100">
         <div class="box-title text-center wow fadeInUp">
             <h3 class="mt-4 title">دسته بندی</h3>
             <div class="text-subtitle text-primary">{{ banner.slider1_description }}</div>
         </div>
-        <div class="wow fadeInUp" data-wow-delay=".2s">
-            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
-                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
-                    data-space-lg="8" data-space-md="8" data-tablet="3">
+        <div class="swiper-container-wrapper">
+            <div class="swiper-container">
                 <div class="swiper-wrapper">
-
                     {% for category in categories %}
-                    <div class="swiper-slide">
-                        <div class="box-location">
-                            <a class="image img-style" href="{{ category.get_absolute_url }}">
-                                <img
-                                        alt="image-location"
-                                        class="lazyload"
-                                        data-src="{{ category.image.url }}"
-                                        src="{{ category.image.url }}"
-                                />
-                            </a>
-                            <div class="content">
-                                <div class="inner-left">
-                                    <span class="sub-title fw-6"></span>
-                                    <h6 class="title text-line-clamp-1 link">{{ category.title }}</h6>
+                        <div class="swiper-slide">
+                            <div class="box-location">
+                                <a class="image img-style" href="{{ category.get_absolute_url }}">
+                                    <img alt="image-location"
+                                         class="lazyload"
+                                         data-src="{{ category.image.url }}"
+                                         src="{{ category.image.url }}"
+                                    />
+                                </a>
+                                <div class="content">
+                                    <div class="inner-left">
+                                        <span class="sub-title fw-6"></span>
+                                        <h6 class="title text-line-clamp-1 link">{{ category.title }}</h6>
+                                    </div>
+                                    <a
+                                            class="box-icon line w-44 round"
+                                            href="{{ category.get_absolute_url }}"
+                                    ><i class="icon icon-arrow-left2"></i
+                                    ></a>
                                 </div>
-                                <a
-                                        class="box-icon line w-44 round"
-                                        href="{{ category.get_absolute_url }}"
-                                ><i class="icon icon-arrow-left2"></i
-                                ></a>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
-
-
                 </div>
-                <div
-                        class="sw-pagination sw-pagination-location text-center"
-                ></div>
+                <div class="sw-pagination sw-pagination-location text-center"></div>
             </div>
         </div>
+
+        <!-- Move navigation buttons BELOW the slider -->
+        <div class="swiper-navigation">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
     </section>
-    <!-- End Slider -->
-
-
-    <!-- Recommended -->
-    <section class="flat-section flat-recommended">
+    <!-- End Slider Categories Section -->
+    <!-- Projects Section -->
+    <section class="flat-section bg-primary-new">
         <div class="container">
             <div class="box-title text-center wow fadeInUp">
-                <div class="text-subtitle text-primary"></div>
+                <div class="text-subtitle text-primary">تجربه های من</div>
                 <h3 class="title mt-4">
                     {{ banner.project_base_title }}
                 </h3>
             </div>
             <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
                 <div class="tab-content">
-                    <div>
-                        <div class="row">
-
-                            {% for project in projects %}
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="homelengo-box">
-                                    <div class="archive-top">
+                    <div class="row">
+                        {% for project in projects|slice:":9" %} <!-- Show only 9 projects -->
+                            <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                                <div class="homelengo-box card border rounded shadow-sm">
+                                    <div class="archive-top position-relative">
                                         <a class="images-group" href="{{ project.get_absolute_url }}">
                                             <div class="images-style">
-                                                <img alt="img" class="lazyload" data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
-                                            </div>
-                                            <div class="top">
-                                                <ul class="d-flex gap-6">
-                                                    <li class="flag-tag primary"></li>
-                                                    <li class="flag-tag style-1"></li>
-                                                </ul>
-                                            </div>
-                                            <div class="bottom">
-                                                <svg
-                                                        fill="none"
-                                                        height="16"
-                                                        viewbox="0 0 16 16"
-                                                        width="16"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                            d="M10 7C10 7.53043 9.78929 8.03914 9.41421 8.41421C9.03914 8.78929 8.53043 9 8 9C7.46957 9 6.96086 8.78929 6.58579 8.41421C6.21071 8.03914 6 7.53043 6 7C6 6.46957 6.21071 5.96086 6.58579 5.58579C6.96086 5.21071 7.46957 5 8 5C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7Z"
-                                                            stroke="white"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="1.5"
-                                                    ></path>
-                                                    <path
-                                                            d="M13 7C13 11.7613 8 14.5 8 14.5C8 14.5 3 11.7613 3 7C3 5.67392 3.52678 4.40215 4.46447 3.46447C5.40215 2.52678 6.67392 2 8 2C9.32608 2 10.5979 2.52678 11.5355 3.46447C12.4732 4.40215 13 5.67392 13 7Z"
-                                                            stroke="white"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="1.5"
-                                                    ></path>
-                                                </svg
-                                                >
-
+                                                <img alt="img" class="lazyload img-fluid rounded-top"
+                                                     data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="archive-bottom">
-                                        <div class="content-top">
-                                            <h6 class="text-capitalize">
-                                                <a class="link" href="{{ project.get_absolute_url }}">{{ project.title }}</a>
-                                            </h6>
-{#                                            <ul class="meta-list">#}
-{#                                                <li class="item">#}
-{#                                                    <i class="icon icon-bed"></i>#}
-{#                                                    <span class="text-variant-1">تخت ها:</span>#}
-{#                                                    <span class="fw-6">3</span>#}
-{#                                                </li>#}
-{#                                                <li class="item">#}
-{#                                                    <i class="icon icon-bath"></i>#}
-{#                                                    <span class="text-variant-1">حمام ها:</span>#}
-{#                                                    <span class="fw-6">2</span>#}
-{#                                                </li>#}
-{#                                                <li class="item">#}
-{#                                                    <i class="icon icon-متر مربع"></i>#}
-{#                                                    <span class="text-variant-1">متر مربع:</span>#}
-{#                                                    <span class="fw-6">1150</span>#}
-{#                                                </li>#}
-{#                                            </ul>#}
+                                    <div class="archive-bottom p-3">
+                                        <h6 class="text-capitalize mt-2">
+                                            <a class="link text-dark fw-bold"
+                                               href="{{ project.get_absolute_url }}">{{ project.title }}</a>
+                                        </h6>
+                                        <div class="d-flex justify-content-between text-muted small mt-2">
+                                            <span>🏠 {{ project.gravity_loading_sys }} سیسستم باربری کف</span>
+                                            <span>🛏 {{ project.lateral_loading_sys }}سیستم باربری جانبی</span>
                                         </div>
-{#                                        <div class="content-bottom">#}
-{#                                            <div class="d-flex gap-8 align-items-center">#}
-{#                                                <div class="avatar avt-40 round">#}
-{#                                                    <img#}
-{#                                                            alt="avt"#}
-{#                                                            src="{% static 'images/avatar/avt-png2.png' %}"#}
-{#                                                    />#}
-{#                                                </div>#}
-{#                                                <span>آرلین مک کوی</span>#}
-{#                                            </div>#}
-{#                                            <h6 class="price">7250،00 تومان</h6>#}
-{#                                        </div>#}
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
-
-
-                        </div>
-                        <div class="text-center">
-                            <a
-                                    class="tf-btn btn-view primary size-1 hover-btn-view"
-                                    href="sidebar-grid.html"
-                            >مشاهده ویژگی ها<span
-                                    class="icon icon-arrow-left2"
-                            ></span
-                            ></a>
-                        </div>
+                        {% endfor %}
                     </div>
-
+                    <div class="text-center mt-4">
+                        <a class="tf-btn btn-view primary size-1 hover-btn-view" href="sidebar-grid.html">
+                            مشاهده ویژگی ها <span class="icon icon-arrow-left2"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Recommended -->
+    <!-- End Projects Section -->
+    <!-- Coworking Section -->
+    <section class="flat-section flat-location-v2">
+        <div class="container">
+            <div class="box-title text-center wow fadeInUp">
+                <div class="text-subtitle text-primary">پروژه های مشترک</div>
+                <h3 class="title mt-4">همکاری در طرح</h3>
+            </div>
+            <div class="grid-location wow fadeInUp" data-wow-delay=".2s">
 
-
-    <!-- Slider -->
-    <section class="px-10">
-        <div class="box-title text-center wow fadeInUp">
-            <h3 class="mt-4 title">همکاری در طرح</h3>
-            <div class="text-subtitle text-primary">{{ banner.slider2_description }}</div>
-        </div>
-        <div class="wow fadeInUp" data-wow-delay=".2s">
-            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
-                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
-                    data-space-lg="8" data-space-md="8" data-tablet="3">
-                <div class="swiper-wrapper">
-
-                    {% for object in coworking %}
-                    <div class="swiper-slide">
-                        <div class="box-location">
-                            <a class="image img-style" href="{{ object.get_absolute_url }}">
-                                <img
-                                        alt="image-location"
-                                        class="lazyload"
-                                        data-src="{{ object.image.url }}"
-                                        src="{{ object.image.url }}"
-                                />
-                            </a>
-                            <div class="content">
-                                <div class="inner-left">
-                                    <span class="sub-title fw-6"></span>
-                                    <h6 class="title text-line-clamp-1 link">{{ object.title }}</h6>
-                                </div>
-                                <a
-                                        class="box-icon line w-44 round"
-                                        href="{{ object.get_absolute_url }}"
-                                ><i class="icon icon-arrow-left2"></i
-                                ></a>
-                            </div>
+                <!-- Top 4 images -->
+                {% for object in coworking|slice:":4" %}
+                    <a class="item-{{ forloop.counter }} box-location-v2 hover-img"
+                       href="{{ object.get_absolute_url }}">
+                        <div class="box-img img-style">
+                            <img
+                                    alt="image-location"
+                                    class="lazyload"
+                                    data-src="{{ object.image.url }}"
+                                    src="{{ object.image.url }}"
+                            />
                         </div>
-                    </div>
-                    {% endfor %}
-
-
-                </div>
-                <div
-                        class="sw-pagination sw-pagination-location text-center"
-                ></div>
+                        <div class="content">
+                            <h6 class="link">{{ object.title }}</h6>
+                        </div>
+                    </a>
+                {% endfor %}
+                <!-- Bottom 2 images -->
+                {% for object in coworking|slice:"4:6" %}
+                    <a class="item-{{ forloop.counter|add:4 }} box-location-v2 hover-img"
+                       href="{{ object.get_absolute_url }}">
+                        <div class="box-img img-style">
+                            <img
+                                    alt="image-location"
+                                    class="lazyload"
+                                    data-src="{{ object.image.url }}"
+                                    src="{{ object.image.url }}"
+                            />
+                        </div>
+                        <div class="content">
+                            <h6 class="link">{{ object.title }}</h6>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
         </div>
     </section>
-    <!-- End Slider -->
-
-<br>
-    <br>
-    <br>
-
-    <!-- Slider -->
-    <section class="px-10">
+    <!-- End Coworking Section -->
+    <!-- Mentoring and Learning Section -->
+    <section class="flat-section bg-primary-new">
         <div class="box-title text-center wow fadeInUp">
+            <div class="text-subtitle text-primary">رشد کنیم</div>
             <h3 class="mt-4 title">آموزش ها</h3>
-            <div class="text-subtitle text-primary">{{ banner.slider2_description }}</div>
         </div>
-        <div class="wow fadeInUp" data-wow-delay=".2s">
-            <div class="swiper tf-sw-location" data-mobile="1" data-mobile-sm="2" data-pagination="1" data-pagination-lg="3"
-                    data-pagination-md="3" data-pagination-sm="2" data-preview="6" data-space="8"
-                    data-space-lg="8" data-space-md="8" data-tablet="3">
-                <div class="swiper-wrapper">
-
-                    {% for train in trainings %}
-                    <div class="swiper-slide">
-                        <div class="box-location">
-                            <a class="image img-style" href="{{ train.link }}">
-                                <img
-                                        alt="image-location"
-                                        class="lazyload"
-                                        data-src="{{ train.image.url }}"
-                                        src="{{ train.image.url }}"
-                                />
-                            </a>
-                            <div class="content">
-                                <div class="inner-left">
-                                    <span class="sub-title fw-6"></span>
-                                    <h6 class="title text-line-clamp-1 link">{{ train.title }}</h6>
-                                </div>
-                                <a
-                                        class="box-icon line w-44 round"
-                                        href="{{ train.link }}"
-                                ><i class="icon icon-arrow-left2"></i
-                                ></a>
-                            </div>
+        <div class="container">
+            <div class="row">
+                {% for train in trainings %}
+                    {% if forloop.first or forloop.counter0|divisibleby:4 %}
+                        <div class="row mb-4">  <!-- Add spacing between rows -->
+                    {% endif %}
+                <div class="col-md-6 mb-4">  <!-- Added mb-4 for spacing -->
+                    <div class="d-flex bg-white shadow-sm rounded p-3">
+                        <!-- Image -->
+                        <div class="flex-shrink-0">
+                            <img src="{{ train.image.url }}" class="rounded" alt="{{ train.title }}"
+                                 style="width: 150px; height: 120px; object-fit: cover;">
+                        </div>
+                        <!-- Text Content -->
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="fw-bold">{{ train.title }}</h5>
+                            <p class="text-muted mb-1">{{ train.description }}</p>
+                            <p class="text-primary fw-bold">قیمت: {{ train.price }} تومان</p>
                         </div>
                     </div>
-                    {% endfor %}
-
-
                 </div>
-                <div
-                        class="sw-pagination sw-pagination-location text-center"
-                ></div>
+                {% if forloop.counter|divisibleby:4 or forloop.last %}
+                    </div>
+                {% endif %}
+                {% endfor %}
             </div>
+            <!-- Pagination Controls -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    {% if trainings.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">اولین</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ trainings.previous_page_number }}">قبلی</a>
+                        </li>
+                    {% endif %}
+                    <li class="page-item disabled">
+                        <span class="page-link">صفحه {{ trainings.number }} از {{ trainings.paginator.num_pages }}</span>
+                    </li>
+                    {% if trainings.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ trainings.next_page_number }}">بعدی</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ trainings.paginator.num_pages }}">آخرین</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </section>
-    <!-- End Slider -->
-
-
-
-
-
+    <!-- End Mentoring and Learning Section -->
 {% endblock %}
