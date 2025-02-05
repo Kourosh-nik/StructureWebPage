@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
 from Apps.BIM.models import BIMCategory
@@ -6,6 +6,8 @@ from Apps.project_management.models import ProjManCategory
 from Apps.Retrofit.models import RetroCategory
 from Apps.Software.models import SoftCategory
 from Apps.Structure_Design.models import STRCategory
+from .forms import *
+from django.contrib import messages
 
 
 class HeaderView(View):
@@ -45,9 +47,28 @@ class IndexView(View):
 
 class AboutUsView(View):
     def get(self, request):
-        return render(request, 'home_Page/about-us.html')
+        panel = AboutUsDetailModel.objects.first()
+
+        context = {
+            'panel': panel
+        }
+        return render(request, 'home_Page/about-us.html', context)
 
 
 class ContactUsView(View):
     def get(self, request):
-        return render(request, 'home_Page/contact.html')
+        panel = SiteDetailModel.objects.first()
+
+        context = {
+            'panel': panel
+        }
+        return render(request, 'home_Page/contact-us.html', context)
+
+    def post(self, request):
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'فرم با موفقیت ارسال شد.')
+        else:
+            messages.add_message(request, messages.ERROR, 'خطا در ارسال فرم! لطفا با دقت فرم را تکمیل کنید')
+        return redirect('home_Page:contact')

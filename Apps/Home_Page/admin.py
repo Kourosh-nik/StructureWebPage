@@ -6,3 +6,7 @@ from .models import *
 class SiteDetailAdmin(admin.ModelAdmin):
     list_display = ['title', 'phone', 'email']
 
+
+@admin.register(ContactUsModel)
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ['fullname', 'created', 'seen']

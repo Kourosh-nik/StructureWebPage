@@ -1,34 +1,28 @@
 {% extends 'parent/base.html' %}
+{% load static %}
 {% block title %}{% endblock %}
 {% block content %}
     <section class="flat-section">
         <div class="container flat-header-wrapper-about">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h1 class="title">به Hom Lengo خوش آمدید</h1>
+                    <h1 class="title">{{ panel.about_us_title }}</h1>
                     <p class="text-variant-1 desc">
-                        به خانه لنگو خوش آمدید ، جایی که خانه ها را به خانه و رویاها
-                        تبدیل می کنیم.در خانه ، می فهمیم که یک خانه چیزی بیش از یک
-                        فضای فیزیکی است ، مکانی است که خاطرات ایجاد می شود ، خانواده
-                        ها رشد می کنند و زندگی آشکار می شود.
+                        {{ panel.about_us_description }}
                     </p>
                     <div class="signature-box">
                         <div class="top">
-                            <h6>لسلی اسکندر</h6>
-                            <p class="text-variant-2">مدیرعامل و بنیانگذار</p>
+                            <h6>{{ panel.manager_fullname }}</h6>
+                            <p class="text-variant-2">{{ panel.manager_position }}</p>
                         </div>
-                        <img alt="" src="images/banner/signature.png"/>
                     </div>
-                    <a
-                            class="tf-btn btn-view primary hover-btn-view"
-                            href="contact.html"
-                    >با ما تماس بگیرید<span class="icon icon-arrow-left2"></span>
+                    <a class="tf-btn btn-view primary hover-btn-view" href="{% url 'home_Page:about' %}">با ما تماس بگیرید<span class="icon icon-arrow-left2"></span>
                     </a>
                     <div class="box-img item1 ani5">
-                        <img alt="" src="images/banner/item1.jpg"/>
+                        <img alt="" src="{% static 'images/banner/item1.jpg' %}"/>
                     </div>
                     <div class="box-img item2 ani4">
-                        <img alt="" src="images/banner/item2.jpg"/>
+                        <img alt="" src="{% static 'images/banner/item2.jpg' %}"/>
                     </div>
                 </div>
             </div>
@@ -1503,7 +1497,7 @@
                     </div>
                     <a
                             class="tf-btn btn-view primary size-1 hover-btn-view"
-                            href="contact.html"
+                            href="contact-us.html"
                     >هاستینگ شوید<span class="icon icon-arrow-left2"></span
                     ></a>
                 </div>
