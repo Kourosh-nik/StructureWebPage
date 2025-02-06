@@ -46,14 +46,20 @@ class BaseModel(models.Model):
 # Create your models here.
 class ProjManCategory(BaseModel):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='proj/category')
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('project_management:category', args=[self.slug])
+
 
 class ProjManProject(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
@@ -84,7 +90,7 @@ class ProjManProjectImage(models.Model):
 
 class ProjManCoworking(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)

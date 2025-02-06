@@ -45,9 +45,16 @@ class BaseModel(models.Model):
 # Create your models here.
 class STRCategory(BaseModel):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='str/category')
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('Structure_Design:category', args=[self.slug])
+
 
 class STRGravitySys(BaseModel):
     title = models.CharField(max_length=100)
@@ -63,7 +70,7 @@ class STRLateralSys(BaseModel):
 
 class STRProject(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
@@ -85,6 +92,7 @@ class STRProject(BaseModel):
     def get_absolute_url(self):
         return reverse('Structure_Design:project_detail', args=[self.id])
 
+
 class STRProjectImage(models.Model):
     project = models.ForeignKey(STRProject, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='project_images/')
@@ -95,7 +103,7 @@ class STRProjectImage(models.Model):
 
 class STRCoworking(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)

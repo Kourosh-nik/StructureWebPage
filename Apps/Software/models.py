@@ -44,9 +44,16 @@ class BaseModel(models.Model):
 # Create your models here.
 class SoftCategory(BaseModel):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='soft/category')
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('Software:category', args=[self.slug])
+
 
 class SoftVersion(BaseModel):
     title = models.CharField(max_length=100)
@@ -62,7 +69,7 @@ class SoftFee(BaseModel):
 
 class SoftProject(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
@@ -94,7 +101,7 @@ class SoftProjectImage(models.Model):
 
 class SoftCoworking(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)

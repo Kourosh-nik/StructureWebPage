@@ -45,10 +45,15 @@ class BaseModel(models.Model):
 # Create your models here.
 class BIMCategory(BaseModel):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='bim/category')
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('bim:category', args=[self.slug])
 
 class BIMGravitySys(BaseModel):
     title = models.CharField(max_length=100)
@@ -64,7 +69,7 @@ class BIMLateralSys(BaseModel):
 
 class BIMProject(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     video = models.FileField(upload_to='bim/video', null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
@@ -101,7 +106,7 @@ class BIMProjectImage(models.Model):
 
 class BIMCoworking(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)

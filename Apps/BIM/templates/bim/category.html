@@ -1,0 +1,52 @@
+{% extends 'parent/base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<section class="flat-section bg-primary-new">
+        <div class="container">
+            <div class="box-title text-center wow fadeInUp">
+                <h3 class="title mt-4">
+                    {{ category.title }}
+                </h3>
+                {% if category.description %}
+                <div class="text-subtitle text-primary">{{ category.description }}</div>
+                {% endif %}
+            </div>
+            <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
+                <div class="tab-content">
+                    <div class="row">
+                        {% for project in projects|slice:":9" %} <!-- Show only 9 projects -->
+                            <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                                <div class="homelengo-box card border rounded shadow-sm">
+                                    <div class="archive-top position-relative">
+                                        <a class="images-group" href="{{ project.get_absolute_url }}">
+                                            <div class="images-style">
+                                                <img alt="img" class="lazyload img-fluid rounded-top"
+                                                     data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="archive-bottom p-3">
+                                        <h6 class="text-capitalize mt-2">
+                                            <a class="link text-dark fw-bold"
+                                               href="{{ project.get_absolute_url }}">{{ project.title }}</a>
+                                        </h6>
+                                        <div class="d-flex justify-content-between text-muted small mt-2">
+                                            <span>🏠 {{ project.gravity_loading_sys }} سیسستم باربری کف</span>
+                                            <span>🛏 {{ project.lateral_loading_sys }}سیستم باربری جانبی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a class="tf-btn btn-view primary size-1 hover-btn-view" href="sidebar-grid.html">
+                            مشاهده ویژگی ها <span class="icon icon-arrow-left2"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Projects Section -->
+{% endblock %}

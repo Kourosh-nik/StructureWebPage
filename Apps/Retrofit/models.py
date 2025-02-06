@@ -44,9 +44,15 @@ class BaseModel(models.Model):
 # Create your models here.
 class RetroCategory(BaseModel):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='retro/category')
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('Retrofit:category', args=[self.slug])
 
 class RetroGravitySys(BaseModel):
     title = models.CharField(max_length=100)
@@ -62,7 +68,7 @@ class RetroLateralSys(BaseModel):
 
 class RetroProject(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
@@ -94,7 +100,7 @@ class RetroProjectImage(models.Model):
 
 class RetroCoworking(BaseModel):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=False, null=True, blank=True)
+    slug = models.SlugField(unique=True)
     content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
