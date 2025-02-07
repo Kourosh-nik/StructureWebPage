@@ -44,6 +44,7 @@ class UserModel(PermissionsMixin, AbstractBaseUser):
     phone = models.CharField(max_length=11, unique=True)
     email = models.EmailField(_("email address"), blank=True, null=True, unique=True)
     ban = models.BooleanField(default=False)
+    address = models.TextField(blank=True, null=True)
     profile_image = models.ImageField('user/profiles', blank=True, null=True)
     register_date = jmodels.jDateTimeField(auto_now_add=True)
     fullname = models.CharField(max_length=150, default='No Name')
@@ -75,3 +76,13 @@ class UserFileModel(models.Model):
 
     def get_filename(self):
         return self.file.name.split('/')[-1]
+
+
+class OtpModel(models.Model):
+    phone = models.CharField(max_length=11, verbose_name='شماره تلفن')
+    code = models.CharField(max_length=11, verbose_name='کد')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='انقضا')
+
+    class Meta:
+        verbose_name = 'کد OTP'
+        verbose_name_plural = 'کد OTP'

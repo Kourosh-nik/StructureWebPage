@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.models import User
+
 from .models import *
 from django.core.validators import MinLengthValidator
 
@@ -58,3 +60,28 @@ class ForgetForm(forms.Form):
 
 class UserFileForm(forms.Form):
     file = forms.FileField(required=True)
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ['fullname', 'email', 'address', 'profile_image']
+
+
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(max_length=25, label='رمز عبور قدیمی')
+    new_password = forms.CharField(max_length=25, label='رمز عبور جدید')
+    confirm_password = forms.CharField(max_length=25, label='تکرار رمز عبور')
+
+    def clean_confirm_password(self):
+        confirm_password = self.cleaned_data['confirm_password']
+        password = self.cleaned_data['new_password']
+
+        if confirm_password == password:
+            if password.isdigit() or password.isalpha() or password.lower() == password or len(password) < 8:
+                raise forms.ValidationError('پسورد باید شامل اعداد و حروف کوچک و بزرگ باشد و حداقل 8 کاراکتر.')
+            else:
+                return confirm_password
+        else:
+            raise forms.ValidationError('پسورد و تکرار آن یکی نمی باشد')

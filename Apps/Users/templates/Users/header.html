@@ -9,13 +9,9 @@
                     <div class="inner-header-left">
                         <div class="logo-box d-flex">
                             <div class="logo">
-                                <a href="index.html"
-                                ><img
-                                        alt="logo"
-                                        height="44"
-                                        src="images/logo/logo@2x.png"
-                                        width="174"
-                                /></a>
+                                <a href="{% url 'home_Page:index' %}">
+                                    <img alt="logo" height="48" src="{{ panel.logo.url }}" width="166"/>
+                                </a>
                             </div>
                             <div class="button-show-hide">
                                 <span class="icon icon-categories"></span>
@@ -29,144 +25,73 @@
                                         id="navbarSupportedContent"
                                 >
                                     <ul class="navigation clearfix">
-                                        <li class="dropdown2 home">
-                                            <a href="#">خانه</a>
-                                            <ul>
-                                                <li><a href="index.html">صفحه اصلی 01</a></li>
-                                                <li>
-                                                    <a href="home-02.html">صفحه اصلی 02</a>
-                                                </li>
-                                                <li>
-                                                    <a href="home-03.html">صفحه اصلی 03</a>
-                                                </li>
-                                                <li>
-                                                    <a href="home-04.html">صفحه اصلی 04</a>
-                                                </li>
-                                                <li>
-                                                    <a href="home-05.html">صفحه اصلی 05</a>
-                                                </li>
-                                                <li>
-                                                    <a href="home-06.html">صفحه اصلی 06</a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                         <li class="dropdown2">
-                                            <a href="#">لیست</a>
+                                            <a href="#">خدمات طراحی سازه</a>
                                             <ul>
                                                 <li>
-                                                    <a href="property-halfmap-grid.html"
-                                                    >گرید نیمی از نقشه</a
-                                                    >
+                                                    <a href="{% url 'Structure_Design:index' %}">صفحه اصلی</a>
                                                 </li>
-                                                <li>
-                                                    <a href="property-halfmap-list.html"
-                                                    >لیست نقشه نیمه املاک</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="topmap-grid.html"
-                                                    >گرید topmap </a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="topmap-list.html"
-                                                    >لیست Topmap </a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="sidebar-grid.html"
-                                                    >گرید نوار کناری </a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="sidebar-list.html"
-                                                    >لیست نوار کناری </a
-                                                    >
-                                                </li>
+                                                {% for category in str_categories %}
+                                                    <li>
+                                                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
+                                        <!--BIM خدمات-->
                                         <li class="dropdown2">
-                                            <a href="#">ویژگی ها</a>
+                                            <a href="#">خدمات BIM </a>
                                             <ul>
                                                 <li>
-                                                    <a href="property-details-v1.html"
-                                                    >جزئیات ملک 1</a
-                                                    >
+                                                    <a href="{% url 'bim:index' %}">صفحه اصلی</a>
                                                 </li>
-                                                <li>
-                                                    <a href="property-details-v2.html"
-                                                    >جزئیات ملک 2</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="property-details-v3.html"
-                                                    >جزئیات ملک 3</a
-                                                    >
-                                                </li>
-                                                <li>
-                                                    <a href="property-details-v4.html"
-                                                    >جزئیات ملک 4</a
-                                                    >
-                                                </li>
+                                                {% for category in bim_categories %}
+                                                    <li>
+                                                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
+                                        <!--خدمات بهسازی و مقاومسازی سازه-->
                                         <li class="dropdown2">
-                                            <a href="#">صفحات</a>
+                                            <a href="#">خدمات بهسازی و مقاومسازی سازه</a>
                                             <ul>
-                                                <li><a href="about-us.html">درباره ما</a></li>
                                                 <li>
-                                                    <a href="our-service.html">خدمات ما</a>
+                                                    <a href="{% url 'Retrofit:index' %}">صفحه اصلی</a>
                                                 </li>
-                                                <li><a href="pricing.html">قیمت گذاری</a></li>
-                                                <li>
-                                                    <a href="contact.html">با ما تماس بگیرید</a>
-                                                </li>
-                                                <li><a href="faq.html">متداول</a></li>
-                                                <li>
-                                                    <a href="privacy-policy.html"
-                                                    >سیاست حفظ حریم</a
-                                                    >
-                                                </li>
+                                                {% for category in retro_categories %}
+                                                    <li>
+                                                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
+                                        <!--خدمات مدیریت پروژه-->
                                         <li class="dropdown2">
-                                            <a href="#">وبلاگ</a>
+                                            <a href="#">خدمات مدیریت پروژه</a>
                                             <ul>
-                                                <li><a href="blog.html">پیش فرض وبلاگ</a></li>
                                                 <li>
-                                                    <a href="blog-grid.html">گرید وبلاگ</a>
+                                                    <a href="{% url 'project_management:index' %}">صفحه اصلی</a>
                                                 </li>
-                                                <li>
-                                                    <a href="blog-detail.html"
-                                                    >جزئیات پست وبلاگ</a
-                                                    >
-                                                </li>
+                                                {% for category in proj_categories %}
+                                                    <li>
+                                                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
-                                        <li class="dropdown2 current">
-                                            <a href="#">داشبورد</a>
+                                        <!--نرم افزارها-->
+                                        <li class="dropdown2">
+                                            <a href="#">نرم افزارها</a>
                                             <ul>
-                                                <li class="current">
-                                                    <a href="documents.html">داشبورد</a>
-                                                </li>
                                                 <li>
-                                                    <a href="my-property.html">ویژگی ها من</a>
+                                                    <a href="{% url 'Software:index' %}">صفحه اصلی</a>
                                                 </li>
-                                                <li><a href="message.html">پیام</a></li>
-                                                <li>
-                                                    <a href="my-favorites.html"
-                                                    >موارد دلخواه من</a
-                                                    >
-                                                </li>
-                                                <li><a href="reviews.html">بررسی</a></li>
-                                                <li>
-                                                    <a href="my-profile.html">نمایه من</a>
-                                                </li>
-                                                <li>
-                                                    <a href="add-property.html"
-                                                    >اموال اضافه کردن</a
-                                                    >
-                                                </li>
+                                                {% for category in soft_categories %}
+                                                    <li>
+                                                        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
                                     </ul>
@@ -176,65 +101,29 @@
                         </div>
                     </div>
                     <div class="header-account inner-header-right">
-                        <div
-                                class="box-avatar dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                        >
+                        <a href="{% url 'user:profile' %}">
                             <div class="avatar avt-34 round">
-                                <img alt="avt" src="images/avatar/avt-5.jpg"/>
+                                {% if user.profile_image %}
+                                    <img alt="avt" src="{{ user.profile_image.url }}"/>
+                                {% else %}
+                                    <img alt="avt" src="{% static 'images/avatar/profile.png' %}"/>
+                                {% endif %}
                             </div>
                             <p class="name">
-                                مضراب<span class="icon icon-arr-down"></span>
+                                <span class="icon icon-arr-down">{{ user.fullname }}</span>
                             </p>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="my-favorites.html"
-                                >ویژگی ها من</a
-                                >
-                                <a class="dropdown-item" href="message.html">پیام</a>
-                                <a class="dropdown-item" href="my-favorites.html"
-                                >موارد دلخواه من</a
-                                >
-                                <a class="dropdown-item" href="reviews.html">بررسی</a>
-                                <a class="dropdown-item" href="my-profile.html"
-                                >نمایه من</a
-                                >
-                                <a class="dropdown-item" href="add-property.html"
-                                >اموال اضافه کردن</a
-                                >
-                                <a class="dropdown-item" href="index.html"
-                                >ورود به سیستم</a
-                                >
-                            </div>
-                        </div>
-                        <div class="flat-bt-top">
-                            <a class="tf-btn primary" href="add-property.html">
-                                <svg
-                                        fill="none"
-                                        height="20"
-                                        viewbox="0 0 21 20"
-                                        width="21"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M13.625 14.375V17.1875C13.625 17.705 13.205 18.125 12.6875 18.125H4.5625C4.31386 18.125 4.0754 18.0262 3.89959 17.8504C3.72377 17.6746 3.625 17.4361 3.625 17.1875V6.5625C3.625 6.045 4.045 5.625 4.5625 5.625H6.125C6.54381 5.62472 6.96192 5.65928 7.375 5.72834M13.625 14.375H16.4375C16.955 14.375 17.375 13.955 17.375 13.4375V9.375C17.375 5.65834 14.6725 2.57417 11.125 1.97834C10.7119 1.90928 10.2938 1.87472 9.875 1.875H8.3125C7.795 1.875 7.375 2.295 7.375 2.8125V5.72834M13.625 14.375H8.3125C8.06386 14.375 7.8254 14.2762 7.64959 14.1004C7.47377 13.9246 7.375 13.6861 7.375 13.4375V5.72834M17.375 11.25V9.6875C17.375 8.94158 17.0787 8.22621 16.5512 7.69876C16.0238 7.17132 15.3084 6.875 14.5625 6.875H13.3125C13.0639 6.875 12.8254 6.77623 12.6496 6.60041C12.4738 6.4246 12.375 6.18614 12.375 5.9375V4.6875C12.375 4.31816 12.3023 3.95243 12.1609 3.6112C12.0196 3.26998 11.8124 2.95993 11.5512 2.69876C11.2901 2.4376 10.98 2.23043 10.6388 2.08909C10.2976 1.94775 9.93184 1.875 9.5625 1.875H8.625"
-                                            stroke="white"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.5"
-                                    ></path>
-                                </svg
-                                >
-                                ارسال اموال</a
-                            >
-                        </div>
+
+                        </a>
                     </div>
-                    <div class="mobile-nav-toggler mobile-button">
-                        <span></span>
-                    </div>
+
+                </div>
+                <div class="mobile-nav-toggler mobile-button">
+                    <span></span>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- End Header Lower -->
     <!-- Mobile Menu  -->
     <div class="close-btn">
@@ -244,29 +133,24 @@
         <div class="menu-backdrop"></div>
         <nav class="menu-box">
             <div class="nav-logo">
-                <a href="index.html"
+                <a href="{% url 'home_Page:index' %}"
                 ><img
                         alt="nav-logo"
                         height="44"
-                        src="images/logo/logo@2x.png"
+                        src="{{ panel.logo.url }}"
                         width="174"
                 /></a>
             </div>
             <div class="bottom-canvas">
                 <div class="menu-outer"></div>
-                <div class="button-mobi-sell">
-                    <a class="tf-btn primary" href="add-property.html"
-                    >ارسال اموال</a
-                    >
-                </div>
                 <div class="mobi-icon-box">
                     <div class="box d-flex align-items-center">
                         <span class="icon icon-phone2"></span>
-                        <div>1-333-345-6868</div>
+                        <div>{{ panel.phone }}</div>
                     </div>
                     <div class="box d-flex align-items-center">
                         <span class="icon icon-mail"></span>
-                        <div>themesflat@gmail.com</div>
+                        <div>{{ panel.email }}</div>
                     </div>
                 </div>
             </div>
@@ -278,42 +162,46 @@
 
 <!-- sidebar dashboard -->
 <div class="sidebar-menu-dashboard">
-    <a class="logo-box" href="index.html">
-        <img alt="" src="{% static 'images/logo/logo-footer@2x.png ' %}"/>
-    </a>
+    <a class="logo-box" href="{% url 'home_Page:index' %}"
+    ><img
+            alt="nav-logo"
+            height="44"
+            src="{{ panel.logo.url }}"
+            width="174"
+    /></a>
     <div class="user-box">
         <p class="fw-6">مشخصات</p>
         <div class="user">
             <div class="icon-box">
                 {% if user.profile_image %}
                     <div class="avatar">
-                    <img alt="avatar" height="128" loading="lazy"
-                                 src="{{ user.profile_image.url }}" width="128" style="border-radius: 500px"
-                            />
+                        <img alt="avatar" height="128" loading="lazy"
+                             src="{{ user.profile_image.url }}" width="128" style="border-radius: 500px"
+                        />
                     </div>
                 {% else %}
                     <svg fill="none" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_13487_13661)">
-                        <path
-                                d="M10.0007 9.99947C10.9357 9.99947 11.8496 9.72222 12.627 9.20278C13.4044 8.68334 14.0103 7.94504 14.3681 7.08124C14.7259 6.21745 14.8196 5.26695 14.6372 4.34995C14.4547 3.43295 14.0045 2.59063 13.3434 1.92951C12.6823 1.26839 11.84 0.81816 10.923 0.635757C10.006 0.453354 9.05546 0.54697 8.19166 0.904766C7.32787 1.26256 6.58957 1.86847 6.07013 2.64586C5.55069 3.42326 5.27344 4.33723 5.27344 5.2722C5.27469 6.52556 5.77314 7.72723 6.65941 8.6135C7.54567 9.49976 8.74734 9.99821 10.0007 9.99947ZM10.0007 2.12068C10.624 2.12068 11.2333 2.30551 11.7516 2.65181C12.2699 2.9981 12.6738 3.4903 12.9123 4.06616C13.1509 4.64203 13.2133 5.27569 13.0917 5.88702C12.9701 6.49836 12.6699 7.05991 12.2292 7.50065C11.7884 7.9414 11.2269 8.24155 10.6155 8.36315C10.0042 8.48476 9.37054 8.42235 8.79468 8.18382C8.21881 7.94528 7.72661 7.54135 7.38032 7.02308C7.03403 6.50482 6.8492 5.89551 6.8492 5.2722C6.8492 4.43636 7.18123 3.63476 7.77225 3.04374C8.36328 2.45271 9.16488 2.12068 10.0007 2.12068Z"
-                                fill="white"
-                        ></path>
-                        <path
-                                d="M10.0011 11.5762C8.12108 11.5783 6.31869 12.326 4.98934 13.6554C3.65999 14.9847 2.91224 16.7871 2.91016 18.6671C2.91016 18.876 2.99316 19.0764 3.14092 19.2242C3.28868 19.372 3.48908 19.455 3.69803 19.455C3.90699 19.455 4.10739 19.372 4.25515 19.2242C4.4029 19.0764 4.48591 18.876 4.48591 18.6671C4.48591 17.2044 5.06697 15.8016 6.10126 14.7673C7.13555 13.733 8.53835 13.1519 10.0011 13.1519C11.4638 13.1519 12.8666 13.733 13.9009 14.7673C14.9352 15.8016 15.5162 17.2044 15.5162 18.6671C15.5162 18.876 15.5992 19.0764 15.747 19.2242C15.8947 19.372 16.0951 19.455 16.3041 19.455C16.513 19.455 16.7134 19.372 16.8612 19.2242C17.009 19.0764 17.092 18.876 17.092 18.6671C17.0899 16.7871 16.3421 14.9847 15.0128 13.6554C13.6834 12.326 11.881 11.5783 10.0011 11.5762Z"
-                                fill="white"
-                        ></path>
-                    </g>
-                    <defs>
-                        <clippath id="clip0_13487_13661">
-                            <rect
+                        <g clip-path="url(#clip0_13487_13661)">
+                            <path
+                                    d="M10.0007 9.99947C10.9357 9.99947 11.8496 9.72222 12.627 9.20278C13.4044 8.68334 14.0103 7.94504 14.3681 7.08124C14.7259 6.21745 14.8196 5.26695 14.6372 4.34995C14.4547 3.43295 14.0045 2.59063 13.3434 1.92951C12.6823 1.26839 11.84 0.81816 10.923 0.635757C10.006 0.453354 9.05546 0.54697 8.19166 0.904766C7.32787 1.26256 6.58957 1.86847 6.07013 2.64586C5.55069 3.42326 5.27344 4.33723 5.27344 5.2722C5.27469 6.52556 5.77314 7.72723 6.65941 8.6135C7.54567 9.49976 8.74734 9.99821 10.0007 9.99947ZM10.0007 2.12068C10.624 2.12068 11.2333 2.30551 11.7516 2.65181C12.2699 2.9981 12.6738 3.4903 12.9123 4.06616C13.1509 4.64203 13.2133 5.27569 13.0917 5.88702C12.9701 6.49836 12.6699 7.05991 12.2292 7.50065C11.7884 7.9414 11.2269 8.24155 10.6155 8.36315C10.0042 8.48476 9.37054 8.42235 8.79468 8.18382C8.21881 7.94528 7.72661 7.54135 7.38032 7.02308C7.03403 6.50482 6.8492 5.89551 6.8492 5.2722C6.8492 4.43636 7.18123 3.63476 7.77225 3.04374C8.36328 2.45271 9.16488 2.12068 10.0007 2.12068Z"
                                     fill="white"
-                                    height="18.9091"
-                                    transform="translate(0.546875 0.544922)"
-                                    width="18.9091"
-                            ></rect>
-                        </clippath>
-                    </defs>
-                </svg>
+                            ></path>
+                            <path
+                                    d="M10.0011 11.5762C8.12108 11.5783 6.31869 12.326 4.98934 13.6554C3.65999 14.9847 2.91224 16.7871 2.91016 18.6671C2.91016 18.876 2.99316 19.0764 3.14092 19.2242C3.28868 19.372 3.48908 19.455 3.69803 19.455C3.90699 19.455 4.10739 19.372 4.25515 19.2242C4.4029 19.0764 4.48591 18.876 4.48591 18.6671C4.48591 17.2044 5.06697 15.8016 6.10126 14.7673C7.13555 13.733 8.53835 13.1519 10.0011 13.1519C11.4638 13.1519 12.8666 13.733 13.9009 14.7673C14.9352 15.8016 15.5162 17.2044 15.5162 18.6671C15.5162 18.876 15.5992 19.0764 15.747 19.2242C15.8947 19.372 16.0951 19.455 16.3041 19.455C16.513 19.455 16.7134 19.372 16.8612 19.2242C17.009 19.0764 17.092 18.876 17.092 18.6671C17.0899 16.7871 16.3421 14.9847 15.0128 13.6554C13.6834 12.326 11.881 11.5783 10.0011 11.5762Z"
+                                    fill="white"
+                            ></path>
+                        </g>
+                        <defs>
+                            <clippath id="clip0_13487_13661">
+                                <rect
+                                        fill="white"
+                                        height="18.9091"
+                                        transform="translate(0.546875 0.544922)"
+                                        width="18.9091"
+                                ></rect>
+                            </clippath>
+                        </defs>
+                    </svg>
                 {% endif %}
             </div>
             <div class="content">

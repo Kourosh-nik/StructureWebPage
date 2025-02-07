@@ -8,6 +8,8 @@
                 <span class="body-1">نمایش داشبورد</span>
             </div>
             <div class="widget-box-2">
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
                 <div class="box">
                     <h5 class="title">آواتار</h5>
                     <div class="box-agent-avt">
@@ -27,7 +29,7 @@
                         <div class="content uploadfile">
                             <p>یک آواتار جدید آپلود کنید</p>
                             <div class="box-ip">
-                                <input class="ip-file" type="file"/>
+                                <input name="profile_image" class="ip-file" type="file"/>
                             </div>
                         </div>
                     </div>
@@ -35,97 +37,53 @@
                 <h5 class="title">اطلاعات</h5>
                 <div class="box box-fieldset">
                     <label>نام کامل:<span>*</span></label>
-                    <input
-                            class="form-control style-1"
-                            type="text"
-                            value="نام ایجنت دمو"
+                    <input class="form-control style-1" type="text"
+                           value="{{ user.fullname }}" name="fullname"
                     />
                 </div>
 
-                <div class="box grid-4 gap-30">
-                    <div class="box-fieldset">
-                        <label>شرکت شما:<span>*</span></label>
-                        <input
-                                class="form-control style-1"
-                                type="text"
-                                value="کمپانی شما"
-                        />
-                    </div>
-                    <div class="box-fieldset">
-                        <label>موقعیت:<span>*</span></label>
-                        <input
-                                class="form-control style-1"
-                                type="text"
-                                value="کمپانی شما"
-                        />
-                    </div>
-                    <div class="box-fieldset">
-                        <label>شماره دفتر:<span>*</span></label>
-                        <input
-                                class="form-control style-1"
-                                type="number"
-                                value="1332565894"
-                        />
-                    </div>
-                    <div class="box-fieldset">
-                        <label>آدرس دفتر:<span>*</span></label>
-                        <input
-                                class="form-control style-1"
-                                type="text"
-                                value="لورم ایپسوم متن ساختگی با تول"
-                        />
-                    </div>
-                </div>
                 <div class="box grid-4 gap-30 box-info-2">
-                    <div class="box-fieldset">
-                        <label>شغل:<span>*</span></label>
-                        <input
-                                class="form-control style-1"
-                                type="text"
-                                value="نجار"
-                        />
-                    </div>
+
                     <div class="box-fieldset">
                         <label>آدرس ایمیل:<span>*</span></label>
                         <input
                                 class="form-control style-1"
                                 type="text"
-                                value="themeflat@gmail.com"
+                                name="email"
+                                value="{{ user.email }}"
                         />
                     </div>
                     <div class="box-fieldset">
                         <label>تلفن شما:<span>*</span></label>
                         <input
                                 class="form-control style-1"
-                                type="number"
-                                value="1332565894"
+                                type="text"
+                                value="{{ user.phone }}" readonly
+
                         />
                     </div>
                 </div>
                 <div class="box box-fieldset">
-                    <label>مکان:<span>*</span></label>
+                    <label>آدرس:<span>*</span></label>
                     <input
                             class="form-control style-1"
                             type="text"
-                            value="لورم ایپسوم متن ساختگی با تولید"
+                            name="address"
+                            {% if user.address %}
+                            value="{{ user.address }}"
+                            {% endif %}
                     />
                 </div>
-                <div class="box box-fieldset">
-                    <label>فیس بوک:<span>*</span></label>
-                    <input class="form-control style-1" type="text" value="#"/>
-                </div>
-                <div class="box box-fieldset">
-                    <label>توییتر:<span>*</span></label>
-                    <input class="form-control style-1" type="text" value="#"/>
-                </div>
-                <div class="box box-fieldset">
-                    <label>لینکدین:<span>*</span></label>
-                    <input class="form-control style-1" type="text" value="#"/>
-                </div>
                 <div class="box">
-                    <a class="tf-btn primary" href="#">ذخیره و به روز رسانی</a>
+                    <button class="tf-btn primary" type="submit">ذخیره و به روز رسانی</button>
                 </div>
+            </form>
+            <br>
                 <h5 class="title">رمز عبور را تغییر دهید</h5>
+            <label style="color: red">*رمز عبور باید حداقل 8 نویسه و دارای حروف بزرگ و عدد باشد.</label>
+            <br>
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="box grid-3 gap-30">
                     <div class="box-fieldset">
                         <label>رمز قدیمی:<span>*</span></label>
@@ -134,6 +92,7 @@
                                     class="form-contact style-1 password-field"
                                     placeholder="رمز عبور"
                                     type="password"
+                                    name="old_password"
                             />
                             <span class="show-pass">
                         <i class="icon-pass icon-eye"></i>
@@ -148,6 +107,7 @@
                                     class="form-contact style-1 password-field2"
                                     placeholder="رمز عبور"
                                     type="password"
+                                    name="new_password"
                             />
                             <span class="show-pass2">
                         <i class="icon-pass icon-eye"></i>
@@ -162,6 +122,7 @@
                                     class="form-contact style-1 password-field3"
                                     placeholder="رمز عبور"
                                     type="password"
+                                    name="confirm_password"
                             />
                             <span class="show-pass3">
                         <i class="icon-pass icon-eye"></i>
@@ -171,9 +132,21 @@
                     </div>
                 </div>
                 <div class="box">
-                    <a class="tf-btn primary" href="#">رمز عبور را به روز کنید</a>
+                    <button class="tf-btn primary" type="submit">رمز عبور را به روز کنید</button>
                 </div>
+            </form>
+            <br><br>
+            {% if messages %}
+                                <div class="messages">
+                                    {% for message in messages %}
+                                        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} font-weight-bold">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
             </div>
+
         </div>
     </div>
     <div class="overlay-dashboard"></div>

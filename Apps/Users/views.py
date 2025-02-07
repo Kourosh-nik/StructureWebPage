@@ -9,17 +9,63 @@ from .forms import *
 import random
 from utils.services import send_otp
 from django.utils.timezone import now, timedelta
-from Apps.Home_Page.models import SampleFileModel
+from Apps.Home_Page.models import SampleFileModel, SiteDetailModel
 from django.db.models import Count
+from ..BIM.models import BIMCategory
+from ..Retrofit.models import RetroCategory
+from ..Software.models import SoftCategory
+from ..Structure_Design.models import STRCategory
+from ..project_management.models import ProjManCategory
 
 
 class HeaderView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'Users/header.html')
+        panel = SiteDetailModel.objects.first()
+
+        # Categories of Menu Bar
+        bim_categories = BIMCategory.objects.all()
+        proj_categories = ProjManCategory.objects.all()
+        retro_categories = RetroCategory.objects.all()
+        str_categories = STRCategory.objects.all()
+        soft_categories = SoftCategory.objects.all()
+
+        context = {
+            'panel': panel,
+            'bim_categories': bim_categories,
+            'proj_categories': proj_categories,
+            'retro_categories': retro_categories,
+            'str_categories': str_categories,
+            'soft_categories': soft_categories,
+        }
+        return render(request, 'Users/header.html', context)
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'Users/profile.html'
+
+    def post(self, request):
+        if 'fullname' in request.POST:
+            form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.add_message(request, messages.SUCCESS, 'اطلاعات پروفایل با موفقیت بروزرسانی گردید')
+            else:
+                messages.add_message(request, messages.ERROR, 'خطا در بروزرسانی اطلاعات پروفایل')
+        elif 'confirm_password' in request.POST:
+            form = ChangePasswordForm(request.POST)
+            if form.is_valid():
+                old_password = form.cleaned_data['old_password']
+                user = request.user
+                if user.check_password(old_password):
+                    user.set_password(form.cleaned_data['new_password'])
+                    user.save()
+                    logout(request)
+                    return redirect('home_Page:index')
+                else:
+                    messages.add_message(request, messages.ERROR, 'رمز عبور اشتباه است')
+            messages.add_message(request, messages.ERROR, 'خطا در بروزرسانی رمز عبور')
+        return redirect('user:profile')
+
 
 
 class DocumentView(LoginRequiredMixin, ListView):
@@ -171,7 +217,7 @@ class SendOtpCodeView(View):
 
 class PasswordForgetView(View):
     def get(self, request):
-        return render(request, 'user/forget.html')
+        return render(request, 'Users/forget-password.html')
 
     def post(self, request):
         form = ForgetForm(request.POST)
