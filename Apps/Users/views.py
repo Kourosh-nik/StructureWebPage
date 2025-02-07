@@ -9,6 +9,8 @@ from .forms import *
 import random
 from utils.services import send_otp
 from django.utils.timezone import now, timedelta
+from Apps.Home_Page.models import SampleFileModel
+from django.db.models import Count
 
 
 class HeaderView(LoginRequiredMixin, View):
@@ -20,13 +22,39 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'Users/profile.html'
 
 
-class DocumentView(LoginRequiredMixin, TemplateView):
+class DocumentView(LoginRequiredMixin, ListView):
     template_name = 'Users/documents.html'
+    model = UserFileModel
+    paginate_by = 20
+    context_object_name = 'files'
+    def get_queryset(self):
+        files = UserFileModel.objects.filter(user=self.request.user)
+        self.extra_context = files.aggregate(
+            count=Count('id'),
+            count_seen=Count('id', filter=models.Q(seen=True)),
+            count_unseen=Count('id', filter=models.Q(seen=False))
+        )
+        return files.order_by('-id')
+
 
 
 class AddDocumentView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'Users/add-document.html')
+        files = SampleFileModel.objects.all().order_by('-id')
+        context = {
+            'files': files,
+        }
+        return render(request, 'Users/add-document.html', context)
+
+    def post(self, request):
+        form = UserFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = form.cleaned_data['file']
+            UserFileModel.objects.create(user=self.request.user, file=file)
+            messages.add_message(request, messages.SUCCESS, 'فایل با موفقیت اپلود شد.')
+        else:
+            messages.add_message(request, messages.ERROR, 'خطا در آپلود فایل')
+        return redirect('user:add-document')
 
 
 class UserLoginView(View):

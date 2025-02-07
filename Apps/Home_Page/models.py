@@ -42,3 +42,10 @@ class ContactUsModel(models.Model):
     message = models.TextField()
     created = jmodels.jDateTimeField(auto_now_add=True)
     seen = models.BooleanField(default=False)
+
+
+# This model is designed for the user to download the sample file,
+# fill it out, and upload it to the dashboard.
+class SampleFileModel(models.Model):
+    title = models.CharField(max_length=1000)
+    file = models.FileField(upload_to='sample/file')

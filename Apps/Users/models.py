@@ -1,6 +1,7 @@
 import random
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.utils import timezone
 from django_jalali.db import models as jmodels
 from django.utils.translation import gettext_lazy as _
 from django.db import models
@@ -58,3 +59,16 @@ class UserModel(PermissionsMixin, AbstractBaseUser):
 
     def __str__(self):
         return f'{self.phone} - {self.fullname}'
+
+
+class UserFileModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.SET_NULL, null=True, blank=True)
+    file = models.FileField(upload_to='user/files')
+    seen = models.BooleanField(default=False)
+    message = models.TextField(blank=True, null=True)
+    created = jmodels.jDateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.message:
+            self.seen = True
+        super().save(*args, **kwargs)

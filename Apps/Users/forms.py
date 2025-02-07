@@ -54,3 +54,7 @@ class UserRegisterActivationForm(forms.Form):
 class ForgetForm(forms.Form):
     phone = forms.CharField(max_length=11, label='شماره تلفن')
     code = forms.CharField(max_length=6, label='کد')
+
+
+class UserFileForm(forms.Form):
+    file = forms.FileField(required=True)

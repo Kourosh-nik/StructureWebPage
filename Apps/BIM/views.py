@@ -1,22 +1,48 @@
 from .models import *
+from django.shortcuts import render
 from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
+from django.core.paginator import Paginator
+from django.http import JsonResponse
 
 # IndexView
-class IndexView(ListView):
-    template_name = "bim/index.html"
-    context_object_name = "projects"
-    model = BIMProject
-    queryset = BIMProject.objects.all().order_by('-id')
-    paginate_by = 6
+from django.views import View
+from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.http import JsonResponse
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['banner'] = BimPanelModel.objects.first()
-        context['categories'] = BIMCategory.objects.all()
-        context['coworking'] = BIMCoworking.objects.all()
-        context['trainings'] = BIMTraining.objects.all()
-        return context
+class IndexView(View):
+
+    def get(self, request):
+        banner = BimPanelModel.objects.first()
+        categories = BIMCategory.objects.all()
+        coworking = BIMCoworking.objects.all()
+
+        projects_list = BIMProject.objects.all().order_by('-id')
+        projects_paginator = Paginator(projects_list, 2)
+        projects_page = request.GET.get('projects_page', 1)
+        projects = projects_paginator.get_page(projects_page)
+
+        trainings_list = BIMTraining.objects.all().order_by('-id')
+        trainings_paginator = Paginator(trainings_list, 2)
+        trainings_page = request.GET.get('trainings_page', 1)
+        trainings = trainings_paginator.get_page(trainings_page)
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            projects_html = render(request, 'bim/projects-list.html', {'projects': projects}).content.decode("utf-8")
+            trainings_html = render(request, 'bim/training-list.html', {'trainings': trainings}).content.decode("utf-8")
+            return JsonResponse({'projects_html': projects_html, 'trainings_html': trainings_html})
+
+        context = {
+            'banner': banner,
+            'categories': categories,
+            'coworking': coworking,
+            'projects': projects,
+            'trainings': trainings,
+        }
+
+        return render(request, 'bim/index.html', context)
+
 
 
 class CategoryView(ListView):

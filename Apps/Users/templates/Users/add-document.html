@@ -8,602 +8,107 @@
                 <span class="body-1">نمایش داشبورد</span>
             </div>
             <div class="widget-box-2 mb-20">
-                <h5 class="title">رسانه بارگذاری</h5>
+                <h5 class="title">بارگذاری فایل</h5>
                 <div class="box-uploadfile text-center">
-                    <div class="uploadfile">
-                        <div class="btn-upload tf-btn primary">
-                            <svg
-                                    fill="none"
-                                    height="20"
-                                    viewbox="0 0 21 20"
-                                    width="21"
-                                    xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                        d="M13.625 14.375V17.1875C13.625 17.705 13.205 18.125 12.6875 18.125H4.5625C4.31386 18.125 4.0754 18.0262 3.89959 17.8504C3.72377 17.6746 3.625 17.4361 3.625 17.1875V6.5625C3.625 6.045 4.045 5.625 4.5625 5.625H6.125C6.54381 5.62472 6.96192 5.65928 7.375 5.72834M13.625 14.375H16.4375C16.955 14.375 17.375 13.955 17.375 13.4375V9.375C17.375 5.65834 14.6725 2.57417 11.125 1.97834C10.7119 1.90928 10.2938 1.87472 9.875 1.875H8.3125C7.795 1.875 7.375 2.295 7.375 2.8125V5.72834M13.625 14.375H8.3125C8.06386 14.375 7.8254 14.2762 7.64959 14.1004C7.47377 13.9246 7.375 13.6861 7.375 13.4375V5.72834M17.375 11.25V9.6875C17.375 8.94158 17.0787 8.22621 16.5512 7.69876C16.0238 7.17132 15.3084 6.875 14.5625 6.875H13.3125C13.0639 6.875 12.8254 6.77623 12.6496 6.60041C12.4738 6.4246 12.375 6.18614 12.375 5.9375V4.6875C12.375 4.31816 12.3023 3.95243 12.1609 3.6112C12.0196 3.26998 11.8124 2.95993 11.5512 2.69876C11.2901 2.4376 10.98 2.23043 10.6388 2.08909C10.2976 1.94775 9.93184 1.875 9.5625 1.875H8.625"
-                                        stroke="white"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                ></path>
-                            </svg
-                            >
-                            عکس ها را انتخاب کنید<input
-                                class="ip-file"
-                                type="file"
-                        />
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="uploadfile">
+                            <div class="btn-upload tf-btn primary">
+                                <svg
+                                        fill="none"
+                                        height="20"
+                                        viewbox="0 0 21 20"
+                                        width="21"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M13.625 14.375V17.1875C13.625 17.705 13.205 18.125 12.6875 18.125H4.5625C4.31386 18.125 4.0754 18.0262 3.89959 17.8504C3.72377 17.6746 3.625 17.4361 3.625 17.1875V6.5625C3.625 6.045 4.045 5.625 4.5625 5.625H6.125C6.54381 5.62472 6.96192 5.65928 7.375 5.72834M13.625 14.375H16.4375C16.955 14.375 17.375 13.955 17.375 13.4375V9.375C17.375 5.65834 14.6725 2.57417 11.125 1.97834C10.7119 1.90928 10.2938 1.87472 9.875 1.875H8.3125C7.795 1.875 7.375 2.295 7.375 2.8125V5.72834M13.625 14.375H8.3125C8.06386 14.375 7.8254 14.2762 7.64959 14.1004C7.47377 13.9246 7.375 13.6861 7.375 13.4375V5.72834M17.375 11.25V9.6875C17.375 8.94158 17.0787 8.22621 16.5512 7.69876C16.0238 7.17132 15.3084 6.875 14.5625 6.875H13.3125C13.0639 6.875 12.8254 6.77623 12.6496 6.60041C12.4738 6.4246 12.375 6.18614 12.375 5.9375V4.6875C12.375 4.31816 12.3023 3.95243 12.1609 3.6112C12.0196 3.26998 11.8124 2.95993 11.5512 2.69876C11.2901 2.4376 10.98 2.23043 10.6388 2.08909C10.2976 1.94775 9.93184 1.875 9.5625 1.875H8.625"
+                                            stroke="white"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                    ></path>
+                                </svg
+                                >
+                                فایل را انتخاب کنید<input
+                                    class="ip-file"
+                                    type="file"
+                                    name="file"
+                            />
+                            </div>
+                            <p class="file-name fw-5">
+                                <br/>
+
+                            </p>
                         </div>
-                        <p class="file-name fw-5">
-                            یا عکس ها را اینجا بکشید<br/>
-                            <span>(حداکثر 10 عکس)</span>
-                        </p>
-                    </div>
+                        <div class="box-btn">
+                            <button type="submit" class="tf-btn primary">تایید</button>
+                        </div>
+                    </form>
+                    <br><br>
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} font-weight-bold">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="box-img-upload">
-                    <div class="item-upload file-delete">
-                        <img alt="img" src="{% static 'images/home/house-18.jpg' %}"/>
-                        <span class="icon icon-trash remove-file"></span>
-                    </div>
-                    <div class="item-upload file-delete">
-                        <img alt="img" src="{% static 'images/home/house-23.jpg' %}"/>
-                        <span class="icon icon-trash"></span>
-                    </div>
-                    <div class="item-upload file-delete">
-                        <img alt="img" src="{% static 'images/home/house-14.jpg' %}"/>
-                        <span class="icon icon-trash remove-file"></span>
-                    </div>
-                    <div class="item-upload file-delete">
-                        <img alt="img" src="{% static 'images/home/house-32.jpg' %}"/>
-                        <span class="icon icon-trash remove-file"></span>
-                    </div>
-                    <div class="item-upload file-delete">
-                        <img alt="img" src="{% static 'images/home/house-33.jpg' %}"/>
-                        <span class="icon icon-trash remove-file"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">اطلاعات</h5>
-                <div class="box-info-property">
-                    <fieldset class="box box-fieldset">
-                        <label>عنوان:<span>*</span> </label>
-                        <input
-                                class="form-control"
-                                placeholder="انتخاب کردن"
-                                type="text"
-                        />
-                    </fieldset>
-                    <fieldset class="box box-fieldset">
-                        <label>توضیحات:</label>
-                        <textarea
-                                class="textarea"
-                                placeholder="توضیحات شما"
-                        ></textarea>
-                    </fieldset>
-                    <div class="box grid-3 gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>آدرس کامل:<span>*</span> </label>
-                            <input
-                                    class="form-control"
-                                    placeholder="آدرس کامل املاک را وارد کنید"
-                                    type="text"
-                            />
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>کد پستی:<span>*</span> </label>
-                            <input
-                                    class="form-control"
-                                    placeholder="کد پستی املاک را وارد کنید"
-                                    type="text"
-                            />
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>کشور:<span>*</span> </label>
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">ایالات متحده</span>
-                                <ul class="list">
-                                    <li class="option selected" data-value="1">
-                                        ایالات متحده
-                                    </li>
-                                    <li class="option" data-value="2">انگلستان</li>
-                                    <li class="option" data-value="3">روسیه</li>
-                                </ul>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="box grid-2 gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>استان/ایالت:<span>*</span> </label>
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">هیچ کدام</span>
-                                <ul class="list">
-                                    <li class="option selected" data-value="1">
-                                        هیچ کدام
-                                    </li>
-                                    <li class="option" data-value="2">تگزاس</li>
-                                    <li class="option" data-value="3">نیویورک</li>
-                                </ul>
-                            </div>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>محله:<span>*</span> </label>
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">هیچ کدام</span>
-                                <ul class="list">
-                                    <li class="option selected" data-value="1">
-                                        هیچ کدام
-                                    </li>
-                                    <li class="option" data-value="2">ایتالیا کوچک</li>
-                                    <li class="option" data-value="3">پارک بدفورد</li>
-                                </ul>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="box box-fieldset">
-                        <label>مکان:<span>*</span></label>
-                        <div class="box-ip">
-                            <input class="form-control" type="text" value="هیچ کدام"/>
-                            <a class="btn-location" href="#"
-                            ><i class="icon icon-location"></i
-                            ></a>
+                    {% for file in files %}
+                        <div class="file-card">
+                            <a href="{{ file.file.url }}" download>
+                                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF File">
+                            </a>
+                            <p>{{ file.title }}</p>
+                            <a href="{{ file.file.url }}" download class="download-btn">
+                                دانلود
+                            </a>
                         </div>
-                        <iframe
-                                allowfullscreen=""
-                                class="map"
-                                height="456"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d135905.11693909427!2d-73.95165795400088!3d41.17584829642291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1727094281524!5m2!1sen!2s"
-                                style="border: 0"
-                        ></iframe>
-                    </div>
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">قیمت</h5>
-                <div class="box-price-property">
-                    <div class="box grid-2 gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>قیمت:<span>*</span></label>
-                            <input
-                                    class="form-control"
-                                    placeholder="مقدار مثال: 12345.67"
-                                    type="text"
-                            />
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>قیمت واحد:<span>*</span> </label>
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">هیچ کدام</span>
-                                <ul class="list">
-                                    <li class="option selected" data-value="1">
-                                        هیچ کدام
-                                    </li>
-                                    <li class="option" data-value="2">1000</li>
-                                    <li class="option" data-value="3">2000</li>
-                                </ul>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="grid-2 gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>قبل از برچسب قیمت:<span>*</span> </label>
-                            <input class="form-control" type="text"/>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>برچسب After Price:<span>*</span> </label>
-                            <input class="form-control" type="text"/>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">اطلاعات تکمیلی</h5>
-                <div class="box grid-3 gap-30">
-                    <fieldset class="box-fieldset">
-                        <label>نوع خاصیت:<span>*</span> </label>
-                        <div class="nice-select" tabindex="0">
-                            <span class="current">انتخاب کردن</span>
-                            <ul class="list">
-                                <li class="option" data-value="1">آپارتمان</li>
-                                <li class="option" data-value="2">ویلا</li>
-                                <li class="option" data-value="3">استحکامات</li>
-                                <li class="option" data-value="4">استحکامات</li>
-                                <li class="option" data-value="5">دفتر</li>
-                                <li class="option" data-value="6">خانه شهری</li>
-                            </ul>
-                        </div>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>وضعیت ملک:<span>*</span> </label>
-                        <div class="nice-select" tabindex="0">
-                            <span class="current">انتخاب کردن</span>
-                            <ul class="list">
-                                <li class="option" data-value="1">برای اجاره</li>
-                                <li class="option" data-value="2">برای فروش</li>
-                            </ul>
-                        </div>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>برچسب اموال:<span>*</span> </label>
-                        <div class="nice-select" tabindex="0">
-                            <span class="current">انتخاب کردن</span>
-                            <ul class="list">
-                                <li class="option" data-value="1">لیست جدید</li>
-                                <li class="option" data-value="2">خانه باز</li>
-                            </ul>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="box grid-3 gap-30">
-                    <fieldset class="box-fieldset">
-                        <label>اندازه (متر مربع):<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>مساحت زمین (فوت متر مربع):<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>شناسه ملک:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                </div>
-                <div class="box grid-3 gap-30">
-                    <fieldset class="box-fieldset">
-                        <label>اتاق ها:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>اتاق خواب ها:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>حمام ها:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                </div>
-                <div class="box grid-3 gap-30">
-                    <fieldset class="box-fieldset">
-                        <label>گاراژها:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>اندازه گاراژ (فوت متر مربع):<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                    <fieldset class="box-fieldset">
-                        <label>سال ساخت:<span>*</span> </label>
-                        <input class="form-control" type="text"/>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">امکانات رفاهی<span>*</span></h5>
-                <div class="box-amenities-property">
-                    <div class="box-amenities">
-                        <div class="title-amenities text-btn">ایمنی خانه:</div>
-                        <div class="list-amenities">
-                            <fieldset class="amenities-item">
-                                <input
-                                        checked=""
-                                        class="tf-checkbox style-1"
-                                        id="cb1"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb1"
-                                >هشدار دود</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb2"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb2"
-                                >اعلام حضور خود با جعبه قفل</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        checked=""
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb3"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb3"
-                                >هشدار مونوکسید کربن</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb4"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb4"
-                                >دوربین های امنیتی</label
-                                >
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="box-amenities">
-                        <div class="title-amenities text-btn">اتاق خواب</div>
-                        <div class="list-amenities">
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1"
-                                        id="cb-bed1"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-bed1"
-                                >چوب لباسی</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-bed2"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-bed2"
-                                >بالش و پتو اضافی</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-bed3"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-bed3"
-                                >ملحفه</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-bed4"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-bed4"
-                                >تلویزیون با کابل استاندارد</label
-                                >
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="box-amenities">
-                        <div class="title-amenities text-btn">آشپزخانه:</div>
-                        <div class="list-amenities">
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1"
-                                        id="cb-kit1"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-kit1"
-                                >یخچال</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-kit2"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-kit2"
-                                >ماشین ظرفشویی</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-kit3"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-kit3"
-                                >مایکروویو</label
-                                >
-                            </fieldset>
-                            <fieldset class="amenities-item">
-                                <input
-                                        class="tf-checkbox style-1 primary"
-                                        id="cb-kit4"
-                                        type="checkbox"
-                                />
-                                <label class="text-cb-amenities" for="cb-kit4"
-                                >قهوه ساز</label
-                                >
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">تور مجازی 360</h5>
-                <div class="box-radio-check">
-                    <div class="text-btn mb-16">نوع تور مجازی:</div>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                checked=""
-                                class="tf-checkbox style-1"
-                                id="radio1"
-                                name="radio"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio1">کد تعبیه شده</label>
-                    </fieldset>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                class="tf-checkbox style-1"
-                                id="radio2"
-                                name="radio"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio2">آپلود تصویر</label>
-                    </fieldset>
-                </div>
-                <fieldset class="box-fieldset">
-                    <label>کد جاسازی شده Virtual 360</label>
-                    <textarea class="textarea"></textarea>
-                </fieldset>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">ویدیوها</h5>
-                <fieldset class="box-fieldset">
-                    <label class="text-btn">آدرس ویدیو:</label>
-                    <input
-                            class="form-control"
-                            placeholder="یوتیوب ، url vimeo"
-                            type="text"
-                    />
-                </fieldset>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">طبقات</h5>
-                <div class="box-radio-check">
-                    <div class="text-btn mb-16">فعال کردن طرح طبقه:</div>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                checked=""
-                                class="tf-checkbox style-1"
-                                id="radio3"
-                                name="radio2"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio3">فعال کردن</label>
-                    </fieldset>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                class="tf-checkbox style-1"
-                                id="radio4"
-                                name="radio2"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio4">غیر فعال کردن</label>
-                    </fieldset>
-                </div>
-                <div class="box-floor-property file-delete">
-                    <div
-                            class="top d-flex justify-content-between align-items-center"
-                    >
-                        <h6>طبقه 1:</h6>
-                        <a class="remove-file" href="#"
-                        ><span class="icon icon-close2"></span
-                        ></a>
-                    </div>
-                    <fieldset class="box box-fieldset">
-                        <label>نام طبقه:</label>
-                        <input class="form-control style-1" type="text"/>
-                    </fieldset>
-                    <div class="grid-2 box gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>قیمت طبقات (فقط رقمی):</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>پست ثابت قیمت:</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                    </div>
-                    <div class="grid-2 box gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>اندازه طبقه (فقط ارقام):</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>سایز پست فیکس:</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                    </div>
-                    <div class="grid-2 box gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>اتاق خواب ها:</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>حمام ها:</label>
-                            <input class="form-control style-1" type="text"/>
-                        </fieldset>
-                    </div>
-                    <div class="grid-2 box gap-30">
-                        <fieldset class="box-fieldset">
-                            <label>تصویر طبقه:</label>
-                            <div class="box-floor-img uploadfile">
-                                <div class="btn-upload tf-btn primary">
-                                    <svg
-                                            fill="none"
-                                            height="20"
-                                            viewbox="0 0 21 20"
-                                            width="21"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                                d="M2.375 13.125L6.67417 8.82583C6.84828 8.65172 7.05498 8.51361 7.28246 8.41938C7.50995 8.32515 7.75377 8.27665 8 8.27665C8.24623 8.27665 8.49005 8.32515 8.71754 8.41938C8.94502 8.51361 9.15172 8.65172 9.32583 8.82583L13.625 13.125M12.375 11.875L13.5492 10.7008C13.7233 10.5267 13.93 10.3886 14.1575 10.2944C14.385 10.2001 14.6288 10.1516 14.875 10.1516C15.1212 10.1516 15.365 10.2001 15.5925 10.2944C15.82 10.3886 16.0267 10.5267 16.2008 10.7008L18.625 13.125M3.625 16.25H17.375C17.7065 16.25 18.0245 16.1183 18.2589 15.8839C18.4933 15.6495 18.625 15.3315 18.625 15V5C18.625 4.66848 18.4933 4.35054 18.2589 4.11612C18.0245 3.8817 17.7065 3.75 17.375 3.75H3.625C3.29348 3.75 2.97554 3.8817 2.74112 4.11612C2.5067 4.35054 2.375 4.66848 2.375 5V15C2.375 15.3315 2.5067 15.6495 2.74112 15.8839C2.97554 16.1183 3.29348 16.25 3.625 16.25ZM12.375 6.875H12.3817V6.88167H12.375V6.875ZM12.6875 6.875C12.6875 6.95788 12.6546 7.03737 12.596 7.09597C12.5374 7.15458 12.4579 7.1875 12.375 7.1875C12.2921 7.1875 12.2126 7.15458 12.154 7.09597C12.0954 7.03737 12.0625 6.95788 12.0625 6.875C12.0625 6.79212 12.0954 6.71263 12.154 6.65403C12.2126 6.59542 12.2921 6.5625 12.375 6.5625C12.4579 6.5625 12.5374 6.59542 12.596 6.65403C12.6546 6.71263 12.6875 6.79212 12.6875 6.875Z"
-                                                stroke="white"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                        ></path>
-                                    </svg
-                                    >
-                                    فایل را انتخاب کنید<input
-                                        class="ip-file"
-                                        type="file"
-                                />
-                                </div>
-                                <p class="file-name">
-                                    یا فایل را برای آپلود اینجا رها کنید
-                                </p>
-                            </div>
-                        </fieldset>
-                        <fieldset class="box-fieldset">
-                            <label>توضیحات:</label>
-                            <textarea class="textarea"></textarea>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <a class="btn-add-floor" href="#"
-                    ><span class="icon icon-plus"></span
-                    ></a>
-                </div>
-            </div>
-            <div class="widget-box-2 mb-20">
-                <h5 class="title">اطلاعات نماینده</h5>
-                <div class="box-radio-check">
-                    <div class="text-btn mb-16">
-                        اطلاعات عامل نوع را انتخاب کنید؟
-                    </div>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                checked=""
-                                class="tf-checkbox style-1"
-                                id="radio5"
-                                name="radio3"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio5"
-                        >اطلاعات کاربر فعلی شما</label
-                        >
-                    </fieldset>
-                    <fieldset class="fieldset-radio">
-                        <input
-                                class="tf-checkbox style-1"
-                                id="radio6"
-                                name="radio3"
-                                type="radio"
-                        />
-                        <label class="text-radio" for="radio6">تماس دیگر</label>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="box-btn">
-                <a class="tf-btn primary" href="#">اموال اضافه کردن</a>
-                <a class="tf-btn btn-line" href="#">ذخیره و پیش نمایش</a>
             </div>
         </div>
     </div>
     <div class="overlay-dashboard"></div>
+    <style>
+        .file-card {
+            width: 150px;
+            text-align: center;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .file-card img {
+            width: 70px;
+            height: auto;
+        }
+
+        .file-card p {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 {% endblock %}
