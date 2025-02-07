@@ -72,3 +72,6 @@ class UserFileModel(models.Model):
         if self.message:
             self.seen = True
         super().save(*args, **kwargs)
+
+    def get_filename(self):
+        return self.file.name.split('/')[-1]
