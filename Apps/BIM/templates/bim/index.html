@@ -155,10 +155,8 @@
             <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
                 <div class="tab-content">
                     <div class="row" id="projects-container">
-
                         {% include "bim/projects-list.html" %}
                     </div>
-
                     <ul class="justify-content-center wd-navigation">
                         {% if projects.has_previous %}
                             <li>
@@ -168,17 +166,15 @@
                                 </a>
                             </li>
                         {% endif %}
-
                         {% for num in projects.paginator.page_range %}
                             {% if num == projects.number %}
-                                <li><a class="nav-item active" href="#" data-page="{{ num }}"
+                                <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
                                        data-type="projects">{{ num }}</a></li>
                             {% else %}
                                 <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
                                        data-type="projects">{{ num }}</a></li>
                             {% endif %}
                         {% endfor %}
-
                         {% if projects.has_next %}
                             <li>
                                 <a class="nav-item page-link" href="#" data-page="{{ projects.next_page_number }}"
@@ -188,8 +184,6 @@
                             </li>
                         {% endif %}
                     </ul>
-
-
                 </div>
             </div>
         </div>
@@ -205,27 +199,8 @@
                 <h3 class="title mt-4">همکاری در طرح</h3>
             </div>
             <div class="grid-location wow fadeInUp" data-wow-delay=".2s">
-
-                <!-- Top 4 images -->
-                {% for object in coworking|slice:":4" %}
+                {% for object in coworking %}
                     <a class="item-{{ forloop.counter }} box-location-v2 hover-img"
-                       href="{{ object.get_absolute_url }}">
-                        <div class="box-img img-style">
-                            <img
-                                    alt="image-location"
-                                    class="lazyload"
-                                    data-src="{{ object.image.url }}"
-                                    src="{{ object.image.url }}"
-                            />
-                        </div>
-                        <div class="content">
-                            <h6 class="link">{{ object.title }}</h6>
-                        </div>
-                    </a>
-                {% endfor %}
-                <!-- Bottom 2 images -->
-                {% for object in coworking|slice:"4:6" %}
-                    <a class="item-{{ forloop.counter|add:4 }} box-location-v2 hover-img"
                        href="{{ object.get_absolute_url }}">
                         <div class="box-img img-style">
                             <img
@@ -247,36 +222,39 @@
     <!-- Mentoring and Learning Section -->
     <section class="flat-section bg-primary-new">
         <div class="box-title text-center wow fadeInUp">
-            <div class="text-subtitle text-primary">رشد کنیم</div>
             <h3 class="mt-4 title">آموزش ها</h3>
+            <div class="text-subtitle text-primary">رشد کنیم</div>
         </div>
-        <div class="container">
-            <div class="row">
-                {% for train in trainings %}
-                    {% if forloop.first or forloop.counter0|divisibleby:4 %}
-                        <div class="row mb-4">  <!-- Add spacing between rows -->
-                    {% endif %}
-                <div class="col-md-6 mb-4">  <!-- Added mb-4 for spacing -->
-                    <div class="d-flex bg-white shadow-sm rounded p-3">
-                        <!-- Image -->
-                        <div class="flex-shrink-0">
-                            <img src="{{ train.image.url }}" class="rounded" alt="{{ train.title }}"
-                                 style="width: 150px; height: 120px; object-fit: cover;">
-                        </div>
-                        <!-- Text Content -->
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold">{{ train.title }}</h5>
-                            <p class="text-muted mb-1">{{ train.description }}</p>
-                            <p class="text-primary fw-bold">قیمت: {{ train.price }} تومان</p>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:4 or forloop.last %}
-                    </div>
+        <div class="container" id="trainings-container">
+            {% include 'bim/training-list.html' %}
+        </div>
+        <ul class="justify-content-center wd-navigation">
+            {% if trainings.has_previous %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ trainings.previous_page_number }}"
+                       data-type="trainings">
+                        <i class="icon icon-arr-r"></i>
+                    </a>
+                </li>
+            {% endif %}
+            {% for num in trainings.paginator.page_range %}
+                {% if num == trainings.number %}
+                    <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                           data-type="trainings">{{ num }}</a></li>
+                {% else %}
+                    <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                           data-type="trainings">{{ num }}</a></li>
                 {% endif %}
-                {% endfor %}
-            </div>
-        </div>
+            {% endfor %}
+            {% if trainings.has_next %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ trainings.next_page_number }}"
+                       data-type="trainings">
+                        <i class="icon icon-arr-l"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

@@ -132,4 +132,5 @@ class RetroCoworkingImage(models.Model):
 class RetroTraining(BaseModel):
     title = models.CharField(max_length=100)
     link = models.URLField()
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='training_images/')

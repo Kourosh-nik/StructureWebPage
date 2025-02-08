@@ -15,16 +15,16 @@ class IndexView(View):
 
     def get(self, request):
         banner = BimPanelModel.objects.first()
-        categories = BIMCategory.objects.all()
-        coworking = BIMCoworking.objects.all()
+        categories = BIMCategory.objects.all().order_by('-id')
+        coworking = BIMCoworking.objects.all().order_by('-id')
 
         projects_list = BIMProject.objects.all().order_by('-id')
-        projects_paginator = Paginator(projects_list, 2)
+        projects_paginator = Paginator(projects_list, 6)
         projects_page = request.GET.get('projects_page', 1)
         projects = projects_paginator.get_page(projects_page)
 
         trainings_list = BIMTraining.objects.all().order_by('-id')
-        trainings_paginator = Paginator(trainings_list, 2)
+        trainings_paginator = Paginator(trainings_list, 4)
         trainings_page = request.GET.get('trainings_page', 1)
         trainings = trainings_paginator.get_page(trainings_page)
 
