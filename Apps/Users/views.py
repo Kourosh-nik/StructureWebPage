@@ -1,5 +1,4 @@
 import json
-
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse
 from django.contrib import messages
@@ -117,34 +116,27 @@ class UserLoginView(View):
         else:
             return JsonResponse({"success": False, "message": "شماره یا رمز عبور اشتباه است"})
 
-
 class UserRegisterView(View):
     def post(self, request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            phone = cd['phone']
+            phone = form.cleaned_data['phone']
+
             user = UserModel.objects.filter(phone=phone).first()
             if user:
                 if user.ban:
-                    return HttpResponse('کاربر ازسایت محروم شده است')
-                return HttpResponse('کاربر وجود دارد')
+                    return JsonResponse({'error': 'کاربر از سایت محروم شده است'}, status=403)
+                return JsonResponse({'error': 'کاربر قبلاً ثبت‌نام کرده است'}, status=400)
 
-            else:
-                otp = OtpModel.objects.filter(phone=cd['phone']).first()
-                if otp:
-                    if otp.date + timedelta(minutes=2) < now():
-                        code = random.randint(100000, 999999)
-                        otp.code = code
-                        otp.date = now()
-                        send_otp(phone, code)
-                        otp.save()
-                else:
-                    code = random.randint(100000, 999999)
-                    OtpModel.objects.create(phone=phone, code=code)
-                    send_otp(phone, code)
-                return HttpResponse('ok')
-        return render(request, 'user/form-errors.html', {'form': form})
+            otp_code = OtpModel.generate_otp(phone)
+            if otp_code is None:
+                return JsonResponse({'error': 'لطفاً ۱۲۰ ثانیه صبر کنید و دوباره امتحان کنید.'}, status=429)
+
+            send_otp(phone, otp_code)  # ارسال کد تایید
+
+            return JsonResponse({'message': 'کد تأیید ارسال شد'}, status=200)
+
+        return JsonResponse({'error': 'فرم معتبر نیست', 'errors': form.errors}, status=400)
 
 
 class UserRegisterActivationView(View):
@@ -152,24 +144,36 @@ class UserRegisterActivationView(View):
         form = UserRegisterActivationForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            code = cd['code']
             phone = cd['phone']
-            sending_code = OtpModel.objects.filter(phone=phone).first()
-            if sending_code and sending_code.date + timedelta(minutes=10) > now():
-                if str(sending_code.code) == str(code):
-                    user = UserModel.objects.create_user(fullname=cd['fullname'], phone=phone,
-                                                         password=cd['password'])
-                    sending_code.delete()
-                    login(request, user)
-                    return HttpResponse('ok')
-                else:
-                    return HttpResponse('کد نادرست')
-            return HttpResponse('نامعتبر')
-        return render(request, 'user/form-errors.html', {'errors': form.errors})
+            email = cd['phone']
+            code = cd['code']
+            password = cd['password']
+            confirm_password = cd['confirm_password']
+
+            if password != confirm_password:
+                return JsonResponse({'error': 'رمز عبور و تکرار آن یکسان نیستند!'}, status=400)
+
+            otp_entry = OtpModel.objects.filter(phone=phone).first()
+            if not otp_entry:
+                return JsonResponse({'error': 'کد معتبر نیست یا منقضی شده است'}, status=400)
+
+            if otp_entry.verify_otp(code):
+                user = UserModel.objects.create_user(
+                    fullname=cd['fullname'],
+                    phone=phone,
+                    password=password,
+                    email=email,
+                )
+                login(request, user)
+                return JsonResponse({'message': 'ثبت‌نام موفقیت‌آمیز بود', "redirect_url": ""}, status=200)
+
+            return JsonResponse({'error': 'کد نادرست است'}, status=400)
+
+        return JsonResponse({'error': 'فرم معتبر نیست', 'errors': form.errors}, status=400)
 
 
 class UserLogoutView(LoginRequiredMixin, View):
-    def get(self, request):
+    def post(self, request):
         logout(request)
         return redirect('home_Page:index')
 

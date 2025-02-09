@@ -5,7 +5,11 @@ from django.utils import timezone
 from django_jalali.db import models as jmodels
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from django.core.validators import MinLengthValidator
+import hashlib
+import random
+from datetime import timedelta
+from django.db import models
+from django.utils.timezone import now
 
 
 class CustomUserManager(BaseUserManager):
@@ -77,12 +81,62 @@ class UserFileModel(models.Model):
     def get_filename(self):
         return self.file.name.split('/')[-1]
 
-
 class OtpModel(models.Model):
-    phone = models.CharField(max_length=11, verbose_name='شماره تلفن')
-    code = models.CharField(max_length=11, verbose_name='کد')
-    date = models.DateTimeField(auto_now_add=True, verbose_name='انقضا')
+    phone = models.CharField(max_length=11, verbose_name='شماره تلفن', unique=True)
+    code = models.CharField(max_length=64, verbose_name='کد هش‌شده')
+    attempts = models.IntegerField(default=0, verbose_name='تعداد تلاش‌های ناموفق')
+    last_sent_at = models.DateTimeField(auto_now_add=True, verbose_name='آخرین زمان ارسال OTP')
+    expires_at = models.DateTimeField(verbose_name='زمان انقضای OTP')
 
     class Meta:
         verbose_name = 'کد OTP'
-        verbose_name_plural = 'کد OTP'
+        verbose_name_plural = 'کدهای OTP'
+
+    def is_expired(self):
+        return now() > self.expires_at
+
+    def reset_attempts(self):
+        self.attempts = 0
+        self.save()
+
+    @staticmethod
+    def generate_otp(phone):
+        existing_otp = OtpModel.objects.filter(phone=phone).first()
+
+        if existing_otp and existing_otp.last_sent_at > now() - timedelta(seconds=120):
+            return None
+
+        code = random.randint(100000, 999999)
+        hashed_code = hashlib.sha256(str(code).encode()).hexdigest()
+        expires_at = now() + timedelta(minutes=10)
+
+        if existing_otp:
+            existing_otp.code = hashed_code
+            existing_otp.expires_at = expires_at
+            existing_otp.attempts = 0
+            existing_otp.last_sent_at = now()
+            existing_otp.save()
+        else:
+            OtpModel.objects.create(phone=phone, code=hashed_code, expires_at=expires_at, last_sent_at=now())
+
+        return code
+
+    def verify_otp(self, input_code):
+        if self.is_expired():
+            self.delete()
+            return False
+
+        if self.attempts >= 5:
+            self.delete()
+            return False
+
+        hashed_input = hashlib.sha256(str(input_code).encode()).hexdigest()
+        if hashed_input == self.code:
+            self.delete()
+            return True
+
+        self.attempts += 1
+        self.save()
+        return False
+
+

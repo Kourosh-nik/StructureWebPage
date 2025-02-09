@@ -90,12 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'Apps.Users.backends.PhoneBackend',  # مسیر بک‌اند سفارشی
-    'django.contrib.auth.backends.ModelBackend',  # بک‌اند پیش‌فرض جنگو
-]
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Tehran'
