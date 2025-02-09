@@ -1,7 +1,9 @@
 import json
+
+from django.http import JsonResponse
 from django.shortcuts import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView, ListView, DetailView
@@ -105,26 +107,15 @@ class AddDocumentView(LoginRequiredMixin, View):
 
 class UserLoginView(View):
     def post(self, request):
-        form = UserLoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            phone = cd['phone']
-            user = UserModel.objects.filter(phone=phone).first()
-            if user:
-                time.sleep(2)
-                check_password = user.check_password(cd['password'])
-                if check_password:
-                    login(request, user)
-                    return redirect('index')
-                else:
-                    messages.add_message(request, messages.ERROR, 'شماره یا رمز عبور اشتباه است')
-                    return redirect(request.META['HTTP_REFERER'])
-            else:
-                messages.add_message(request, messages.ERROR, 'شماره یا رمز عبور اشتباه است')
-                return redirect(request.META['HTTP_REFERER'])
+        phone = request.POST.get('phone')  # دریافت داده از POST
+        password = request.POST.get('password')
+
+        user = authenticate(request, phone=phone, password=password)
+        if user:
+            login(request, user)
+            return JsonResponse({"success": True, "redirect_url": ""})
         else:
-            messages.add_message(request, messages.ERROR, form.errors)
-            return redirect(request.META['HTTP_REFERER'])
+            return JsonResponse({"success": False, "message": "شماره یا رمز عبور اشتباه است"})
 
 
 class UserRegisterView(View):
@@ -180,7 +171,7 @@ class UserRegisterActivationView(View):
 class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        return redirect('home_page:index')
+        return redirect('home_Page:index')
 
 
 class SendOtpCodeView(View):
