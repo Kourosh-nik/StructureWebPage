@@ -145,7 +145,7 @@ class UserRegisterActivationView(View):
         if form.is_valid():
             cd = form.cleaned_data
             phone = cd['phone']
-            email = cd['phone']
+            email = cd['email']
             code = cd['code']
             password = cd['password']
             confirm_password = cd['confirm_password']
