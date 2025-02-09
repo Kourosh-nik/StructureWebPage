@@ -9,25 +9,28 @@
     <meta content="الگوی HTML املاک و مستغلات" name="description"/>
     <meta content="farham aghdasi" name="author"/>
     <meta
-            content="width=device-width, initial-scale=1, maximum-scale=1"
-            name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
     />
+
     <!-- font -->
     <link href="{% static 'fonts/fonts.css' %}" rel="stylesheet"/>
     <!-- Icons -->
     <link href="{% static 'fonts/font-icons.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/bootstrap.min.rtl.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/jqueryui.min.rtl.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
     <link href="{% static 'css/styles.rtl.css' %}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css"/>
 
     <!-- Favicon and Touch Icons  -->
     <link href="{% static 'images/logo/favicon.png' %}" rel="shortcut icon"/>
     <link href="{% static 'images/logo/favicon.png' %}" rel="apple-touch-icon-precomposed"/>
+
 </head>
-<body class="body bg-surface counter-scroll">
+<body class="body">
 <div id="wrapper">
-    <div class="clearfix" id="page">
+      <div class="clearfix" id="pagee">
         <div class="layout-wrap">
 
             {% render_partial 'Apps.Users.views.HeaderView' %}

@@ -2,10 +2,6 @@ from .models import *
 from django.shortcuts import render
 from django.db.models import Q
 from django.views.generic import TemplateView, DetailView, ListView
-from django.core.paginator import Paginator
-from django.http import JsonResponse
-
-# IndexView
 from django.views import View
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -49,7 +45,7 @@ class CategoryView(ListView):
     template_name = "bim/category.html"
     context_object_name = "projects"
     model = BIMProject
-    paginate_by = 18
+    paginate_by = 12
 
     def get_queryset(self):
         category = BIMCategory.objects.filter(slug=self.kwargs['slug']).first()
@@ -76,3 +72,7 @@ class ProjectDetailView(DetailView):
 
     def get_queryset(self):
         return BIMProject.objects.prefetch_related('images').all()
+
+
+class CoworkingDetailView(DetailView):
+    model = BIMCoworking
