@@ -187,33 +187,33 @@ class SendOtpCodeView(View):
             user = UserModel.objects.filter(phone=phone).first()
             if user:
                 if user.ban:
-                    messages.add_message(request, messages.ERROR, 'کاربر ازسایت محروم شده است')
-                    return HttpResponse('کاربر ازسایت محروم شده است')
+                    return JsonResponse({'error': 'کاربر از سایت محروم شده است'}, status=403)
+
+                otp = OtpModel.objects.filter(phone=phone).first()
+
+                if otp and otp.last_sent_at > now() - timedelta(seconds=120):
+                    return JsonResponse({'error': 'لطفاً ۱۲۰ ثانیه صبر کنید و دوباره امتحان کنید.'}, status=429)
+
+                code = random.randint(100000, 999999)
+                if otp:
+                    otp.code = code
+                    otp.last_sent_at = now()
+                    otp.expires_at = now() + timedelta(minutes=10)
+                    otp.save()
                 else:
-                    otp = OtpModel.objects.filter(phone=cd['phone']).first()
-                    if otp:
-                        if otp.date + timedelta(minutes=2) < now():
-                            code = random.randint(100000, 999999)
-                            otp.code = code
-                            otp.date = now()
-                            send_otp(phone, code)
-                            otp.save()
-                    else:
-                        code = random.randint(100000, 999999)
-                        OtpModel.objects.create(phone=phone, code=code)
-                        send_otp(phone, code)
-                    return HttpResponse('ok')
+                    OtpModel.objects.create(phone=phone, code=code, expires_at=now() + timedelta(minutes=10), last_sent_at=now())
+
+                send_otp(phone, code)
+
+                return JsonResponse({'message': 'کد تأیید ارسال شد'}, status=200)
 
             else:
-                return HttpResponse('کاربر وجود ندارد')
+                return JsonResponse({'error': 'کاربر وجود ندارد'}, status=404)
 
-        return render(request, 'user/form-errors.html', {'form': form})
+        return JsonResponse({'error': 'فرم معتبر نیست', 'errors': form.errors}, status=400)
 
 
 class PasswordForgetView(View):
-    def get(self, request):
-        return render(request, 'Users/forget-password.html')
-
     def post(self, request):
         form = ForgetForm(request.POST)
         if form.is_valid():
@@ -221,18 +221,24 @@ class PasswordForgetView(View):
             phone = cd['phone']
             code = cd['code']
             user = UserModel.objects.filter(phone=phone).first()
+
             if user:
                 if user.ban:
-                    return HttpResponse('کاربر ازسایت محروم شده است')
-                else:
-                    sending_code = OtpModel.objects.filter(phone=phone).first()
-                    if sending_code and sending_code.date + timedelta(minutes=10) > now():
-                        if str(sending_code.code) == str(code):
-                            sending_code.delete()
-                            login(request, user)
-                            return HttpResponse('ok')
-                        else:
-                            return HttpResponse('کد نادرست')
-                    return HttpResponse('کد نادرست است')
-            return HttpResponse('کاربر وجود ندارد')
-        return HttpResponse('نامعتبر')
+                    return JsonResponse({'error': 'کاربر از سایت محروم شده است'}, status=403)
+
+                sending_code = OtpModel.objects.filter(phone=phone).first()
+
+                if sending_code and sending_code.expires_at > now():
+                    if str(sending_code.code) == str(code):
+                        sending_code.delete()
+                        login(request, user)
+                        return JsonResponse({'message': 'ورود موفقیت‌آمیز بود'}, status=200)
+
+                    return JsonResponse({'error': 'کد نادرست است'}, status=400)
+
+                return JsonResponse({'error': 'کد منقضی شده است یا معتبر نیست'}, status=400)
+
+            return JsonResponse({'error': 'کاربر وجود ندارد'}, status=404)
+
+        return JsonResponse({'error': 'فرم معتبر نیست', 'errors': form.errors}, status=400)
+

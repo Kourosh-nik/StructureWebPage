@@ -1,10 +1,13 @@
 from django import forms
 from .models import *
-
-
+from django.core.validators import RegexValidator
 
 class SendOtpForm(forms.Form):
-    phone = forms.CharField(max_length=11, label='شماره تلفن')
+    phone = forms.CharField(
+        max_length=11,
+        label='شماره تلفن',
+        validators=[RegexValidator(r'^[0-9]{11}$', 'شماره تلفن باید 11 رقمی باشد')]
+    )
 
 
 class UserLoginForm(forms.Form):
@@ -13,7 +16,11 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegisterForm(forms.Form):
-    phone = forms.CharField(max_length=11, label='تلفن')
+    phone = forms.CharField(
+        max_length=11,
+        label='شماره تلفن',
+        validators=[RegexValidator(r'^[0-9]{11}$', 'شماره تلفن باید 11 رقمی باشد')]
+    )
 
 class UserRegisterActivationForm(UserRegisterForm):
     code = forms.CharField(max_length=6, label='کد')
@@ -42,9 +49,18 @@ class UserRegisterActivationForm(UserRegisterForm):
 
         return confirm_password
 
+
 class ForgetForm(forms.Form):
-    phone = forms.CharField(max_length=11, label='شماره تلفن')
-    code = forms.CharField(max_length=6, label='کد')
+    phone = forms.CharField(
+        max_length=11,
+        label='شماره تلفن',
+        validators=[RegexValidator(r'^[0-9]{11}$', 'شماره تلفن باید 11 رقمی باشد')]
+    )
+    code = forms.CharField(
+        max_length=6,
+        label='کد',
+        validators=[RegexValidator(r'^[0-9]{6}$', 'کد باید فقط شامل 6 رقم باشد')]
+    )
 
 
 class UserFileForm(forms.Form):
