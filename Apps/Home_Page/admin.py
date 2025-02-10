@@ -7,6 +7,11 @@ class SiteDetailAdmin(admin.ModelAdmin):
     list_display = ['title', 'phone', 'email']
 
 
+@admin.register(IndexDetailModel)
+class SiteDetailAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+
 @admin.register(ContactUsModel)
 class ContactUsAdmin(admin.ModelAdmin):
     list_display = ['fullname', 'created', 'seen']

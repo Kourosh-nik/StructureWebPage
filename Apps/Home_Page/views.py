@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .models import *
-from Apps.BIM.models import BIMCategory
-from Apps.project_management.models import ProjManCategory
+from Apps.BIM.models import BIMCategory, BIMProject
+from Apps.project_management.models import ProjManCategory, ProjManProject
 from Apps.Retrofit.models import RetroCategory
 from Apps.Software.models import SoftCategory
-from Apps.Structure_Design.models import STRCategory
+from Apps.Structure_Design.models import STRCategory, STRProject
 from .forms import *
 from django.contrib import messages
+from Apps.Software.models import SoftProject
 
 
 class HeaderView(View):
@@ -40,9 +41,23 @@ class FooterView(View):
         }
         return render(request, 'partial/footer.html', context)
 
+
 class IndexView(View):
     def get(self, request):
-        return render(request, 'index.html')
+        panel = IndexDetailModel.objects.first()
+        soft_projects = SoftProject.objects.all().order_by('-id')[:8]
+        bim_projects = BIMProject.objects.all().order_by('-id')[:8]
+        structure_categories = STRCategory.objects.all().order_by('-id')[:8]
+        structure_projects = STRProject.objects.all().order_by('-id')[:6]
+
+        context = {
+            'panel': panel if panel else None,
+            'soft_projects': soft_projects,
+            'bim_projects': bim_projects,
+            'structure_categories': structure_categories,
+            'structure_projects': structure_projects,
+        }
+        return render(request, 'index.html', context)
 
 
 class AboutUsView(View):

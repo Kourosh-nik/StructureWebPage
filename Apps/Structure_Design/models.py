@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.urls import reverse
 
 class BaseModelManager(models.Manager):
@@ -71,7 +70,6 @@ class STRLateralSys(BaseModel):
 class STRProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
@@ -104,7 +102,6 @@ class STRProjectImage(models.Model):
 class STRCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)

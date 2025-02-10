@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.urls import reverse
 
 class BaseModelManager(models.Manager):
@@ -107,7 +106,11 @@ class BIMProjectImage(models.Model):
 class BIMCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)

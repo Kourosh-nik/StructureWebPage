@@ -23,6 +23,22 @@ class SiteDetailModel(models.Model):
     linkedin = models.URLField(blank=True, null=True)
 
 
+class IndexDetailModel(models.Model):
+    title = models.CharField(max_length=10000)
+    banners_title = models.CharField(max_length=10000)
+    banners_text = models.TextField()
+    banner_image1 = models.ImageField(upload_to='site_detail/image')
+    banner_image2 = models.ImageField(upload_to='site_detail/image')
+    banner_image3 = models.ImageField(upload_to='site_detail/image')
+    banner_image4 = models.ImageField(upload_to='site_detail/image')
+    bim_banner_image = models.ImageField(upload_to='site_detail/image')
+    project_management_banner_image = models.ImageField(upload_to='site_detail/image')
+    retrofit_image = models.ImageField(upload_to='site_detail/image')
+    software_image = models.ImageField(upload_to='site_detail/image')
+    structure_design_image = models.ImageField(upload_to='site_detail/image')
+
+
+
 class AboutUsDetailModel(models.Model):
     about_us_title = models.TextField()
     about_us_description = models.TextField()

@@ -63,16 +63,14 @@ class ProjectDetailView(DetailView):
     template_name = 'bim/project-detail.html'
     context_object_name = 'project'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['related_projects'] = BIMProject.objects.filter(
-            category=self.object.category
-        ).exclude(id=self.object.id)[:4]
-        return context
-
     def get_queryset(self):
         return BIMProject.objects.prefetch_related('images').all()
 
 
 class CoworkingDetailView(DetailView):
     model = BIMCoworking
+    template_name = 'bim/coworking-detail.html'
+    context_object_name = 'coworking'
+
+    def get_queryset(self):
+        return BIMCoworking.objects.prefetch_related('images').all()

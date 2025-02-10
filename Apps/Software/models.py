@@ -71,6 +71,8 @@ class SoftProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     content = RichTextField()
+    description = models.TextField(null=True, blank=True)
+    price = models.PositiveIntegerField()
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
