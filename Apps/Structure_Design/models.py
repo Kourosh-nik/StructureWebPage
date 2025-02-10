@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 
+
 class BaseModelManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(deleted=False)
@@ -61,15 +62,22 @@ class STRGravitySys(BaseModel):
     def __str__(self):
         return self.title
 
+
 class STRLateralSys(BaseModel):
     title = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
 
+
 class STRProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
@@ -88,7 +96,7 @@ class STRProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('Structure_Design:project_detail', args=[self.id])
+        return reverse('Structure_Design:project_detail', args=[self.slug])
 
 
 class STRProjectImage(models.Model):
@@ -102,6 +110,11 @@ class STRProjectImage(models.Model):
 class STRCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)
@@ -117,8 +130,7 @@ class STRCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse("Structure_Design:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        return reverse("Structure_Design:coworking_detail", args=[self.slug])
 
 
 class STRCoworkingImage(models.Model):

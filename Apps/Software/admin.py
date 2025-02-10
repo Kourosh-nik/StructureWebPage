@@ -35,7 +35,7 @@ class ProjectImageAdmin(admin.ModelAdmin):
 @admin.register(SoftProject)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title',)
     inlines = [ProjectImageInline]
 
 
@@ -48,10 +48,11 @@ class CoworkImageInline(admin.TabularInline):
 class CoworkingImageAdmin(admin.ModelAdmin):
     list_display = ('coworking', 'caption')
 
+
 @admin.register(SoftCoworking)
 class CoworkingAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title',)
     inlines = [CoworkImageInline]
 
 admin.site.register(SoftCategory, CategoryAdmin)

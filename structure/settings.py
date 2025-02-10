@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'Apps.Users',
 
     # EXTERNAL APPS
-    'ckeditor',
     'django_render_partial',
     'django_jalali',
 ]

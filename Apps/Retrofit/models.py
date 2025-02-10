@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.urls import reverse
+
 
 class BaseModelManager(models.Manager):
     def get_queryset(self):
@@ -25,6 +25,7 @@ class RetroPanelModel(models.Model):
     slider2_description = models.TextField()
     slider3_description = models.TextField()
     project_base_title = models.CharField(max_length=1000)
+
 
 class BaseModel(models.Model):
     deleted = models.BooleanField(default=False, editable=True)
@@ -69,7 +70,11 @@ class RetroLateralSys(BaseModel):
 class RetroProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
@@ -88,7 +93,8 @@ class RetroProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('Retrofit:project_detail', args=[self.id])
+        return reverse('Retrofit:project_detail', args=[self.slug])
+
 
 class RetroProjectImage(models.Model):
     project = models.ForeignKey(RetroProject, related_name='images', on_delete=models.CASCADE)
@@ -101,7 +107,11 @@ class RetroProjectImage(models.Model):
 class RetroCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)
@@ -117,8 +127,8 @@ class RetroCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse("Retrofit:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        return reverse("Retrofit:coworking_detail", args=[self.slug])
+
 
 class RetroCoworkingImage(models.Model):
     coworking = models.ForeignKey(RetroCoworking, related_name='images', on_delete=models.CASCADE)

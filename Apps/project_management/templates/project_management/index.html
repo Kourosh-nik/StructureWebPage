@@ -134,13 +134,11 @@
                 <div class="sw-pagination sw-pagination-location text-center"></div>
             </div>
         </div>
-
         <!-- Move navigation buttons BELOW the slider -->
         <div class="swiper-navigation">
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
-
     </section>
     <!-- End Slider Categories Section -->
     <!-- Projects Section -->
@@ -154,42 +152,40 @@
             </div>
             <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
                 <div class="tab-content">
-                    <div class="row">
-                        {% for project in projects|slice:":9" %} <!-- Show only 9 projects -->
-                            <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
-                                <div class="homelengo-box card border rounded shadow-sm">
-                                    <div class="archive-top position-relative">
-                                        <a class="images-group" href="{{ project.get_absolute_url }}">
-                                            <div class="images-style">
-                                                <img alt="img" class="lazyload img-fluid rounded-top"
-                                                     data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="archive-bottom p-3">
-                                        <h6 class="text-capitalize mt-2">
-                                            <a class="link text-dark fw-bold"
-                                               href="{{ project.get_absolute_url }}">{{ project.title }}</a>
-                                        </h6>
-                                        <div class="d-flex justify-content-between text-muted small mt-2">
-                                            <span>🏠 {{ project.gravity_loading_sys }} سیسستم باربری کف</span>
-                                            <span>🛏 {{ project.lateral_loading_sys }}سیستم باربری جانبی</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row" id="projects-container">
+                        {% include "bim/projects-list.html" %}
+                    </div>
+                    <ul class="justify-content-center wd-navigation">
+                        {% if projects.has_previous %}
+                            <li>
+                                <a class="nav-item page-link" href="#" data-page="{{ projects.previous_page_number }}"
+                                   data-type="projects">
+                                    <i class="icon icon-arr-r"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for num in projects.paginator.page_range %}
+                            {% if num == projects.number %}
+                                <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                                       data-type="projects">{{ num }}</a></li>
+                            {% else %}
+                                <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                                       data-type="projects">{{ num }}</a></li>
+                            {% endif %}
                         {% endfor %}
-                    </div>
-                    <div class="text-center mt-4">
-                        <a class="tf-btn btn-view primary size-1 hover-btn-view" href="sidebar-grid.html">
-                            مشاهده ویژگی ها <span class="icon icon-arrow-left2"></span>
-                        </a>
-                    </div>
+                        {% if projects.has_next %}
+                            <li>
+                                <a class="nav-item page-link" href="#" data-page="{{ projects.next_page_number }}"
+                                   data-type="projects">
+                                    <i class="icon icon-arr-l"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Projects Section -->
     <!-- Coworking Section -->
     <section class="flat-section flat-location-v2">
         <div class="container">
@@ -198,27 +194,8 @@
                 <h3 class="title mt-4">همکاری در طرح</h3>
             </div>
             <div class="grid-location wow fadeInUp" data-wow-delay=".2s">
-
-                <!-- Top 4 images -->
-                {% for object in coworking|slice:":4" %}
+                {% for object in coworking %}
                     <a class="item-{{ forloop.counter }} box-location-v2 hover-img"
-                       href="{{ object.get_absolute_url }}">
-                        <div class="box-img img-style">
-                            <img
-                                    alt="image-location"
-                                    class="lazyload"
-                                    data-src="{{ object.image.url }}"
-                                    src="{{ object.image.url }}"
-                            />
-                        </div>
-                        <div class="content">
-                            <h6 class="link">{{ object.title }}</h6>
-                        </div>
-                    </a>
-                {% endfor %}
-                <!-- Bottom 2 images -->
-                {% for object in coworking|slice:"4:6" %}
-                    <a class="item-{{ forloop.counter|add:4 }} box-location-v2 hover-img"
                        href="{{ object.get_absolute_url }}">
                         <div class="box-img img-style">
                             <img
@@ -240,60 +217,74 @@
     <!-- Mentoring and Learning Section -->
     <section class="flat-section bg-primary-new">
         <div class="box-title text-center wow fadeInUp">
-            <div class="text-subtitle text-primary">رشد کنیم</div>
             <h3 class="mt-4 title">آموزش ها</h3>
+            <div class="text-subtitle text-primary">رشد کنیم</div>
         </div>
-        <div class="container">
-            <div class="row">
-                {% for train in trainings %}
-                    {% if forloop.first or forloop.counter0|divisibleby:4 %}
-                        <div class="row mb-4">  <!-- Add spacing between rows -->
-                    {% endif %}
-                <div class="col-md-6 mb-4">  <!-- Added mb-4 for spacing -->
-                    <div class="d-flex bg-white shadow-sm rounded p-3">
-                        <!-- Image -->
-                        <div class="flex-shrink-0">
-                            <img src="{{ train.image.url }}" class="rounded" alt="{{ train.title }}"
-                                 style="width: 150px; height: 120px; object-fit: cover;">
-                        </div>
-                        <!-- Text Content -->
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold">{{ train.title }}</h5>
-                            <p class="text-muted mb-1">{{ train.description }}</p>
-                            <p class="text-primary fw-bold">قیمت: {{ train.price }} تومان</p>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:4 or forloop.last %}
-                    </div>
+        <div class="container" id="trainings-container">
+            {% include 'bim/training-list.html' %}
+        </div>
+        <ul class="justify-content-center wd-navigation">
+            {% if trainings.has_previous %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ trainings.previous_page_number }}"
+                       data-type="trainings">
+                        <i class="icon icon-arr-r"></i>
+                    </a>
+                </li>
+
+            {% endif %}
+            {% for num in trainings.paginator.page_range %}
+                {% if num == trainings.number %}
+                    <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                           data-type="trainings">{{ num }}</a></li>
+                {% else %}
+                    <li><a class="nav-item page-link" href="#" data-page="{{ num }}"
+                           data-type="trainings">{{ num }}</a></li>
                 {% endif %}
-                {% endfor %}
-            </div>
-            <!-- Pagination Controls -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center mt-4">
-                    {% if trainings.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1">اولین</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ trainings.previous_page_number }}">قبلی</a>
-                        </li>
-                    {% endif %}
-                    <li class="page-item disabled">
-                        <span class="page-link">صفحه {{ trainings.number }} از {{ trainings.paginator.num_pages }}</span>
-                    </li>
-                    {% if trainings.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ trainings.next_page_number }}">بعدی</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ trainings.paginator.num_pages }}">آخرین</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+            {% endfor %}
+            {% if trainings.has_next %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ trainings.next_page_number }}"
+                       data-type="trainings">
+                        <i class="icon icon-arr-l"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
     </section>
-    <!-- End Mentoring and Learning Section -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $(document).on('click', '.page-link', function (e) {
+                    e.preventDefault();
+                    let page = $(this).data('page');
+                    let type = $(this).data('type');
+
+                    let requestData = {};
+                    if (type === "projects") {
+                        requestData["projects_page"] = page;
+                    } else if (type === "trainings") {
+                        requestData["trainings_page"] = page;
+                    }
+
+                    $.ajax({
+                        url: window.location.pathname,
+                        data: requestData,
+                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        success: function (response) {
+                            if (type === "projects") {
+                                $("#projects-container").html(response.projects_html);
+                            } else if (type === "trainings") {
+                                $("#trainings-container").html(response.trainings_html);
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    {% block extra_js %}
+        <script src="{% static 'js/slider.js' %}" type="text/javascript"></script>
+        {% endblock %}
 {% endblock %}

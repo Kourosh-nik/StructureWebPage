@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.urls import reverse
 
 
@@ -60,7 +59,11 @@ class ProjManCategory(BaseModel):
 class ProjManProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='proj/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='proj/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     employer_opinion = models.TextField(null=True, blank=True)
@@ -91,7 +94,11 @@ class ProjManProjectImage(models.Model):
 class ProjManCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)
@@ -107,8 +114,8 @@ class ProjManCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse("project_management:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        return reverse("project_management:coworking_detail", args=[self.slug])
+
 
 class ProjManCoworkingImage(models.Model):
     coworking = models.ForeignKey(ProjManCoworking, related_name='images', on_delete=models.CASCADE)

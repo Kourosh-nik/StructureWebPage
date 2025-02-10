@@ -35,7 +35,7 @@ class ProjectImageAdmin(admin.ModelAdmin):
 @admin.register(RetroProject)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title', )
     inlines = [ProjectImageInline]
 
 
@@ -51,7 +51,7 @@ class CoworkingImageAdmin(admin.ModelAdmin):
 @admin.register(RetroCoworking)
 class CoworkingAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title',)
     inlines = [CoworkImageInline]
 
 admin.site.register(RetroCategory, CategoryAdmin)

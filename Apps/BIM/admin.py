@@ -33,14 +33,14 @@ class ProjectImageAdmin(admin.ModelAdmin):
 @admin.register(BIMProject)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title',)
     inlines = [ProjectImageInline]
-
 
 
 class CoworkImageInline(admin.TabularInline):
     model = BIMCoworkingImage
     extra = 1
+
 
 @admin.register(BIMCoworkingImage)
 class CoworkingImageAdmin(admin.ModelAdmin):
@@ -49,7 +49,7 @@ class CoworkingImageAdmin(admin.ModelAdmin):
 @admin.register(BIMCoworking)
 class CoworkingAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title',)
     inlines = [CoworkImageInline]
 
 admin.site.register(BIMCategory, CategoryAdmin)

@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from django.urls import reverse
+
 
 class BaseModelManager(models.Manager):
     def get_queryset(self):
@@ -25,6 +25,7 @@ class SoftPanelModel(models.Model):
     slider2_description = models.TextField()
     slider3_description = models.TextField()
     project_base_title = models.CharField(max_length=1000)
+
 
 class BaseModel(models.Model):
     deleted = models.BooleanField(default=False, editable=True)
@@ -61,6 +62,7 @@ class SoftVersion(BaseModel):
     def __str__(self):
         return self.title
 
+
 class SoftFee(BaseModel):
     title = models.CharField(max_length=100)
 
@@ -70,7 +72,9 @@ class SoftFee(BaseModel):
 class SoftProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     price = models.PositiveIntegerField()
     illustration = models.TextField(null=True, blank=True)
@@ -91,7 +95,8 @@ class SoftProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('Software:project_detail', args=[self.id])
+        return reverse('Software:project_detail', args=[self.slug])
+
 
 class SoftProjectImage(models.Model):
     project = models.ForeignKey(SoftProject, related_name='images', on_delete=models.CASCADE)
@@ -101,10 +106,15 @@ class SoftProjectImage(models.Model):
     def __str__(self):
         return f"Image for {self.project.title}"
 
+
 class SoftCoworking(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    content = RichTextField()
+    description = models.TextField()
+    video = models.FileField(upload_to='bim/video', null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
+    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
+    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
     illustration = models.TextField(null=True, blank=True)
     characteristic = models.TextField(null=True, blank=True)
     coworker_opinion = models.TextField(null=True, blank=True)
@@ -120,8 +130,8 @@ class SoftCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse("Structure_Design:coworking_detail", kwargs={"id": self.id, "title": self.slug})
+        return reverse("Structure_Design:coworking_detail", args=[self.slug])
+
 
 class SoftCoworkingImage(models.Model):
     coworking = models.ForeignKey(SoftCoworking, related_name='images', on_delete=models.CASCADE)

@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 
+
 class BaseModelManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(deleted=False)
@@ -54,11 +55,13 @@ class BIMCategory(BaseModel):
     def get_absolute_url(self):
         return reverse('bim:category', args=[self.slug])
 
+
 class BIMGravitySys(BaseModel):
     title = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
+
 
 class BIMLateralSys(BaseModel):
     title = models.CharField(max_length=100)
@@ -126,8 +129,7 @@ class BIMCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        # return reverse("BIM:coworking_detail", kwargs={"id": self.id, "title": self.slug})
-        pass
+        return reverse("BIM:coworking_detail", args=[self.slug])
 
 
 class BIMCoworkingImage(models.Model):

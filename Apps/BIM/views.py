@@ -1,7 +1,5 @@
 from .models import *
-from django.shortcuts import render
-from django.db.models import Q
-from django.views.generic import TemplateView, DetailView, ListView
+from django.views.generic import DetailView, ListView
 from django.views import View
 from django.shortcuts import render
 from django.core.paginator import Paginator
