@@ -6,7 +6,7 @@
         <div class="container">
             <div class="header-property-detail">
                 <div class="content-top d-flex justify-content-between align-items-center">
-                    <h3 class="title link fw-8">{{ project.title }}</h3>
+                    <h3 class="title link fw-8">{{ coworking.title }}</h3>
                 </div>
 
             </div>
@@ -21,16 +21,16 @@
                             <div class="swiper-slide">
                                 <div class="image-sw-single">
                                     <img
-                                            alt="{{ project.title }}"
-                                            src="{{ project.image.url }}"
+                                            alt="{{ coworking.title }}"
+                                            src="{{ coworking.image.url }}"
                                     />
                                 </div>
                             </div>
-                            {% for image in project.images.all %}
+                            {% for image in coworking.images.all %}
                                 <div class="swiper-slide">
                                     <div class="image-sw-single">
                                         <img
-                                                alt="{{ project.title }}-{{ forloop.counter }}"
+                                                alt="{{ coworking.title }}-{{ forloop.counter }}"
                                                 src="{{ image.image.url }}"
                                         />
                                     </div>
@@ -51,14 +51,14 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="img-thumb-pagi">
-                                <img alt="{{ project.title }}" src="{{ project.image.url }}" width="111px"
+                                <img alt="{{ coworking.title }}" src="{{ coworking.image.url }}" width="111px"
                                      height="148px"/>
                             </div>
                         </div>
-                        {% for image in project.images.all %}
+                        {% for image in coworking.images.all %}
                             <div class="swiper-slide">
                                 <div class="img-thumb-pagi">
-                                    <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
+                                    <img alt="{{ coworking.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
                                          width="111px" height="148px"/>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                     <div class="single-property-element single-property-desc">
                         <h5 class="fw-6 title">توضیحات</h5>
                         <p class="text-variant-1">
-                            {{ project.description }}
+                            {{ coworking.description }}
                         </p>
                         <p class="mt-8 text-variant-1">
 
@@ -162,15 +162,13 @@
                         </ul>
                     </div>
 
-                    {% if project.video %}
+                    {% if coworking.video %}
                         <div class="single-property-element single-property-video">
                             <h5 class="title fw-6">ویدیو</h5>
-                            <video class="w-100" height="500px" src="{{ project.video.url }}"
+                            <video class="w-100" height="500px" src="{{ coworking.video.url }}"
                                    controls>
-                                <source src="{{ project.video.url }}">
+                                <source src="{{ coworking.video.url }}">
                             </video>
-
-
                         </div>
                     {% endif %}
 
@@ -270,7 +268,7 @@
                             </div>
                         </div>
                     </div>
-                    {% if project.latitude and project.longitude %}
+                    {% if coworking.latitude and coworking.longitude %}
                         <style>
                             #map {
                                 height: 500px;
@@ -286,7 +284,7 @@
                         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
                         <script>
                             // تنظیمات نقشه
-                            var map = L.map('map').setView([{{ project.longitude }}, {{ project.latitude }}], 12); // تهران
+                            var map = L.map('map').setView([{{ coworking.longitude }}, {{ coworking.latitude }}], 12);
 
                             // اضافه کردن لایه نقشه از OpenStreetMap
                             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -294,7 +292,7 @@
                             }).addTo(map);
 
                             // اضافه کردن نشانگر (Marker) روی نقشه
-                            L.marker([{{ project.longitude }}, {{ project.latitude }}]).addTo(map)
+                            L.marker([{{ coworking.longitude }}, {{ coworking.latitude }}]).addTo(map)
                                 .openPopup();
                         </script>
                     {% endif %}
@@ -445,11 +443,11 @@
                         </div>
                     </div>
                 </div>
-                {% if project.pdf %}
+                {% if coworking.pdf %}
                     <div class="col-xl-4 col-lg-5">
                         <div class="single-sidebar fixed-sidebar">
                             <div class="widget-box single-property-contact">
-                            <iframe src="{{ project.pdf.url }}" style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
+                            <iframe src="{{ coworking.pdf.url }}" style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
                             </div>
                         </div>
                     </div>
