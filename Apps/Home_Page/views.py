@@ -3,7 +3,7 @@ from django.views.generic import ListView, View
 from .models import *
 from Apps.BIM.models import BIMCategory, BIMProject
 from Apps.project_management.models import ProjManCategory, ProjManProject
-from Apps.Retrofit.models import RetroCategory
+from Apps.Retrofit.models import RetroCategory, RetroProject
 from Apps.Software.models import SoftCategory
 from Apps.Structure_Design.models import STRCategory, STRProject
 from .forms import *
@@ -47,6 +47,7 @@ class IndexView(View):
         bim_projects = BIMProject.objects.all().order_by('-id')[:8]
         structure_categories = STRCategory.objects.all().order_by('-id')[:8]
         structure_projects = STRProject.objects.all().order_by('-id')[:6]
+        retrofit_projects = RetroProject.objects.all().order_by('-id')[:8]
 
         context = {
             'panel': panel if panel else None,
@@ -54,8 +55,21 @@ class IndexView(View):
             'bim_projects': bim_projects,
             'structure_categories': structure_categories,
             'structure_projects': structure_projects,
+            'retrofit_projects': retrofit_projects,
         }
         return render(request, 'index.html', context)
+
+
+class STRProjectsView(ListView):
+    template_name = 'home_page/structure_design.html'
+    model = STRProject
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        id = self.kwargs.get('id', '0')
+        if id == '0':
+            return STRProject.objects.all().order_by('-id')[:6]
+        return STRProject.objects.filter(category_id=id).order_by('-id')
 
 
 class AboutUsView(View):

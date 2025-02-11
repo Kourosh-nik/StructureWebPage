@@ -10,22 +10,26 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="box-img">
-                            <img alt="images" style="height: 600px;width: auto" src="{{ panel.banner_image1.url }}"/>
+                            <img alt="banner image1" style="height: 600px;width: auto"
+                                 src="{{ panel.banner_image1.url }}"/>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="box-img">
-                            <img alt="images" style="height: 600px;width: auto" src="{{ panel.banner_image2.url }}"/>
+                            <img alt="banner image2" style="height: 600px;width: auto"
+                                 src="{{ panel.banner_image2.url }}"/>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="box-img">
-                            <img alt="images" src="{{ panel.banner_image3.url }}"/>
+                            <img alt="banner image3" style="height: 600px;width: auto"
+                                 src="{{ panel.banner_image3.url }}"/>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="box-img">
-                            <img alt="images" src="{{ panel.banner_image4.url }}"/>
+                            <img alt="banner image4" style="height: 600px;width: auto"
+                                 src="{{ panel.banner_image4.url }}"/>
                         </div>
                     </div>
                 </div>
@@ -36,63 +40,40 @@
                         <div class="col-lg-6">
                             <div class="slider-content">
                                 <div class="heading">
-                                    <h1
-                                            class="title-large title text-white wow fadeIn animationtext clip"
-                                            data-wow-delay=".2s"
-                                            data-wow-duration="2000ms"
-                                    >
-                          <span class="tf-text s1 cd-words-wrapper">
-                            <span class="item-text is-visible">یک پناهگاه</span>
-                            <span class="item-text is-hidden">یک خانه امن</span>
-                          </span> <br> خریداری کنید !
+                                    <h1 class="title-large title text-white wow fadeIn animationtext clip"
+                                        data-wow-delay=".2s" data-wow-duration="2000ms">
+                                        <span class="tf-text s1 cd-words-wrapper">
+                                            <span class="item-text is-visible">{{ panel.banners_title }}</span>
+                                            <span class="item-text is-hidden">{{ panel.banners_title }}</span>
+                                        </span> <br>
                                     </h1>
-                                    <p
-                                            class="subtitle text-white body-2 wow fadeInUp"
-                                            data-wow-delay=".2s"
-                                    >
-                                        واحه خصوصی خود را در Homelengo ، جایی که هر گوشه ، از
-                                        باغ بزرگ تا استخر آرامش بخش ، برای راحتی و لذت شما
-                                        ساخته شده است ، کشف کنید.
+                                    <p class="subtitle text-white body-2 wow fadeInUp" data-wow-delay=".2s">
+                                        {{ panel.banners_text }}
                                     </p>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div
-                                    class="swiper-container thumbs-swiper-column1 swiper-pagination5"
-                            >
+                            <div class="swiper-container thumbs-swiper-column1 swiper-pagination5">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="image-detail">
-                                            <img
-                                                    alt="images"
-                                                    src="{{ panel.banner_image1.url }}"
-                                            />
+                                            <img alt="banner image1" src="{{ panel.banner_image1.url }}"/>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="image-detail">
-                                            <img
-                                                    alt="images"
-                                                    src="{{ panel.banner_image2.url }}"
-                                            />
+                                            <img alt="banner image2" src="{{ panel.banner_image2.url }}"/>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="image-detail">
-                                            <img
-                                                    alt="images"
-                                                    src="{{ panel.banner_image3.url }}"
-                                            />
+                                            <img alt="banner image3" src="{{ panel.banner_image3.url }}"/>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="image-detail">
-                                            <img
-                                                    alt="images"
-                                                    src="{{ panel.banner_image4.url }}"
-                                            />
+                                            <img alt="banner image4" src="{{ panel.banner_image4.url }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -118,20 +99,12 @@
                                         <div class="form-group-2 form-style">
                                             <label>محل</label>
                                             <div class="group-ip">
-                                                <input class="form-control" name="s"
-                                                       placeholder="محل جستجو"
-                                                       required=""
-                                                       title="Search for"
-                                                       type="text"
-                                                       value=""
-                                                />
+                                                <input class="form-control" name="s" placeholder="محل جستجو" required=""
+                                                       title="Search for" type="text" value=""/>
                                                 <a class="icon icon-location" href="#"> </a>
                                             </div>
                                         </div>
-                                        <button
-                                                class="tf-btn btn-search primary"
-                                                type="submit"
-                                        >
+                                        <button class="tf-btn btn-search primary" type="submit">
                                             جستجو<i class="icon icon-search"></i>
                                         </button>
                                     </div>
@@ -155,12 +128,8 @@
             <div class="tf-grid-layout md-col-3 wow fadeInUp" data-wow-delay=".2s">
                 <div class="box-service border-0">
                     <div class="image">
-                        <img
-                                alt="image-location"
-                                class="lazyload"
-                                data-src="images/service/home-1.png"
-                                src="{{ panel.structure_design_image.url }}"
-                        />
+                        <img alt="image-location" class="lazyload" data-src="{{ panel.structure_design_image.url }}"
+                             src="{{ panel.structure_design_image.url }}"/>
                     </div>
                     <div class="content">
                         <h5 class="title">طراحی سازه</h5>
@@ -168,19 +137,14 @@
                             طراحی سازه خود را به ما بسپارید. ما با تجربه و تخصص در
                             دستیابی شما به سازه ای بهینه و ایمن شما را یاری خواهیم کرد.
                         </p>
-                        <a class="tf-btn btn-line" href="{% url 'Structure_Design:index' %}"
-                        >بیشتر بدانید<span class="icon icon-arrow-left2"></span
-                        ></a>
+                        <a class="tf-btn btn-line" href="{% url 'Structure_Design:index' %}">بیشتر بدانید<span
+                                class="icon icon-arrow-left2"></span></a>
                     </div>
                 </div>
                 <div class="box-service border-0">
                     <div class="image">
-                        <img
-                                alt="image-location"
-                                class="lazyload"
-                                data-src="images/service/home-2.png"
-                                src="{{ panel.bim_banner_image.url }}"
-                        />
+                        <img alt="image-location" class="lazyload" data-src="{{ panel.bim_banner_image.url }}"
+                             src="{{ panel.bim_banner_image.url }}"/>
                     </div>
                     <div class="content">
                         <h5 class="title">مدلسازی اطلاعات ساختمان</h5>
@@ -188,28 +152,22 @@
                             با استفاده از فرایند BIM پروژه خود را قبل از ساخت تجسم کنید
                             و در پایان اجرای پروژه خود بهره برداری لذت بخشی از آن داشته باشید.
                         </p>
-                        <a class="tf-btn btn-line" href="{% url 'bim:index' %}"
-                        >بیشتر بدانید<span class="icon icon-arrow-left2"></span
-                        ></a>
+                        <a class="tf-btn btn-line" href="{% url 'bim:index' %}">بیشتر بدانید<span
+                                class="icon icon-arrow-left2"></span></a>
                     </div>
                 </div>
                 <div class="box-service border-0">
                     <div class="image">
-                        <img
-                                alt="image-location"
-                                class="lazyload"
-                                data-src="images/service/home-3.png"
-                                src="{{ panel.retrofit_image.url }}"
-                        />
+                        <img alt="image-location" class="lazyload" data-src="{{ panel.retrofit_image.url }}"
+                             src="{{ panel.retrofit_image.url }}"/>
                     </div>
                     <div class="content">
                         <h5 class="title">بهسازی و مقاومسازی سازه ها</h5>
                         <p class="description">
                             پروژه خود را برای نسلهای آینده بیمه کنید و از سرمایه های خود حفاظت کنید.
                         </p>
-                        <a class="tf-btn btn-line" href="{% url 'Retrofit:index' %}"
-                        >بیشتر بدانید<span class="icon icon-arrow-left2"></span
-                        ></a>
+                        <a class="tf-btn btn-line" href="{% url 'Retrofit:index' %}">بیشتر بدانید<span
+                                class="icon icon-arrow-left2"></span></a>
                     </div>
                 </div>
                 <br>
@@ -218,31 +176,23 @@
                 <div class="tf-grid-layout sm-col-2" data-wow-delay=".2s">
                     <div class="box-service border-0">
                         <div class="image">
-                            <img
-                                    alt="image-location"
-                                    class="lazyload"
-                                    data-src="images/service/home-3.png"
-                                    src="{{ panel.project_management_banner_image.url }}"
-                            />
+                            <img alt="image-location" class="lazyload"
+                                 data-src="{{ panel.project_management_banner_image.url }}"
+                                 src="{{ panel.project_management_banner_image.url }}"/>
                         </div>
                         <div class="content">
                             <h5 class="title">مدیریت پروژه های ساختمانی</h5>
                             <p class="description">
                                 در ابتدای پروژه از زمان بهره برداری و مقادیر هزینه های پروژه خود آگاه باشید.
                             </p>
-                            <a class="tf-btn btn-line" href="{% url 'project_management:index' %}"
-                            >بیشتر بدانید<span class="icon icon-arrow-left2"></span
-                            ></a>
+                            <a class="tf-btn btn-line" href="{% url 'project_management:index' %}">بیشتر بدانید<span
+                                    class="icon icon-arrow-left2"></span></a>
                         </div>
                     </div>
                     <div class="box-service border-0">
                         <div class="image">
-                            <img
-                                    alt="image-location"
-                                    class="lazyload"
-                                    data-src="images/service/home-3.png"
-                                    src="{{ panel.software_image.url }}"
-                            />
+                            <img alt="image-location" class="lazyload" data-src="{{ panel.software_image.url }}"
+                                 src="{{ panel.software_image.url }}"/>
                         </div>
                         <div class="content">
                             <h5 class="title">طراحی نرم افزار های مهندسی AEC</h5>
@@ -261,7 +211,6 @@
     </section>
     <!-- End Service -->
 
-
     <!-- Structural Design -->
     <section class="flat-section flat-recommended">
         <div class="container">
@@ -273,18 +222,27 @@
             </div>
             <div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
                 <ul class="nav-tab-recommended justify-content-md-center" role="tablist">
-                    <li class="nav-tab-item" role="presentation"><a class="nav-link-item active" data-bs-toggle="tab"
-                                                                    href="#viewAll">مشاهده همه</a>
+                    <li class="nav-tab-item" onclick="getSTRProjects(0)" role="presentation"><a
+                            class="nav-link-item active" data-bs-toggle="tab"
+                            href="#viewAll">مشاهده همه</a>
                     </li>
                     {% for category in structure_categories %}
-                        <li class="nav-tab-item" role="presentation"><a class="nav-link-item" data-bs-toggle="tab"
-                                                                        href="#apartment">{{ category.title }}</a>
+                        <li class="nav-tab-item" onclick="getSTRProjects({{ category.id }})" role="presentation"><a
+                                class="nav-link-item" data-bs-toggle="tab"
+                                href="#apartment">{{ category.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
+                <script>
+                    function getSTRProjects(id) {
+                        $.get('/str-projects/' + id).then(res => {
+                            $('#str_projects').html(res);
+                        })
+                    }
+                </script>
                 <div class="tab-content">
                     <div class="tab-pane" role="tabpanel">
-                        <div class="row">
+                        <div class="row" id="str_projects">
                             {% for project in structure_projects %}
                                 <div class="col-xl-4 col-lg-6 col-md-6">
                                     <div class="homelengo-box">
@@ -309,7 +267,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-
                         </div>
                         <div class="text-center">
                             <a class="tf-btn btn-view primary size-1 hover-btn-view"
@@ -347,9 +304,8 @@
                                     <div class="inner-left">
                                         <h6 class="title text-line-clamp-1 link">{{ project.title }}</h6>
                                     </div>
-                                    <a class="box-icon line w-44 round" href="{{ project.get_absolute_url }}"
-                                    ><i class="icon icon-arrow-left2"></i
-                                    ></a>
+                                    <a class="box-icon line w-44 round" href="{{ project.get_absolute_url }}"><i
+                                            class="icon icon-arrow-left2"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -367,100 +323,27 @@
         <div class="container">
             <div class="flat-img-with-text style-3 bg-primary-new">
                 <div class="content-left img-animation wow">
-                    <img
-                            alt=""
-                            class="lazyload"
-                            data-src="images/banner/img-w-text6.jpg"
-                            src="images/banner/img-w-text6.jpg"
-                    />
+                    <img alt="" class="lazyload" data-src="images/banner/img-w-text6.jpg"
+                         src="{{ panel.bim_main_image }}"/>
                 </div>
                 <div class="content-right">
                     <div class="box-title wow fadeInUp">
                         <div class="text-subtitle text-primary">پروژه برتر</div>
                         <h3 class="title mt-4"> مدلسازی اطلاعات ساختمان</h3>
                     </div>
-                    <div
-                            class="flat-property-box wow fadeInUp"
-                            data-wow-delay=".2s"
-                    >
+                    <div class="flat-property-box wow fadeInUp" data-wow-delay=".2s">
                         <div class="archive-top">
                             <ul class="d-flex gap-6">
                                 <li class="flag-tag primary">برجسته</li>
-                                <li class="flag-tag style-1">برای فروش</li>
                             </ul>
                             <h4 class="title">
-                                <a class="link" href="property-details-v1.html"
-                                >رانچو ویستا ورد، سانتا باربارا</a
-                                >
+                                <a class="link"
+                                   href="{{ panel.bim_top_project.get_absolute_url }}">{{ panel.bim_top_project.title }}</a>
                             </h4>
-                            <ul class="meta-list">
-                                <li class="item">
-                                    <i class="icon icon-bed"></i>
-                                    <span class="text-variant-1">تخت ها:</span>
-                                    <span class="fw-6">3</span>
-                                </li>
-                                <li class="item">
-                                    <i class="icon icon-bath"></i>
-                                    <span class="text-variant-1">حمام ها:</span>
-                                    <span class="fw-6">2</span>
-                                </li>
-                                <li class="item">
-                                    <i class="icon icon-متر مربع"></i>
-                                    <span class="text-variant-1">متر مربع:</span>
-                                    <span class="fw-6">1150</span>
-                                </li>
-                            </ul>
-                            <div
-                                    class="meta-location d-flex gap-4 align-items-center mt-16"
-                            >
-                                <svg
-                                        fill="none"
-                                        height="16"
-                                        viewbox="0 0 16 16"
-                                        width="16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                            d="M10 7C10 7.53043 9.78929 8.03914 9.41421 8.41421C9.03914 8.78929 8.53043 9 8 9C7.46957 9 6.96086 8.78929 6.58579 8.41421C6.21071 8.03914 6 7.53043 6 7C6 6.46957 6.21071 5.96086 6.58579 5.58579C6.96086 5.21071 7.46957 5 8 5C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7Z"
-                                            stroke="#A3ABB0"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.5"
-                                    ></path>
-                                    <path
-                                            d="M13 7C13 11.7613 8 14.5 8 14.5C8 14.5 3 11.7613 3 7C3 5.67392 3.52678 4.40215 4.46447 3.46447C5.40215 2.52678 6.67392 2 8 2C9.32608 2 10.5979 2.52678 11.5355 3.46447C12.4732 4.40215 13 5.67392 13 7Z"
-                                            stroke="#A3ABB0"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.5"
-                                    ></path>
-                                </svg>
+                            <div class="meta-location d-flex gap-4 align-items-center mt-16">
                                 <p class="text-variant-1">
-                                    145 خیابان بروکلین، کالیفونیا، نیویورک
+                                    {{ panel.bim_top_project_description }}
                                 </p>
-                            </div>
-                            <div class="box-avt">
-                                <div class="avatar avt-60">
-                                    <img alt="avt" src="images/avatar/avt-png2.png"/>
-                                </div>
-                                <div class="content">
-                                    <p class="caption-1">عامل</p>
-                                    <h6>کامرون ویلیامسون</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="archive-bottom">
-                            <div>
-                                <h4 class="d-inline-block">250،00 تومان</h4>
-                                <span class="body-2 text-variant-1">/ماه</span>
-                            </div>
-                            <div class="g-icon">
-                                <div class="item-icon">
-                                    <span class="icon icon-heart"></span>
-                                </div>
-                                <div class="item-icon">
-                                    <span class="icon icon-arrLeftRight"></span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -482,156 +365,41 @@
                     </p>
                 </div>
             </div>
-            <div
-                    class="swiper tf-sw-testimonial"
-                    data-centered="false"
-                    data-loop="false"
-                    data-mobile="1"
-                    data-mobile-sm="2"
-                    data-preview="3"
-                    data-space="15"
-                    data-space-lg="30"
-                    data-space-md="30"
-                    data-tablet="2"
-
-            >
+            <div class="swiper tf-sw-testimonial" data-centered="false" data-loop="false" data-mobile="1"
+                 data-mobile-sm="2" data-preview="3" data-space="15" data-space-lg="30" data-space-md="30"
+                 data-tablet="2">
                 <div class="swiper-wrapper wow fadeInUp" data-wow-delay=".2s">
-                    <div class="swiper-slide">
-                        <div class="box-tes-item style-2">
-                            <span class="icon icon-quote"></span>
-                            <p class="note body-2">
-                                "تجربه من با خدمات مدیریت املاک فراتر از انتظارات است.
-                                آنها به طور کارآمد املاک را با رویکردی حرفه ای و دقیق در
-                                هر شرایطی مدیریت می کنند. من احساس اطمینان می کنم که هر
-                                مشکلی به سرعت و به طور موثر حل خواهد شد."
-                            </p>
-                            <div class="box-avt d-flex align-items-center gap-12">
-                                <div class="avatar avt-60 round">
-                                    <img alt="avatar" src="images/avatar/avt-png1.png"/>
-                                </div>
-                                <div class="info">
-                                    <h6>کورتنی هنری</h6>
-                                    <p class="caption-2 text-variant-1 mt-4">
-                                        مدیر عامل شرکت Themesflat
-                                    </p>
-                                    <ul class="list-star">
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                    </ul>
+                    {% for project in retrofit_projects %}
+                        <div class="swiper-slide">
+                            <div class="box-location">
+                                <a class="image img-style" href="{{ project.get_absolute_url }}">
+                                    <img alt="image-location" class="lazyload"
+                                         data-src="{{ project.image.url }}" src="{{ project.image.url }}"
+                                    />
+                                </a>
+                                <div class="content">
+                                    <div class="inner-left">
+                                        <h6 class="title text-line-clamp-1 link">{{ project.title }}</h6>
+                                    </div>
+                                    <a class="box-icon line w-44 round" href="{{ project.get_absolute_url }}"><i
+                                            class="icon icon-arrow-left2"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="box-tes-item style-2">
-                            <span class="icon icon-quote"></span>
-                            <p class="note body-2">
-                                "تجربه من با خدمات مدیریت املاک فراتر از انتظارات است.
-                                آنها به طور کارآمد املاک را با رویکردی حرفه ای و دقیق در
-                                هر شرایطی مدیریت می کنند. من احساس اطمینان می کنم که هر
-                                مشکلی به سرعت و به طور موثر حل خواهد شد."
-                            </p>
-                            <div class="box-avt d-flex align-items-center gap-12">
-                                <div class="avatar avt-60 round">
-                                    <img alt="avatar" src="images/avatar/avt-png2.png"/>
-                                </div>
-                                <div class="info">
-                                    <h6>استر هوارد</h6>
-                                    <p class="caption-2 text-variant-1 mt-4">
-                                        مدیر عامل شرکت Themesflat
-                                    </p>
-                                    <ul class="list-star">
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="box-tes-item style-2">
-                            <span class="icon icon-quote"></span>
-                            <p class="note body-2">
-                                "تجربه من با خدمات مدیریت املاک فراتر از انتظارات است.
-                                آنها به طور کارآمد املاک را با رویکردی حرفه ای و دقیق در
-                                هر شرایطی مدیریت می کنند. من احساس اطمینان می کنم که هر
-                                مشکلی به سرعت و به طور موثر حل خواهد شد."
-                            </p>
-                            <div class="box-avt d-flex align-items-center gap-12">
-                                <div class="avatar avt-60 round">
-                                    <img alt="avatar" src="images/avatar/avt-png4.png"/>
-                                </div>
-                                <div class="info">
-                                    <h6>آنت بلک</h6>
-                                    <p class="caption-2 text-variant-1 mt-4">
-                                        مدیر عامل شرکت Themesflat
-                                    </p>
-                                    <ul class="list-star">
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="box-tes-item style-2">
-                            <span class="icon icon-quote"></span>
-                            <p class="note body-2">
-                                "تجربه من با خدمات مدیریت املاک فراتر از انتظارات است.
-                                آنها به طور کارآمد املاک را با رویکردی حرفه ای و دقیق در
-                                هر شرایطی مدیریت می کنند. من احساس اطمینان می کنم که هر
-                                مشکلی به سرعت و به طور موثر حل خواهد شد."
-                            </p>
-                            <div class="box-avt d-flex align-items-center gap-12">
-                                <div class="avatar avt-60 round">
-                                    <img alt="avatar" src="images/avatar/avt-png6.png"/>
-                                </div>
-                                <div class="info">
-                                    <h6>بسی کوپر</h6>
-                                    <p class="caption-2 text-variant-1 mt-4">
-                                        مدیر عامل شرکت Themesflat
-                                    </p>
-                                    <ul class="list-star">
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                        <li class="icon icon-star"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                <div
-                        class="sw-pagination sw-pagination-testimonial text-center"
-                ></div>
+                <div class="sw-pagination sw-pagination-testimonial text-center"></div>
             </div>
         </div>
     </section>
     <!-- End Retrofit -->
 
-
     <!-- Benefit -->
     <section class="mx-5 bg-primary-new radius-30">
         <div class="flat-img-with-text">
             <div class="content-left img-animation wow">
-                <img
-                        alt=""
-                        class="lazyload"
-                        data-src="images/banner/img-w-text5.jpg"
-                        src="images/banner/img-w-text5.jpg"
-                />
+                <img alt="benefit banner" class="lazyload" data-src="{{ panel.benefit_banner_image.url }}"
+                     src="{{ panel.benefit_banner_image.url }}"/>
             </div>
             <div class="content-right">
                 <div class="box-title wow fadeInUp">
@@ -695,50 +463,15 @@
                 <div class="text-subtitle text-primary">مدیریت پروژه</div>
                 <h3 class="title mt-4">پروژه خود را کاملا آگاهانه مدیریت کنید</h3>
             </div>
-            <div class="swiper tf-sw-mobile-1" data-preview="1" data-screen="575" data-space="15">
-                <div class="tf-layout-mobile-sm xl-col-4 sm-col-2 swiper-wrapper">
-
-
-                    <div class="swiper-slide">
-                        <div class="box-agent hover-img wow fadeInUp" data-wow-delay=".2s">
-                            <a class="box-img img-style" href="#">
-                                <img alt="image-agent" class="lazyload"
-                                     data-src="images/agents/agent-5.jpg"
-                                     src="images/agents/agent-5.jpg"
-                                />
-                                <ul class="agent-social">
-                                    <li><span class="icon icon-facebook"></span></li>
-                                    <li><span class="icon icon-x"></span></li>
-                                    <li><span class="icon icon-linkedin"></span></li>
-                                    <li><span class="icon icon-instargram"></span></li>
-                                </ul>
-                            </a>
-                            <div class="content">
-                                <div class="info">
-                                    <h5><a class="link" href="#">کریس پرات</a></h5>
-                                    <p class="text-variant-1">کارمندان اداری</p>
-                                </div>
-                                <div class="box-icon">
-                                    <span class="icon icon-phone"></span>
-                                    <span class="icon icon-mail"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <div
-                        class="sw-pagination sw-pagination-mb-1 text-center d-sm-none d-block"
-                ></div>
+            <div class="single-property-element single-property-video">
+                <video class="w-100" height="500px" src="{{ panel.project_management_video.url }}"
+                       controls>
+                    <source src="{{ panel.project_management_video.url }}">
+                </video>
             </div>
             <p class="text-center desc body-2 text-variant-3">
-                یک نماینده شوید و کمیسیونی را که شایسته آن هستید دریافت کنید.<a
-                    class="text-primary"
-                    href="{% url 'home_Page:contact' %}"
-            >با ما تماس بگیرید</a
-            >
+                یک نماینده شوید و کمیسیونی را که شایسته آن هستید دریافت کنید.<a class="text-primary" href="{% url 'home_Page:contact' %}">با
+                ما تماس بگیرید</a>
             </p>
         </div>
     </section>
@@ -751,97 +484,25 @@
                 <div class="text-subtitle text-primary">نمونه پروژه ها</div>
                 <h3 class="title mt-4">مدیریت 4D</h3>
             </div>
-            <div
-                    class="tf-grid-layout xl-col-4 sm-col-2 wow fadeInUp"
-                    data-wow-delay=".2s"
-            >
-                <a
-                        class="flat-blog-item hover-img style-1"
-                        href="blog-detail.html"
-                >
+            <div class="tf-grid-layout xl-col-4 sm-col-2 wow fadeInUp" data-wow-delay=".2s">
+                <a class="flat-blog-item hover-img style-1" href="">
                     <div class="img-style">
-                        <img
-                                alt="img-blog"
-                                class="lazyload"
-                                data-src="images/blog/blog-20.jpg"
-                                src="images/blog/blog-20.jpg"
-                        />
-                    </div>
-                    <span class="date-post">28 مهر 1403</span>
-                    <div class="content-box">
-                        <h6 class="title">افزایش سود در سهام مسکن...</h6>
-                        <div class="post-author">
-                            <span class="fw-6">جروم بل</span>
-                            <span>مبلمان</span>
-                        </div>
+                        <img alt="img-management1" class="lazyload" data-src="{{ panel.management_4d_image1.url }}" src="{{ panel.management_4d_image1.url }}"/>
                     </div>
                 </a>
-                <a
-                        class="flat-blog-item hover-img style-1"
-                        href="blog-detail.html"
-                >
+                <a class="flat-blog-item hover-img style-1" href="">
                     <div class="img-style">
-                        <img
-                                alt="img-blog"
-                                class="lazyload"
-                                data-src="images/blog/blog-21.jpg"
-                                src="images/blog/blog-21.jpg"
-                        />
-                    </div>
-                    <span class="date-post">28 مهر 1403</span>
-                    <div class="content-box">
-                        <h6 class="title">
-                            92 درصد از خریداران خانه های هزاره می گویند تورم ...
-                        </h6>
-                        <div class="post-author">
-                            <span class="fw-6">جروم بل</span>
-                            <span>مبلمان</span>
-                        </div>
+                        <img alt="img-management2" class="lazyload" data-src="{{ panel.management_4d_image2.url }}" src="{{ panel.management_4d_image2.url }}"/>
                     </div>
                 </a>
-                <a
-                        class="flat-blog-item hover-img style-1"
-                        href="blog-detail.html"
-                >
+                <a class="flat-blog-item hover-img style-1" href="">
                     <div class="img-style">
-                        <img
-                                alt="img-blog"
-                                class="lazyload"
-                                data-src="images/blog/blog-22.jpg"
-                                src="images/blog/blog-22.jpg"
-                        />
-                    </div>
-                    <span class="date-post">28 مهر 1403</span>
-                    <div class="content-box">
-                        <h6 class="title">افزایش سود در سهام مسکن و چگونگی...</h6>
-                        <div class="post-author">
-                            <span class="fw-6">جروم بل</span>
-                            <span>مبلمان</span>
-                        </div>
+                        <img alt="img-management3" class="lazyload" data-src="{{ panel.management_4d_image3.url }}" src="{{ panel.management_4d_image3.url }}"/>
                     </div>
                 </a>
-                <a
-                        class="flat-blog-item hover-img style-1"
-                        href="blog-detail.html"
-                >
+                <a class="flat-blog-item hover-img style-1" href="">
                     <div class="img-style">
-                        <img
-                                alt="img-blog"
-                                class="lazyload"
-                                data-src="images/blog/blog-23.jpg"
-                                src="images/blog/blog-23.jpg"
-                        />
-                    </div>
-                    <span class="date-post">28 مهر 1403</span>
-                    <div class="content-box">
-                        <h6 class="title">
-                            مدیر عامل Compass می گوید: ما در حال استخدام متوسط ​​هستیم
-                            ...
-                        </h6>
-                        <div class="post-author">
-                            <span class="fw-6">جروم بل</span>
-                            <span>مبلمان</span>
-                        </div>
+                        <img alt="img-management4" class="lazyload" data-src="{{ panel.management_4d_image4.url }}" src="{{ panel.management_4d_image4.url }}"/>
                     </div>
                 </a>
             </div>
@@ -863,13 +524,7 @@
                         <div class="swiper-slide">
                             <a class="flat-blog-item hover-img" href="{{ project.get_absolute_url }}">
                                 <div class="img-style">
-                                    <img
-                                            alt="img-blog"
-                                            class="lazyload"
-                                            data-src="{{ project.image.url }}"
-                                            src="{{ project.image.url }}"
-                                    />
-
+                                    <img alt="img-blog" class="lazyload" data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
                                 </div>
                                 <div class="content-box">
                                     <div class="post-author">

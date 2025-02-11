@@ -1,5 +1,6 @@
 from django.db import models
 from django_jalali.db import models as jmodels
+from Apps.BIM.models import BIMProject
 
 
 class SiteDetailModel(models.Model):
@@ -32,10 +33,19 @@ class IndexDetailModel(models.Model):
     banner_image3 = models.ImageField(upload_to='site_detail/image')
     banner_image4 = models.ImageField(upload_to='site_detail/image')
     bim_banner_image = models.ImageField(upload_to='site_detail/image')
+    benefit_banner_image = models.ImageField(upload_to='site_detail/image')
+    bim_top_project = models.ForeignKey(BIMProject, on_delete=models.SET_NULL, null=True, blank=True)
+    bim_top_project_image = models.ImageField(upload_to='site_detail/image')
+    bim_top_project_description = models.TextField()
     project_management_banner_image = models.ImageField(upload_to='site_detail/image')
     retrofit_image = models.ImageField(upload_to='site_detail/image')
     software_image = models.ImageField(upload_to='site_detail/image')
     structure_design_image = models.ImageField(upload_to='site_detail/image')
+    project_management_video = models.FileField(upload_to='site_detail/video')
+    management_4d_image1 = models.ImageField(upload_to='site_detail/image')
+    management_4d_image2 = models.ImageField(upload_to='site_detail/image')
+    management_4d_image3 = models.ImageField(upload_to='site_detail/image')
+    management_4d_image4 = models.ImageField(upload_to='site_detail/image')
 
 
 
