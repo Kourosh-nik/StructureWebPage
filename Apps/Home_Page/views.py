@@ -21,7 +21,6 @@ class HeaderView(View):
         retro_categories = RetroCategory.objects.all()
         str_categories = STRCategory.objects.all()
         soft_categories = SoftCategory.objects.all()
-
         context ={
             'panel': panel,
             'bim_categories': bim_categories,
@@ -35,7 +34,6 @@ class HeaderView(View):
 class FooterView(View):
     def get(self, request):
         panel = SiteDetailModel.objects.first()
-
         context = {
             'panel': panel
         }
@@ -63,7 +61,6 @@ class IndexView(View):
 class AboutUsView(View):
     def get(self, request):
         panel = AboutUsDetailModel.objects.first()
-
         context = {
             'panel': panel
         }
@@ -73,7 +70,6 @@ class AboutUsView(View):
 class ContactUsView(View):
     def get(self, request):
         panel = SiteDetailModel.objects.first()
-
         context = {
             'panel': panel
         }

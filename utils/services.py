@@ -11,14 +11,13 @@ def get_client_ip(request: HttpRequest):
     return ip
 
 
-def send_otp(phone, message):
-    # conn = http.client.HTTPConnection("api.ghasedaksms.com")
-    # payload = f"receptor={phone}&type=1&template={ghasedak_template}&param1={message}"
-    # headers = {
-    #     'apikey': ghasedak_api_key,
-    #     'content-type': "application/x-www-form-urlencoded"
-    # }
-    # conn.request("POST", "/v2/send/verify", payload, headers)
-    # res = conn.getresponse()
-    # data = res.read()
-    print(phone, message)
+def send_otp(phone, code):
+    conn = http.client.HTTPConnection("api.ghasedaksms.com")
+    payload = f"receptor={phone}&type=1&template=KETEC&param1={code}"
+    headers = {
+        'apikey': 'Rfri814VCy073TGkc7sJL9cEnKUkwaEEviunk90w6fw',
+        'content-type': "application/x-www-form-urlencoded"
+    }
+    conn.request("POST", "/v2/send/verify", payload, headers)
+    res = conn.getresponse()
+    data = res.read()

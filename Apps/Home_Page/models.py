@@ -40,14 +40,12 @@ class IndexDetailModel(models.Model):
 
 
 class AboutUsDetailModel(models.Model):
-    about_us_title = models.TextField()
-    about_us_description = models.TextField()
+    title = models.TextField()
+    description = models.TextField()
     manager_fullname = models.CharField(max_length=100)
     manager_position = models.TextField()
-    banner1 = models.ImageField(upload_to='about/image', null=True, blank=True)
-    banner2 = models.ImageField(upload_to='about/image', null=True, blank=True)
-    banner3 = models.ImageField(upload_to='about/image', null=True, blank=True)
-    banner4 = models.ImageField(upload_to='about/image', null=True, blank=True)
+    banner1 = models.ImageField(upload_to='about/image')
+    banner2 = models.ImageField(upload_to='about/image')
 
 
 class ContactUsModel(models.Model):
