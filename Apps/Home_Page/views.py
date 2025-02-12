@@ -61,7 +61,7 @@ class IndexView(View):
 
 
 class STRProjectsView(ListView):
-    template_name = 'home_page/structure_design.html'
+    template_name = 'home_Page/structure_design.html'
     model = STRProject
     context_object_name = 'projects'
 
@@ -69,7 +69,7 @@ class STRProjectsView(ListView):
         id = self.kwargs.get('id', '0')
         if id == '0':
             return STRProject.objects.all().order_by('-id')[:6]
-        return STRProject.objects.filter(category_id=id).order_by('-id')
+        return STRProject.objects.filter(category_id=id).order_by('-id')[:6]
 
 
 class AboutUsView(View):

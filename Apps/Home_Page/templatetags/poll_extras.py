@@ -5,9 +5,12 @@ register = template.Library()
 
 @register.filter()
 def money_format(value):
-    if value is None:
-        value = 0
-    return f'{value:,}'
+    try:
+        if value is None:
+            value = 0
+        return f'{value:,}'
+    except:
+        return ''
 
 
 @register.filter()
