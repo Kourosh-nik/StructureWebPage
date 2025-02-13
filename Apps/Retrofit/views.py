@@ -66,8 +66,8 @@ class ProjectDetailView(DetailView):
 
 class CoworkingDetailView(DetailView):
     model = RetroCoworking
-    template_name = 'Retrofit/coworking-detail.html'
-    context_object_name = 'coworking'
+    template_name = 'Retrofit/project-detail.html'
+    context_object_name = 'project'
 
     def get_queryset(self):
         return RetroCoworking.objects.prefetch_related('images').all()

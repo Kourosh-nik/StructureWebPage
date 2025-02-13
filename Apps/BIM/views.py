@@ -10,7 +10,7 @@ class IndexView(View):
     def get(self, request):
         banner = BimPanelModel.objects.first()
         categories = BIMCategory.objects.all().order_by('-id')
-        coworking = BIMCoworking.objects.all().order_by('-id')
+        coworking = BIMCoworking.objects.all().order_by('-id')[:6]
 
         projects_list = BIMProject.objects.all().order_by('-id')
         projects_paginator = Paginator(projects_list, 6)
@@ -67,8 +67,8 @@ class ProjectDetailView(DetailView):
 
 class CoworkingDetailView(DetailView):
     model = BIMCoworking
-    template_name = 'bim/coworking-detail.html'
-    context_object_name = 'coworking'
+    template_name = 'bim/project-detail.html'
+    context_object_name = 'project'
 
     def get_queryset(self):
         return BIMCoworking.objects.prefetch_related('images').all()

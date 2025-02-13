@@ -56,5 +56,3 @@ class CoworkingAdmin(admin.ModelAdmin):
     inlines = [CoworkImageInline]
 
 admin.site.register(SoftCategory, CategoryAdmin)
-admin.site.register(SoftVersion)
-admin.site.register(SoftFee)

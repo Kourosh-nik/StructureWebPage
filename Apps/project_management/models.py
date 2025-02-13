@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django_jalali.db import models as jmodels
 
 
 class BaseModelManager(models.Manager):
@@ -64,12 +65,16 @@ class ProjManProject(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='proj/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    employer_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/project')
     category = models.ForeignKey(ProjManCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    total_Area = models.FloatField(null=True, blank=True)
+    client = models.CharField(max_length=255)  # نام کارفرما
+    start_date = jmodels.jDateField()
+    end_date = jmodels.jDateField()
+    budget = models.PositiveIntegerField()  # بودجه کل پروژه
+    progress_percentage = models.FloatField(default=0.0)  # درصد پیشرفت
+    project_status = models.CharField(max_length=100, choices=[('Planning', 'برنامه‌ریزی'), ('Ongoing', 'در حال اجرا'),
+                                                               ('Completed', 'تکمیل‌شده')])
+    assigned_team = models.TextField()  # اعضای تیم پروژه
 
 
     def __str__(self):
@@ -81,7 +86,7 @@ class ProjManProject(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('project_management:project_detail', args=[self.id])
+        return reverse('project_management:project_detail', args=[self.slug])
 
 class ProjManProjectImage(models.Model):
     project = models.ForeignKey(ProjManProject, related_name='images', on_delete=models.CASCADE)
@@ -104,6 +109,14 @@ class ProjManCoworking(BaseModel):
     coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(ProjManCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    client = models.CharField(max_length=255)  # نام کارفرما
+    start_date = jmodels.jDateField()
+    end_date = jmodels.jDateField()
+    budget = models.PositiveIntegerField()  # بودجه کل پروژه
+    progress_percentage = models.FloatField(default=0.0)  # درصد پیشرفت
+    project_status = models.CharField(max_length=100, choices=[('Planning', 'برنامه‌ریزی'), ('Ongoing', 'در حال اجرا'),
+                                                               ('Completed', 'تکمیل‌شده')])
+    assigned_team = models.TextField()  # اعضای تیم پروژه
 
     def __str__(self):
         return self.title

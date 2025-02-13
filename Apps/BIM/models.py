@@ -56,19 +56,6 @@ class BIMCategory(BaseModel):
         return reverse('bim:category', args=[self.slug])
 
 
-class BIMGravitySys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-
-class BIMLateralSys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
 class BIMProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -77,14 +64,18 @@ class BIMProject(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    employer_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/project')
     category = models.ForeignKey(BIMCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    total_Area = models.FloatField(null=True, blank=True)
-    gravity_loading_sys = models.ForeignKey(BIMGravitySys, on_delete=models.SET_NULL, null=True, blank=True)
-    lateral_loading_sys = models.ForeignKey(BIMLateralSys, on_delete=models.SET_NULL, null=True, blank=True)
+    architect = models.CharField(max_length=255)
+    structural_engineer = models.CharField(max_length=255)
+    contractor = models.CharField(max_length=255)
+    bim_software_used = models.CharField(max_length=255)  # مثال: Revit, Tekla
+    project_scale = models.CharField(max_length=100,
+                                     choices=[('Small', 'کوچک'), ('Medium', 'متوسط'), ('Large', 'بزرگ')])
+    model_version = models.CharField(max_length=50)  # نسخه BIM مدل
+    is_coordinated = models.BooleanField(default=False)  # آیا مدل هماهنگ‌سازی شده است؟
+    total_model_elements = models.IntegerField()  # تعداد عناصر مدل‌شده
+    clash_detection_report = models.FileField(upload_to='bim/reports/', null=True, blank=True)  # فایل گزارش تداخلات
 
     def __str__(self):
         return self.title
@@ -96,6 +87,9 @@ class BIMProject(BaseModel):
 
     def get_absolute_url(self):
         return reverse('bim:project_detail', args=[self.slug])
+
+    def get_detection_filename(self):
+        return self.clash_detection_report.name.split('/')[-1]
 
 
 class BIMProjectImage(models.Model):
@@ -119,6 +113,16 @@ class BIMCoworking(BaseModel):
     coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(BIMCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    architect = models.CharField(max_length=255)
+    structural_engineer = models.CharField(max_length=255)
+    contractor = models.CharField(max_length=255)
+    bim_software_used = models.CharField(max_length=255)  # مثال: Revit, Tekla
+    project_scale = models.CharField(max_length=100,
+                                     choices=[('Small', 'کوچک'), ('Medium', 'متوسط'), ('Large', 'بزرگ')])
+    model_version = models.CharField(max_length=50)  # نسخه BIM مدل
+    is_coordinated = models.BooleanField(default=False)  # آیا مدل هماهنگ‌سازی شده است؟
+    total_model_elements = models.IntegerField()  # تعداد عناصر مدل‌شده
+    clash_detection_report = models.FileField(upload_to='bim/reports/', null=True, blank=True)  # فایل گزارش تداخلات
 
     def __str__(self):
         return self.title
@@ -129,7 +133,7 @@ class BIMCoworking(BaseModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("BIM:coworking_detail", args=[self.slug])
+        return reverse("bim:coworking_detail", args=[self.slug])
 
 
 class BIMCoworkingImage(models.Model):

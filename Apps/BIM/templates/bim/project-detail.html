@@ -20,13 +20,15 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="image-sw-single">
-                                    <img alt="{{ project.title }}" src="{{ project.image.url }}" style="width: 1260px; height: 500px"/>
+                                    <img alt="{{ project.title }}" src="{{ project.image.url }}"
+                                         style="width: 1260px; height: 500px"/>
                                 </div>
                             </div>
                             {% for image in project.images.all %}
                                 <div class="swiper-slide">
                                     <div class="image-sw-single">
-                                        <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}" style="width: 1260px; height: 500px"/>
+                                        <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
+                                             style="width: 1260px; height: 500px"/>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -45,7 +47,8 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="img-thumb-pagi">
-                                <img alt="{{ project.title }}" src="{{ project.image.url }}" style="width: 148px;height: 111px"/>
+                                <img alt="{{ project.title }}" src="{{ project.image.url }}"
+                                     style="width: 148px;height: 111px"/>
                             </div>
                         </div>
                         {% for image in project.images.all %}
@@ -84,8 +87,8 @@
                                 ><i class="icon icon-house-line"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">شناسه:</span>
-                                    <span>2297</span>
+                                    <span class="label"> مهندس معمار:</span>
+                                    <span>{{ project.architect }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -93,8 +96,8 @@
                                 ><i class="icon icon-sliders-horizontal"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">نوع:</span>
-                                    <span>خانه</span>
+                                    <span class="label">مهندس سازه:</span>
+                                    <span>{{ project.structural_engineer }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -102,8 +105,8 @@
                                 ><i class="icon icon-garage"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">گاراژها:</span>
-                                    <span>1</span>
+                                    <span class="label">مهندس پیمانکار:</span>
+                                    <span>{{ project.contractor }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -111,8 +114,8 @@
                                 ><i class="icon icon-bed1"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">اتاق خواب ها:</span>
-                                    <span>2 اتاق</span>
+                                    <span class="label">نرم افزار ها:</span>
+                                    <span>{{ project.bim_software_used }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -120,8 +123,8 @@
                                 ><i class="icon icon-bathtub"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">حمام ها:</span>
-                                    <span>2 اتاق</span>
+                                    <span class="label">ابعاد پروژه:</span>
+                                    <span>{{ project.project_scale }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -129,8 +132,8 @@
                                 ><i class="icon icon-crop"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">اندازه زمین:</span>
-                                    <span>2000 فوت مربع</span>
+                                    <span class="label">نسخه مدل:</span>
+                                    <span>{{ project.model_version }}</span>
                                 </div>
                             </li>
                             <li class="item">
@@ -138,8 +141,12 @@
                                 ><i class="icon icon-hammer"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">سال ساخت:</span>
-                                    <span>1403</span>
+                                    <span class="label">هماهنگ سازی شده:</span>
+                                    {% if project.is_coordinated %}
+                                        <span>بله</span>
+                                    {% else %}
+                                        <span>خیر</span>
+                                    {% endif %}
                                 </div>
                             </li>
                             <li class="item">
@@ -147,13 +154,28 @@
                                 ><i class="icon icon-ruler"></i
                                 ></a>
                                 <div class="content">
-                                    <span class="label">اندازه:</span>
-                                    <span>900 فوت مربع</span>
+                                    <span class="label">تعداد عناصر مدل شده:</span>
+                                    <span>{{ project.total_model_elements }}</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
-
+                    {% if project.clash_detection_report %}
+                        <div class="single-property-element single-property-attachments">
+                            <h6 class="title fw-6">فایل گزارش تداخلات</h6>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="attachments-item" href="#" target="_blank">
+                                        <div class="box-icon w-60">
+                                            <img alt="file" src="{{ project.clash_detection_report.url }}"/>
+                                        </div>
+                                        <span>{{ project.get_detection_filename }}</span>
+                                        <i class="icon icon-download"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                     {% if project.video %}
                         <div class="single-property-element single-property-video">
                             <h5 class="title fw-6">ویدیو</h5>
@@ -164,102 +186,6 @@
                         </div>
                     {% endif %}
 
-                    <div class="single-property-element single-property-info">
-                        <h5 class="title fw-6">جزئیات ملک</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">شناسه:</span>
-                                    <div class="content text-black-3">#1234</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">تخت</span>
-                                    <div class="content text-black-3">7.328</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">قیمت</span>
-                                    <div class="content text-black-3">7،500 تومان</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">سال ساخت</span>
-                                    <div class="content text-black-3">1403</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">اندازه</span>
-                                    <div class="content text-black-3">150 فوت مربع</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">نوع</span>
-                                    <div class="content text-black-3">ویلا</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">اتاق</span>
-                                    <div class="content text-black-3">9</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">وضعیت</span>
-                                    <div class="content text-black-3">برای فروش</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">حمام ها</span>
-                                    <div class="content text-black-3">3</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">گاراژ</span>
-                                    <div class="content text-black-3">1</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-property-element single-property-feature">
-                        <h5 class="title fw-6">امکانات و امکانات</h5>
-                        <div class="wrap-feature">
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">هشدار دود</li>
-                                    <li class="feature-item">هشدار مونوکسید کربن</li>
-                                    <li class="feature-item">جعبه کمک های اولیه</li>
-                                    <li class="feature-item">اعلام حضور خود با جعبه قفل</li>
-                                    <li class="feature-item">دوربین های امنیتی</li>
-                                </ul>
-                            </div>
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">چوب لباسی</li>
-                                    <li class="feature-item">ملحفه</li>
-                                    <li class="feature-item">بالش و پتو اضافی</li>
-                                    <li class="feature-item">آهن</li>
-                                    <li class="feature-item">تلویزیون با کابل استاندارد</li>
-                                </ul>
-                            </div>
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">یخچال</li>
-                                    <li class="feature-item">مایکروویو</li>
-                                    <li class="feature-item">ماشین ظرفشویی</li>
-                                    <li class="feature-item">قهوه ساز</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     {% if project.latitude and project.longitude %}
                         <style>
                             #map {
@@ -294,7 +220,8 @@
                     <div class="col-xl-4 col-lg-5">
                         <div class="single-sidebar fixed-sidebar">
                             <div class="widget-box single-property-contact">
-                            <iframe src="{{ project.pdf.url }}" style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
+                                <iframe src="{{ project.pdf.url }}"
+                                        style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
                             </div>
                         </div>
                     </div>

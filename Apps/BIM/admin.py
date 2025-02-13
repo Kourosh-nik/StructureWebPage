@@ -53,5 +53,3 @@ class CoworkingAdmin(admin.ModelAdmin):
     inlines = [CoworkImageInline]
 
 admin.site.register(BIMCategory, CategoryAdmin)
-admin.site.register(BIMGravitySys)
-admin.site.register(BIMLateralSys)

@@ -56,35 +56,23 @@ class SoftCategory(BaseModel):
         return reverse('Software:category', args=[self.slug])
 
 
-class SoftVersion(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-
-class SoftFee(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
 class SoftProject(BaseModel):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     description = models.TextField()
     video = models.FileField(upload_to='bim/video', null=True, blank=True)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
     price = models.PositiveIntegerField()
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    employer_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/project')
     category = models.ForeignKey(SoftCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    total_Area = models.FloatField(null=True, blank=True)
-    gravity_loading_sys = models.ForeignKey(SoftVersion, on_delete=models.SET_NULL, null=True, blank=True)
-    lateral_loading_sys = models.ForeignKey(SoftFee, on_delete=models.SET_NULL, null=True, blank=True)
+    version = models.CharField(max_length=50)
+    developer = models.CharField(max_length=255)
+    release_date = models.DateField()
+    supported_platforms = models.CharField(max_length=255)  # ex: Windows, macOS, Linux
+    license_type = models.CharField(max_length=100, choices=[('Free', 'رایگان'), ('Paid', 'پرداختی'), ('Subscription', 'اشتراکی')])
+    features = models.TextField()  # ویژگی‌های نرم‌افزار
+    official_website = models.URLField()
+    download_link = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -120,6 +108,15 @@ class SoftCoworking(BaseModel):
     coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(SoftCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    version = models.CharField(max_length=50)
+    developer = models.CharField(max_length=255)
+    release_date = models.DateField()
+    supported_platforms = models.CharField(max_length=255)  # ex: Windows, macOS, Linux
+    license_type = models.CharField(max_length=100,
+                                    choices=[('Free', 'رایگان'), ('Paid', 'پرداختی'), ('Subscription', 'اشتراکی')])
+    features = models.TextField()  # ویژگی‌های نرم‌افزار
+    official_website = models.URLField()
+    download_link = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.title

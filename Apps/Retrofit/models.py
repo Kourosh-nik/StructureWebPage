@@ -55,17 +55,6 @@ class RetroCategory(BaseModel):
     def get_absolute_url(self):
         return reverse('Retrofit:category', args=[self.slug])
 
-class RetroGravitySys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-class RetroLateralSys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
 
 class RetroProject(BaseModel):
     title = models.CharField(max_length=100)
@@ -75,14 +64,16 @@ class RetroProject(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    employer_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/project')
     category = models.ForeignKey(RetroCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    total_Area = models.FloatField(null=True, blank=True)
-    gravity_loading_sys = models.ForeignKey(RetroGravitySys, on_delete=models.SET_NULL, null=True, blank=True)
-    lateral_loading_sys = models.ForeignKey(RetroLateralSys, on_delete=models.SET_NULL, null=True, blank=True)
+    building_age = models.PositiveIntegerField()  # عمر ساختمان (سال)
+    current_seismic_resistance = models.CharField(max_length=255)  # مقاومت لرزه‌ای فعلی
+    retrofit_strategy = models.TextField()  # استراتژی بهسازی (مثال: ژاکت بتنی، بادبندها، مقاوم‌سازی پی)
+    retrofitting_materials = models.TextField()  # مواد مورد استفاده
+    expected_performance_level = models.CharField(max_length=255)  # سطح عملکرد پس از بهسازی
+    estimated_cost = models.PositiveIntegerField()  # هزینه برآوردی
+    retrofit_design_file = models.FileField(upload_to='retrofitting/designs/', null=True,
+                                            blank=True)  # فایل طراحی مقاوم‌سازی
 
     def __str__(self):
         return self.title
@@ -117,6 +108,14 @@ class RetroCoworking(BaseModel):
     coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(RetroCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    building_age = models.PositiveIntegerField()  # عمر ساختمان (سال)
+    current_seismic_resistance = models.CharField(max_length=255)  # مقاومت لرزه‌ای فعلی
+    retrofit_strategy = models.TextField()  # استراتژی بهسازی (مثال: ژاکت بتنی، بادبندها، مقاوم‌سازی پی)
+    retrofitting_materials = models.TextField()  # مواد مورد استفاده
+    expected_performance_level = models.CharField(max_length=255)  # سطح عملکرد پس از بهسازی
+    estimated_cost = models.PositiveIntegerField()  # هزینه برآوردی
+    retrofit_design_file = models.FileField(upload_to='retrofitting/designs/', null=True,
+                                            blank=True)  # فایل طراحی مقاوم‌سازی
 
     def __str__(self):
         return self.title

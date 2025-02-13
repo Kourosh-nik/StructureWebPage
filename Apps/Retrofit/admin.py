@@ -55,5 +55,3 @@ class CoworkingAdmin(admin.ModelAdmin):
     inlines = [CoworkImageInline]
 
 admin.site.register(RetroCategory, CategoryAdmin)
-admin.site.register(RetroGravitySys)
-admin.site.register(RetroLateralSys)
