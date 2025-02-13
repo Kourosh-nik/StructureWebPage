@@ -35,7 +35,7 @@ class ProjectImageAdmin(admin.ModelAdmin):
 @admin.register(STRProject)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title', 'content')
+    search_fields = ('title', )
     inlines = [ProjectImageInline]
 
 
@@ -55,5 +55,3 @@ class CoworkingAdmin(admin.ModelAdmin):
     inlines = [CoworkImageInline]
 
 admin.site.register(STRCategory, CategoryAdmin)
-admin.site.register(STRGravitySys)
-admin.site.register(STRLateralSys)

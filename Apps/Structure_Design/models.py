@@ -56,19 +56,6 @@ class STRCategory(BaseModel):
         return reverse('Structure_Design:category', args=[self.slug])
 
 
-class STRGravitySys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-
-class STRLateralSys(BaseModel):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
 
 class STRProject(BaseModel):
     title = models.CharField(max_length=100)
@@ -78,14 +65,38 @@ class STRProject(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    employer_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/project')
     category = models.ForeignKey(STRCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    total_Area = models.FloatField(null=True, blank=True)
-    gravity_loading_sys = models.ForeignKey(STRGravitySys, on_delete=models.SET_NULL, null=True, blank=True)
-    lateral_loading_sys = models.ForeignKey(STRLateralSys, on_delete=models.SET_NULL, null=True, blank=True)
+    area = models.DecimalField(max_digits=10, decimal_places=2)  # زیربنا (مترمربع)
+    land_area = models.DecimalField(max_digits=10, decimal_places=2)  # مساحت زمین (مترمربع)
+    usage = models.CharField(max_length=255)  # کاربری (مسکونی، تجاری، اداری و ...)
+    num_floors = models.PositiveIntegerField()  # تعداد طبقات
+    num_basement_floors = models.PositiveIntegerField()  # تعداد طبقات زیرزمین
+    gravity_load_system = models.CharField(max_length=255)  # سیستم باربر ثقلی (مثال: دال بتنی، تیر و ستون فلزی)
+    lateral_load_system = models.CharField(max_length=255)  # سیستم باربر جانبی (مثال: قاب خمشی، دیوار برشی)
+    project_location = models.CharField(max_length=255)  # مکان پروژه
+    construction_year = models.PositiveIntegerField()  # سال ساخت
+    parking_capacity = models.PositiveIntegerField()  # تعداد پارکینگ تأمین‌شده
+    building_length = models.DecimalField(max_digits=10, decimal_places=2)  # طول ساختمان (متر)
+    building_width = models.DecimalField(max_digits=10, decimal_places=2)  # عرض ساختمان (متر)
+    floor_height = models.DecimalField(max_digits=5, decimal_places=2)  # ارتفاع طبقات (متر)
+    longest_span = models.DecimalField(max_digits=10, decimal_places=2)  # طول بلندترین دهانه (متر)
+
+    material_type = models.CharField(max_length=100, choices=[('Concrete', 'بتنی'), ('Steel', 'فلزی'),
+                                                              ('Composite', 'مختلط')])  # نوع مصالح
+    foundation_type = models.CharField(max_length=255)  # نوع فونداسیون (مثال: رادیه، نواری، منفرد)
+    seismic_design_category = models.CharField(max_length=100)  # دسته‌بندی طراحی لرزه‌ای
+    wind_load = models.DecimalField(max_digits=5, decimal_places=2)  # بار باد (kn/m2)
+    snow_load = models.DecimalField(max_digits=5, decimal_places=2)  # بار برف (kn/m2)
+
+    design_code = models.CharField(max_length=255)  # آیین‌نامه طراحی (مثال: مبحث ۶، AISC, ASCE 7)
+    analysis_software = models.CharField(max_length=255)  # نرم‌افزار تحلیل (مثال: ETABS, SAP2000)
+    design_software = models.CharField(max_length=255)  # نرم‌افزار طراحی (مثال: SAFE, Tekla)
+
+    structural_drawings = models.FileField(upload_to='structural_design/drawings/', null=True,
+                                           blank=True)  # فایل نقشه‌های سازه‌ای
+    calculation_report = models.FileField(upload_to='structural_design/reports/', null=True,
+                                          blank=True)  # گزارش محاسباتی
 
     def __str__(self):
         return self.title
