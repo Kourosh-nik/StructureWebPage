@@ -11,6 +11,7 @@ class SiteDetailModel(models.Model):
     address = models.TextField()
     footer_text = models.TextField()
     contact_us_text = models.TextField()
+    telegram_id = models.CharField(max_length=250)   # Enter Telegram id or robot id without @
     enamad_image = models.ImageField(upload_to='site_detail/image', null=True, blank=True)
     enamad_url = models.URLField(null=True, blank=True)
     kasbokar_image = models.ImageField(upload_to='site_detail/image', null=True, blank=True)

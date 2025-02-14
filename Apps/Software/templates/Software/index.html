@@ -186,34 +186,6 @@
             </div>
         </div>
     </section>
-    <!-- Coworking Section -->
-    <section class="flat-section flat-location-v2">
-        <div class="container">
-            <div class="box-title text-center wow fadeInUp">
-                <div class="text-subtitle text-primary">پروژه های مشترک</div>
-                <h3 class="title mt-4">همکاری در طرح</h3>
-            </div>
-            <div class="grid-location wow fadeInUp" data-wow-delay=".2s">
-                {% for object in coworking %}
-                    <a class="item-{{ forloop.counter }} box-location-v2 hover-img"
-                       href="{{ object.get_absolute_url }}">
-                        <div class="box-img img-style">
-                            <img
-                                    alt="image-location"
-                                    class="lazyload"
-                                    data-src="{{ object.image.url }}"
-                                    src="{{ object.image.url }}"
-                            />
-                        </div>
-                        <div class="content">
-                            <h6 class="link">{{ object.title }}</h6>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!-- End Coworking Section -->
     <!-- Mentoring and Learning Section -->
     <section class="flat-section bg-primary-new">
         <div class="box-title text-center wow fadeInUp">

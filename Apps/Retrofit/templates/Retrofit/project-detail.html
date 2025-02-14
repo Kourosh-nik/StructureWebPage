@@ -79,83 +79,65 @@
                         ><span class="text">مشاهده بیشتر</span>
                         </a>
                     </div>
-                    <div class="single-property-element single-property-overview">
-                        <h6 class="title fw-6">نمای کلی</h6>
-                        <ul class="info-box">
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-house-line"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label"> نام کارفرما:</span>
-                                    <span>{{ project.client }}</span>
+                    <div class="single-property-element single-property-info">
+                        <h6 class="title fw-6">جزئیات</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">عمر ساختمان:</span>
+                                    <div class="content text-black-3">{{ project.building_age }}</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-sliders-horizontal"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">تاریخ شروع:</span>
-                                    <span>{{ project.start_date }}</span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">مقاومت لرزه ای فعلی:</span>
+                                    <div class="content text-black-3">{{ project.current_seismic_resistance }}</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-garage"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">تاریخ پایان:</span>
-                                    <span>{{ project.end_date }}</span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">سطح عملکرد پس از بهسازی:</span>
+                                    <div class="content text-black-3">{{ project.expected_performance_level }}</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-bed1"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">بودجه کل پروژه:</span>
-                                    <span>{{ project.budget }}</span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">هزینه برآوردی:</span>
+                                    <div class="content text-black-3">{{ project.estimated_cost }}</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-bathtub"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">درصد پیشرفت:</span>
-                                    <span>%{{ project.progress_percentage }}</span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">استراتژی بهسازی:</span>
+                                    <div class="content text-black-3">{{ project.retrofit_strategy }}</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-crop"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">وضعیت پروژه:</span>
-                                    <span>{{ project.project_status }}</span>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+
+                        </div>
                     </div>
-                <div class="single-property-element single-property-info">
-                        <h5 class="title fw-6">اعضای تیم پروژه:</h5>
+                    <div class="single-property-element single-property-info">
+                        <h5 class="title fw-6">مواد مورد استفاده:</h5>
                         <div class="row">
                             <p class="text-variant-1">
-                            {{ project.assigned_team }}
-                        </p>
+                                {{ project.retrofitting_materials }}
+                            </p>
                         </div>
-                </div>
-                    {% if project.clash_detection_report %}
+                    </div>
+                    {% if project.retrofit_design_file %}
                         <div class="single-property-element single-property-attachments">
-                            <h6 class="title fw-6">فایل گزارش تداخلات</h6>
+                            <h6 class="title fw-6">فایل طراحی مقاوم‌سازی</h6>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a class="attachments-item" href="#" target="_blank">
+                                    <a class="attachments-item" href="{{ project.retrofit_design_file.url }}"
+                                       target="_blank">
                                         <div class="box-icon w-60">
-                                            <img alt="file" src="{{ project.clash_detection_report.url }}"/>
+                                            <img alt="file" src="{% static 'images/home/file-1.png' %}"/>
                                         </div>
-                                        <span>{{ project.get_detection_filename }}</span>
+                                        <span>{{ project.get_file_name }}</span>
                                         <i class="icon icon-download"></i>
                                     </a>
                                 </div>
@@ -201,17 +183,27 @@
                         </script>
                     {% endif %}
                 </div>
-
-                {% if project.pdf %}
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="single-sidebar fixed-sidebar">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="single-sidebar fixed-sidebar">
+                        {% if project.pdf %}
                             <div class="widget-box single-property-contact">
                                 <iframe src="{{ project.pdf.url }}"
                                         style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
                             </div>
-                        </div>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <a class="tf-btn btn-view primary hover-btn-view w-100"
+                               href="{% url 'user:add-document' %}">
+                                ارسال مدارک <span class="icon icon-arrow-left2"></span>
+                            </a>
+                        {% else %}
+                            <a class="tf-btn btn-view primary hover-btn-view w-100" href="#"
+                               onclick="alert('برای ارسال مدارک ابتدا وارد حساب کاربری خود شوید!');">
+                                ارسال مدارک <span class="icon icon-arrow-left2"></span>
+                            </a>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </section>

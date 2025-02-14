@@ -5,9 +5,7 @@
     <div class="flat-section-v4">
         <div class="container">
             <div class="header-property-detail">
-                <div
-                        class="content-top d-flex justify-content-between align-items-center"
-                >
+                <div class="content-top d-flex justify-content-between align-items-center">
                     <h3 class="title link fw-8">{{ project.title }}</h3>
                 </div>
 
@@ -22,19 +20,15 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="image-sw-single">
-                                    <img
-                                            alt="{{ project.title }}"
-                                            src="{{ project.image.url }}"
-                                    />
+                                    <img alt="{{ project.title }}" src="{{ project.image.url }}"
+                                         style="width: 1260px; height: 500px"/>
                                 </div>
                             </div>
                             {% for image in project.images.all %}
                                 <div class="swiper-slide">
                                     <div class="image-sw-single">
-                                        <img
-                                                alt="{{ project.title }}-{{ forloop.counter }}"
-                                                src="{{ image.image.url }}"
-                                        />
+                                        <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
+                                             style="width: 1260px; height: 500px"/>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -51,25 +45,20 @@
                 </div>
                 <div class="swiper thumbs-sw-pagi">
                     <div class="swiper-wrapper">
-
-
                         <div class="swiper-slide">
                             <div class="img-thumb-pagi">
-                                <img alt="{{ project.title }}" src="{{ project.image.url }}" width="111px"
-                                     height="148px"/>
+                                <img alt="{{ project.title }}" src="{{ project.image.url }}"
+                                     style="width: 148px;height: 111px"/>
                             </div>
                         </div>
-
                         {% for image in project.images.all %}
                             <div class="swiper-slide">
                                 <div class="img-thumb-pagi">
                                     <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
-                                         width="111px" height="148px"/>
+                                         style="width: 148px;height: 111px"/>
                                 </div>
                             </div>
                         {% endfor %}
-
-
                     </div>
                 </div>
             </div>
@@ -85,90 +74,188 @@
                             {{ project.description }}
                         </p>
                         <p class="mt-8 text-variant-1">
-
                         </p>
                         <a class="btn-view" href="#"
                         ><span class="text">مشاهده بیشتر</span>
                         </a>
                     </div>
-                    <div class="single-property-element single-property-overview">
-                        <h6 class="title fw-6">نمای کلی</h6>
-                        <ul class="info-box">
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-house-line"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">شناسه:</span>
-                                    <span>2297</span>
+                    <div class="single-property-element single-property-info">
+                        <h5 class="title fw-6">جزئیات </h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">زیربنا:</span>
+                                    <div class="content text-black-3">{{ project.area }} مترمربع</div>
                                 </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-sliders-horizontal"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">نوع:</span>
-                                    <span>خانه</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-garage"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">گاراژها:</span>
-                                    <span>1</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-bed1"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">اتاق خواب ها:</span>
-                                    <span>2 اتاق</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-bathtub"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">حمام ها:</span>
-                                    <span>2 اتاق</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-crop"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">اندازه زمین:</span>
-                                    <span>2000 فوت مربع</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-hammer"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">سال ساخت:</span>
-                                    <span>1403</span>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <a class="box-icon w-52" href="#"
-                                ><i class="icon icon-ruler"></i
-                                ></a>
-                                <div class="content">
-                                    <span class="label">اندازه:</span>
-                                    <span>900 فوت مربع</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>
 
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">مساحت زمین:</span>
+                                    <div class="content text-black-3">{{ project.land_area }} مترمربع</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">کاربری:</span>
+                                    <div class="content text-black-3">{{ project.usage }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">تعداد طبقات:</span>
+                                    <div class="content text-black-3">{{ project.num_floors }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">تعداد طبقات زیرزمین:</span>
+                                    <div class="content text-black-3">{{ project.num_basement_floors }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">سیستم باربر ثقلی:</span>
+                                    <div class="content text-black-3">{{ project.gravity_load_system }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">سیستم باربر جانبی:</span>
+                                    <div class="content text-black-3">{{ project.lateral_load_system }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">مکان پروژه:</span>
+                                    <div class="content text-black-3">{{ project.project_location }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">سال ساخت:</span>
+                                    <div class="content text-black-3">{{ project.construction_year }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">تعداد پارکینگ تأمین‌شده:</span>
+                                    <div class="content text-black-3">{{ project.parking_capacity }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">طول ساختمان:</span>
+                                    <div class="content text-black-3">{{ project.building_length }} متر</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">عرض ساختمان:</span>
+                                    <div class="content text-black-3">{{ project.building_width }} متر</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">ارتفاع طبقات:</span>
+                                    <div class="content text-black-3">{{ project.floor_height }} متر</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">طول بلندترین دهانه:</span>
+                                    <div class="content text-black-3">{{ project.longest_span }} متر</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">نوع مصالح:</span>
+                                    <div class="content text-black-3">{{ project.material_type }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">نوع فونداسیون:</span>
+                                    <div class="content text-black-3">{{ project.foundation_type }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">دسته‌بندی طراحی لرزه‌ای:</span>
+                                    <div class="content text-black-3">{{ project.seismic_design_category }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">بار باد:</span>
+                                    <div class="content text-black-3">{{ project.wind_load }} kn/m2</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">بار برف:</span>
+                                    <div class="content text-black-3">{{ project.snow_load }} kn/m2</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inner-box">
+                                    <span class="label text-black-3">آیین‌نامه طراحی:</span>
+                                    <div class="content text-black-3">{{ project.design_code }}</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {% if project.structural_drawings or project.calculation_report %}
+                        <div class="single-property-element single-property-attachments">
+                            <h6 class="title fw-6">فایل های نقشه‌های سازه‌ای و گزارش های محاسباتی</h6>
+                            <div class="row">
+                                {% if project.structural_drawings %}
+                                    <div class="col-sm-6">
+                                        <a class="attachments-item" href="{{ project.structural_drawings.url }}"
+                                           target="_blank">
+                                            <div class="box-icon w-60">
+                                                <img alt="file" src="{% static 'images/home/file-1.png' %}"/>
+                                            </div>
+                                            <span>{{ project.get_drawing_file_name }}</span>
+                                            <i class="icon icon-download"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                {% if project.structural_drawings %}
+                                    <div class="col-sm-6">
+                                        <a class="attachments-item" href="{{ project.calculation_report.url }}"
+                                           target="_blank">
+                                            <div class="box-icon w-60">
+                                                <img alt="file" src="{% static 'images/home/file-1.png' %}"/>
+                                            </div>
+                                            <span>{{ project.get_report_file_name }}</span>
+                                            <i class="icon icon-download"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
                     {% if project.video %}
                         <div class="single-property-element single-property-video">
                             <h5 class="title fw-6">ویدیو</h5>
@@ -176,107 +263,9 @@
                                    controls>
                                 <source src="{{ project.video.url }}">
                             </video>
-
-
                         </div>
                     {% endif %}
 
-                    <div class="single-property-element single-property-info">
-                        <h5 class="title fw-6">جزئیات ملک</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">شناسه:</span>
-                                    <div class="content text-black-3">#1234</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">تخت</span>
-                                    <div class="content text-black-3">7.328</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">قیمت</span>
-                                    <div class="content text-black-3">7،500 تومان</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">سال ساخت</span>
-                                    <div class="content text-black-3">1403</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">اندازه</span>
-                                    <div class="content text-black-3">150 فوت مربع</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">نوع</span>
-                                    <div class="content text-black-3">ویلا</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">اتاق</span>
-                                    <div class="content text-black-3">9</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">وضعیت</span>
-                                    <div class="content text-black-3">برای فروش</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">حمام ها</span>
-                                    <div class="content text-black-3">3</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inner-box">
-                                    <span class="label text-black-3">گاراژ</span>
-                                    <div class="content text-black-3">1</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-property-element single-property-feature">
-                        <h5 class="title fw-6">امکانات و امکانات</h5>
-                        <div class="wrap-feature">
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">هشدار دود</li>
-                                    <li class="feature-item">هشدار مونوکسید کربن</li>
-                                    <li class="feature-item">جعبه کمک های اولیه</li>
-                                    <li class="feature-item">اعلام حضور خود با جعبه قفل</li>
-                                    <li class="feature-item">دوربین های امنیتی</li>
-                                </ul>
-                            </div>
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">چوب لباسی</li>
-                                    <li class="feature-item">ملحفه</li>
-                                    <li class="feature-item">بالش و پتو اضافی</li>
-                                    <li class="feature-item">آهن</li>
-                                    <li class="feature-item">تلویزیون با کابل استاندارد</li>
-                                </ul>
-                            </div>
-                            <div class="box-feature">
-                                <ul>
-                                    <li class="feature-item">یخچال</li>
-                                    <li class="feature-item">مایکروویو</li>
-                                    <li class="feature-item">ماشین ظرفشویی</li>
-                                    <li class="feature-item">قهوه ساز</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     {% if project.latitude and project.longitude %}
                         <style>
                             #map {
@@ -305,175 +294,28 @@
                                 .openPopup();
                         </script>
                     {% endif %}
-                    <div class="single-property-element single-property-floor">
-                        <h5 class="title fw-6">پلان طبقات</h5>
-                        <ul class="box-floor" id="parent-floor">
-                            <li class="floor-item">
-                                <div
-                                        aria-controls="floor-one"
-                                        aria-expanded="false"
-                                        class="floor-header"
-                                        data-bs-target="#floor-one"
-                                        data-bs-toggle="collapse"
-                                        role="button"
-                                >
-                                    <div class="inner-left">
-                                        <i class="icon icon-arr-r"></i>
-                                        <span class="text-btn">طبقه اول</span>
-                                    </div>
-                                    <ul class="inner-right">
-                                        <li class="d-flex align-items-center gap-8">
-                                            <i class="icon icon-bed"></i>2 خوابه
-                                        </li>
-                                        <li class="d-flex align-items-center gap-8">
-                                            <i class="icon icon-bath"></i>2 حمام
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="collapse show" data-bs-parent="#parent-floor" id="floor-one">
-                                    <div class="faq-body">
-                                        <div class="box-img">
-                                            <img alt="img-floor" src="images/banner/floor.png"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="floor-item">
-                                <div aria-controls="floor-two" aria-expanded="false" class="floor-header collapsed"
-                                     data-bs-target="#floor-two" data-bs-toggle="collapse" role="button">
-                                    <div class="inner-left">
-                                        <i class="icon icon-arr-r"></i>
-                                        <span class="text-btn">طبقه دوم</span>
-                                    </div>
-                                    <ul class="inner-right">
-                                        <li class="d-flex align-items-center gap-8">
-                                            <i class="icon icon-bed"></i>2 خوابه
-                                        </li>
-                                        <li class="d-flex align-items-center gap-8">
-                                            <i class="icon icon-bath"></i>2 حمام
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="collapse"
-                                     data-bs-parent="#parent-floor"
-                                     id="floor-two">
-                                    <div class="faq-body">
-                                        <div class="box-img">
-                                            <img
-                                                    alt="img-floor"
-                                                    src="images/banner/floor.png"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div
-                            class="single-property-element single-property-attachments"
-                    >
-                        <h6 class="title fw-6">فایل های پیوست</h6>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <a class="attachments-item" href="#" target="_blank">
-                                    <div class="box-icon w-60">
-                                        <img alt="file" src="images/home/file-1.png"/>
-                                    </div>
-                                    <span>ویلا-سند.pdf</span>
-                                    <i class="icon icon-download"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-6">
-                                <a class="attachments-item" href="#" target="_blank">
-                                    <div class="box-icon w-60">
-                                        <img alt="file" src="images/home/file-2.png"/>
-                                    </div>
-                                    <span>ویلا-سند.pdf</span>
-                                    <i class="icon icon-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-property-element single-property-explore">
-                        <h5 class="title fw-6">کاوش ملک</h5>
-                        <div class="box-img">
-                            <img alt="img" src="images/banner/img-explore.jpg"/>
-                            <div class="box-icon">
-                                <span class="icon icon-360"></span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="single-property-element single-property-nearby">
-                        <h5 class="title fw-6">چه چیزی در این نزدیکی است؟</h5>
-                        <p>
-                            امکانات اطراف را کاوش کنید تا به طور دقیق ملک خود را پیدا
-                            کنید و امکانات اطراف را شناسایی کنید و یک نمای کلی از محیط
-                            زندگی و راحتی ملک ارائه دهید.
-                        </p>
-                        <div class="row box-nearby">
-                            <div class="col-md-5">
-                                <ul class="box-left">
-                                    <li class="item-nearby">
-                                        <span class="label">مدرسه:</span>
-                                        <span class="fw-7">0.7 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">دانشگاه:</span>
-                                        <span class="fw-7">1.3 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">مرکز خواربار فروشی:</span>
-                                        <span class="fw-7">0.6 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">بازار:</span>
-                                        <span class="fw-7">1.1 کیلومتر</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5">
-                                <ul class="box-right">
-                                    <li class="item-nearby">
-                                        <span class="label">بیمارستان:</span>
-                                        <span class="fw-7">0.4 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">ایستگاه مترو:</span>
-                                        <span class="fw-7">1.8 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">سالن بدنسازی، تندرستی:</span>
-                                        <span class="fw-7">1.3 کیلومتر</span>
-                                    </li>
-                                    <li class="item-nearby">
-                                        <span class="label">رودخانه:</span>
-                                        <span class="fw-7">2.1 کیلومتر</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
-
-                {% if project.pdf %}
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="single-sidebar fixed-sidebar">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="single-sidebar fixed-sidebar">
+                        {% if project.pdf %}
                             <div class="widget-box single-property-contact">
-
-                            <iframe src="{{ project.pdf.url }}" style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
+                                <iframe src="{{ project.pdf.url }}"
+                                        style="width: 100%; height: 600px; max-width: 100%; border: none;"></iframe>
                             </div>
-
-
-
-
-
-                        </div>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <a class="tf-btn btn-view primary hover-btn-view w-100"
+                               href="{% url 'user:add-document' %}">
+                                ارسال مدارک <span class="icon icon-arrow-left2"></span>
+                            </a>
+                        {% else %}
+                            <a class="tf-btn btn-view primary hover-btn-view w-100" href="#"
+                               onclick="alert('برای ارسال مدارک ابتدا وارد حساب کاربری خود شوید!');">
+                                ارسال مدارک <span class="icon icon-arrow-left2"></span>
+                            </a>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </section>

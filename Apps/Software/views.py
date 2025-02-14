@@ -4,12 +4,12 @@ from django.views import View
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from Apps.Home_Page.models import SiteDetailModel
 
 class IndexView(View):
     def get(self, request):
         banner = SoftPanelModel.objects.first()
         categories = SoftCategory.objects.all().order_by('-id')
-        coworking = SoftCoworking.objects.all().order_by('-id')
 
         projects_list = SoftProject.objects.all().order_by('-id')
         projects_paginator = Paginator(projects_list, 6)
@@ -29,7 +29,6 @@ class IndexView(View):
         context = {
             'banner': banner,
             'categories': categories,
-            'coworking': coworking,
             'projects': projects,
             'trainings': trainings,
         }
@@ -60,14 +59,10 @@ class ProjectDetailView(DetailView):
     template_name = 'Software/project-detail.html'
     context_object_name = 'project'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['panel'] = SiteDetailModel.objects.first()
+        return context
+
     def get_queryset(self):
         return SoftProject.objects.prefetch_related('images').all()
-
-
-class CoworkingDetailView(DetailView):
-    model = SoftCoworking
-    template_name = 'Software/project-detail.html'
-    context_object_name = 'project'
-
-    def get_queryset(self):
-        return SoftCoworking.objects.prefetch_related('images').all()

@@ -72,7 +72,7 @@ class SoftProject(BaseModel):
     license_type = models.CharField(max_length=100, choices=[('Free', 'رایگان'), ('Paid', 'پرداختی'), ('Subscription', 'اشتراکی')])
     features = models.TextField()  # ویژگی‌های نرم‌افزار
     official_website = models.URLField()
-    download_link = models.URLField(null=True, blank=True)
+    download_file = models.FileField(upload_to='soft/', null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -93,50 +93,6 @@ class SoftProjectImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.project.title}"
-
-
-class SoftCoworking(BaseModel):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    description = models.TextField()
-    video = models.FileField(upload_to='bim/video', null=True, blank=True)
-    latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
-    longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
-    pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    coworker_opinion = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='image/coworking')
-    category = models.ForeignKey(SoftCategory, on_delete=models.SET_NULL, null=True, blank=True)
-    version = models.CharField(max_length=50)
-    developer = models.CharField(max_length=255)
-    release_date = models.DateField()
-    supported_platforms = models.CharField(max_length=255)  # ex: Windows, macOS, Linux
-    license_type = models.CharField(max_length=100,
-                                    choices=[('Free', 'رایگان'), ('Paid', 'پرداختی'), ('Subscription', 'اشتراکی')])
-    features = models.TextField()  # ویژگی‌های نرم‌افزار
-    official_website = models.URLField()
-    download_link = models.URLField(null=True, blank=True)
-
-    def __str__(self):
-        return self.title
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse("Structure_Design:coworking_detail", args=[self.slug])
-
-
-class SoftCoworkingImage(models.Model):
-    coworking = models.ForeignKey(SoftCoworking, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='coworking_images/')
-    caption = models.CharField(max_length=200, blank=True, null=True)
-
-    def __str__(self):
-        return f"Image for {self.coworking.title}"
 
 
 class SoftTraining(BaseModel):

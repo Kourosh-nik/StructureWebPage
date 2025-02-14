@@ -39,20 +39,4 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = [ProjectImageInline]
 
 
-
-class CoworkImageInline(admin.TabularInline):
-    model = SoftCoworkingImage
-    extra = 1
-
-@admin.register(SoftCoworkingImage)
-class CoworkingImageAdmin(admin.ModelAdmin):
-    list_display = ('coworking', 'caption')
-
-
-@admin.register(SoftCoworking)
-class CoworkingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'created_at', 'updated_at')
-    search_fields = ('title',)
-    inlines = [CoworkImageInline]
-
 admin.site.register(SoftCategory, CategoryAdmin)

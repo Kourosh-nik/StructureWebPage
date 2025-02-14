@@ -86,6 +86,9 @@ class RetroProject(BaseModel):
     def get_absolute_url(self):
         return reverse('Retrofit:project_detail', args=[self.slug])
 
+    def get_file_name(self):
+        return self.retrofit_design_file.name.split('/')[-1]
+
 
 class RetroProjectImage(models.Model):
     project = models.ForeignKey(RetroProject, related_name='images', on_delete=models.CASCADE)
@@ -127,6 +130,9 @@ class RetroCoworking(BaseModel):
 
     def get_absolute_url(self):
         return reverse("Retrofit:coworking_detail", args=[self.slug])
+
+    def get_file_name(self):
+        return self.retrofit_design_file.name.split('/')[-1]
 
 
 class RetroCoworkingImage(models.Model):

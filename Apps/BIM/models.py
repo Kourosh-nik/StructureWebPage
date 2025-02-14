@@ -135,6 +135,9 @@ class BIMCoworking(BaseModel):
     def get_absolute_url(self):
         return reverse("bim:coworking_detail", args=[self.slug])
 
+    def get_detection_filename(self):
+        return self.clash_detection_report.name.split('/')[-1]
+
 
 class BIMCoworkingImage(models.Model):
     coworking = models.ForeignKey(BIMCoworking, related_name='images', on_delete=models.CASCADE)

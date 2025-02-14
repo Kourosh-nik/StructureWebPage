@@ -106,6 +106,12 @@ class STRProject(BaseModel):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    def get_drawing_file_name(self):
+        return self.structural_drawings.name.split('/')[-1]
+
+    def get_report_file_name(self):
+        return self.calculation_report.name.split('/')[-1]
+
     def get_absolute_url(self):
         return reverse('Structure_Design:project_detail', args=[self.slug])
 
@@ -126,9 +132,6 @@ class STRCoworking(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(STRCategory, on_delete=models.SET_NULL, null=True, blank=True)
     area = models.DecimalField(max_digits=10, decimal_places=2)  # زیربنا (مترمربع)
@@ -172,6 +175,12 @@ class STRCoworking(BaseModel):
 
     def get_absolute_url(self):
         return reverse("Structure_Design:coworking_detail", args=[self.slug])
+
+    def get_drawing_file_name(self):
+        return self.structural_drawings.name.split('/')[-1]
+
+    def get_report_file_name(self):
+        return self.calculation_report.name.split('/')[-1]
 
 
 class STRCoworkingImage(models.Model):
