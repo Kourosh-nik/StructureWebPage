@@ -104,9 +104,6 @@ class ProjManCoworking(BaseModel):
     latitude = models.FloatField(null=True, blank=True)  # عرض جغرافیایی (lat)
     longitude = models.FloatField(null=True, blank=True)  # طول جغرافیایی (lon)
     pdf = models.FileField(upload_to='bim/pdf', null=True, blank=True)
-    illustration = models.TextField(null=True, blank=True)
-    characteristic = models.TextField(null=True, blank=True)
-    coworker_opinion = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='image/coworking')
     category = models.ForeignKey(ProjManCategory, on_delete=models.SET_NULL, null=True, blank=True)
     client = models.CharField(max_length=255)  # نام کارفرما

@@ -1,0 +1,106 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="flat-tab-recommended flat-animate-tab wow fadeInUp" data-wow-delay=".2s">
+    <div class="tab-content">
+        <div class="row" id="projects-container">
+            {% include "home_Page/projects-list.html" %}
+        </div>
+
+        <ul class="justify-content-center wd-navigation" id="projects-pagination">
+            {% if projects.has_previous %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ projects.previous_page_number }}" data-type="projects">
+                        <i class="icon icon-arr-r"></i>
+                    </a>
+                </li>
+            {% endif %}
+            {% for num in projects.paginator.page_range %}
+                {% if num == projects.number %}
+                    <li><a class="nav-item page-link active" href="#" data-page="{{ num }}" data-type="projects">{{ num }}</a></li>
+                {% else %}
+                    <li><a class="nav-item page-link" href="#" data-page="{{ num }}" data-type="projects">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if projects.has_next %}
+                <li>
+                    <a class="nav-item page-link" href="#" data-page="{{ projects.next_page_number }}" data-type="projects">
+                        <i class="icon icon-arr-l"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.page-link', function (e) {
+            e.preventDefault();
+
+            // دریافت شماره صفحه و نوع دسته‌بندی (projects, trainings)
+            let page = $(this).data('page');
+            let type = $(this).data('type');
+
+            // تنظیم داده‌هایی که باید ارسال شود
+            let requestData = {};
+            if (type === "projects") {
+                requestData["projects_page"] = page;
+            } else if (type === "coworking") {
+                requestData["coworking_page"] = page;
+            } else if (type === "trainings") {
+                requestData["trainings_page"] = page;
+            }
+
+            // ارسال درخواست AJAX
+            $.ajax({
+                url: window.location.href,  // استفاده از آدرس فعلی صفحه
+                data: requestData,          // ارسال داده‌های صفحه
+                headers: {'X-Requested-With': 'XMLHttpRequest'},  // نشان دادن درخواست AJAX
+                success: function (response) {
+                    // بروزرسانی نتایج مربوط به هر دسته‌بندی
+                    if (type === "projects") {
+                        $("#projects-container").html(response.projects_html);  // بروزرسانی نتایج پروژه‌ها
+                        updatePagination(response, 'projects');  // بروزرسانی صفحه‌بندی پروژه‌ها
+                    } else if (type === "coworking") {
+                        $("#coworking-container").html(response.coworking_html);  // بروزرسانی نتایج coworking
+                        updatePagination(response, 'coworking');  // بروزرسانی صفحه‌بندی coworking
+                    } else if (type === "trainings") {
+                        $("#trainings-container").html(response.trainings_html);  // بروزرسانی نتایج training
+                        updatePagination(response, 'trainings');  // بروزرسانی صفحه‌بندی training
+                    }
+                }
+            });
+        });
+
+        // بروزرسانی صفحه‌بندی (این تابع می‌تواند برای هر دسته استفاده شود)
+        function updatePagination(response, category) {
+            const pageRange = response[category + '_page_range'];
+            const hasPrevious = response[category + '_has_previous'];
+            const hasNext = response[category + '_has_next'];
+            const currentPage = response[category + '_current_page'];
+
+            let paginationElement = $("#" + category + "-pagination");
+            paginationElement.empty(); // پاک کردن صفحه‌بندی قبلی
+
+            // نمایش دکمه‌های قبلی
+            if (hasPrevious) {
+                paginationElement.append(`<li><a class="nav-item page-link" href="#" data-page="${currentPage - 1}" data-type="${category}"><i class="icon icon-arr-r"></i></a></li>`);
+            }
+
+            // نمایش شماره صفحات
+            pageRange.forEach(function (page) {
+                paginationElement.append(`<li><a class="nav-item page-link ${page === currentPage ? 'active' : ''}" href="#" data-page="${page}" data-type="${category}">${page}</a></li>`);
+            });
+
+            // نمایش دکمه‌های بعدی
+            if (hasNext) {
+                paginationElement.append(`<li><a class="nav-item page-link" href="#" data-page="${currentPage + 1}" data-type="${category}"><i class="icon icon-arr-l"></i></a></li>`);
+            }
+        }
+    });
+</script>
+
+
+{% endblock %}

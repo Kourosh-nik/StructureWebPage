@@ -93,13 +93,13 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" role="tabpanel">
                         <div class="form-sl">
-                            <form method="post">
+                            <form method="get" action="{% url 'home_Page:search' %}">
                                 <div class="wd-find-select shadow-3">
                                     <div class="inner-group">
                                         <div class="form-group-2 form-style">
                                             <label>محل</label>
                                             <div class="group-ip">
-                                                <input class="form-control" name="s" placeholder="محل جستجو" required=""
+                                                <input class="form-control" name="search" placeholder="محل جستجو" required=""
                                                        title="Search for" type="text" value=""/>
                                                 <a class="icon icon-location" href="#"> </a>
                                             </div>

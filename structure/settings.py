@@ -67,12 +67,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'structure.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ketec',
+        'USER': 'ketec',
+        'PASSWORD': 'ketec',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -95,21 +107,31 @@ TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
-STORAGES = {
-  "default": {
-      "BACKEND": "storages.backends.s3.S3Storage",
-  },
-  "staticfiles": {
-      "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-  },
-}
+# STORAGES = {
+#   "default": {
+#       "BACKEND": "storages.backends.s3.S3Storage",
+#   },
+#   "staticfiles": {
+#       "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#   },
+# }
 
 # LIARA CONFIG
-AWS_ACCESS_KEY_ID = 's7mtd3ecb1safiaq'
-AWS_SECRET_ACCESS_KEY = '50dfce50-11b3-45a6-a8ec-4029430c8ae5'
-AWS_STORAGE_BUCKET_NAME = 'akurtek'
-AWS_S3_ENDPOINT_URL = 'https://storage.c2.liara.space'
-AWS_S3_REGION_NAME = 'us-east-1'
+# AWS_ACCESS_KEY_ID = 's7mtd3ecb1safiaq'
+# AWS_SECRET_ACCESS_KEY = '50dfce50-11b3-45a6-a8ec-4029430c8ae5'
+# AWS_STORAGE_BUCKET_NAME = 'akurtek'
+# AWS_S3_ENDPOINT_URL = 'https://storage.c2.liara.space'
+# AWS_S3_REGION_NAME = 'us-east-1'
+
+AWS_ACCESS_KEY_ID = '5de4b746-59da-4a18-bec9-411c09793550'
+AWS_SECRET_ACCESS_KEY = '334a4bf4798191fc2f26ace1cde01b68ab00556d1c43285f49cbccc8e6b4304d'
+AWS_STORAGE_BUCKET_NAME = 'ketec'
+AWS_S3_ENDPOINT_URL = 'https://ketec.s3.ir-thr-at1.arvanstorage.ir'
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.ir-thr-at1.arvanstorage.com"
+
+# تنظیم ذخیره فایل‌های رسانه‌ای در آروان
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
 USE_TZ = True
 STATIC_URL = 'static/'
