@@ -20,15 +20,50 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="image-sw-single">
-                                    <img alt="{{ project.title }}" src="{{ project.image.url }}"
-                                         style="width: 1260px; height: 500px"/>
+                                    <style>
+                                        .image-container {
+                                            width: 1260px;
+                                            height: 500px;
+                                            background-color: white;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                        }
+
+                                        .image-container img {
+                                            max-height: 100%;
+                                            max-width: 100%;
+                                            object-fit: contain;
+                                        }
+
+                                        @media (max-width: 768px) {
+                                            .image-container {
+                                                width: 100%;
+                                                height: auto;
+                                                background-color: transparent;
+                                            }
+
+                                            .image-container img {
+                                                width: 100%;
+                                                height: auto;
+                                                object-fit: cover;
+                                            }
+                                        }
+                                    </style>
+
+                                    <div class="image-container">
+                                        <img alt="{{ project.title }}" src="{{ project.image.url }}"/>
+                                    </div>
                                 </div>
                             </div>
                             {% for image in project.images.all %}
                                 <div class="swiper-slide">
                                     <div class="image-sw-single">
-                                        <img alt="{{ project.title }}-{{ forloop.counter }}" src="{{ image.image.url }}"
-                                             style="width: 1260px; height: 500px"/>
+                                        <div class="image-container">
+                                            <img alt={{ project.title }}-{{ forloop.counter }}"
+                                                 src="{{ project.image.url }}"/>
+                                        </div>
+
                                     </div>
                                 </div>
                             {% endfor %}
