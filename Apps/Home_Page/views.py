@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.contrib.postgres.search import TrigramSimilarity
 from django.core.paginator import Paginator
 from django.db.models import Q
-
 from .forms import *
 from .models import *
 from Apps.Retrofit.models import RetroCategory, RetroProject, RetroCoworking, RetroTraining
@@ -13,7 +12,6 @@ from Apps.Software.models import SoftCategory, SoftProject, SoftTraining
 from Apps.Structure_Design.models import STRCategory, STRProject, STRCoworking, STRTraining
 from Apps.BIM.models import BIMCategory, BIMProject, BIMCoworking, BIMTraining
 from Apps.project_management.models import ProjManCategory, ProjManProject, ProjManCoworking, ProjManTraining
-
 
 
 class HeaderView(View):
@@ -35,6 +33,7 @@ class HeaderView(View):
             'soft_categories': soft_categories,
         }
         return render(request, 'partial/header.html', context)
+
 
 class FooterView(View):
     def get(self, request):
@@ -78,11 +77,11 @@ class SearchView(View):
                     if category:
                         queryset = model.objects.annotate(
                             similarity=TrigramSimilarity('title', query) + TrigramSimilarity('category__title', query)
-                        ).filter(similarity__gt=0.1).values('id', 'title', 'category__title', 'similarity', 'image')
+                        ).filter(similarity__gt=0.1)
                     else:
                         queryset = model.objects.annotate(
                             similarity=TrigramSimilarity('title', query)
-                        ).filter(similarity__gt=0.1).values('id', 'title', 'similarity', 'image')
+                        ).filter(similarity__gt=0.1)
                     querysets.append(queryset)
                 return querysets
 
@@ -108,15 +107,15 @@ class SearchView(View):
             all_training_results = combine_and_paginate(training_results)
 
             # Paginate results
-            projects_paginator = Paginator(all_project_results, 1)
+            projects_paginator = Paginator(all_project_results, 6)
             projects_page = request.GET.get('projects_page', 1)
             projects = projects_paginator.get_page(projects_page)
 
-            coworking_paginator = Paginator(all_coworking_results, 1)
+            coworking_paginator = Paginator(all_coworking_results, 6)
             coworking_page = request.GET.get('coworking_page', 1)
             coworking = coworking_paginator.get_page(coworking_page)
 
-            trainings_paginator = Paginator(all_training_results, 1)
+            trainings_paginator = Paginator(all_training_results, 6)
             trainings_page = request.GET.get('trainings_page', 1)
             trainings = trainings_paginator.get_page(trainings_page)
 

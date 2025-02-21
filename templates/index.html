@@ -297,7 +297,7 @@
                                     <img alt="image-location"
                                          class="lazyload"
                                          data-src="{{ project.image.url }}"
-                                         src="{{ category.image.url }}"
+                                         src="{{ project.image.url }}"
                                     />
                                 </a>
                                 <div class="content">
@@ -324,13 +324,14 @@
             <div class="swiper-button-next"></div>
         </div>
         <br>
-        <div class="text-center">
+
+    </section>
+    <div class="text-center">
             <a class="tf-btn btn-view primary size-1 hover-btn-view"
                href="{% url 'bim:index' %}">مشاهده بیشتر<span
                     class="icon icon-arrow-left2"></span>
             </a>
         </div>
-    </section>
     <!-- End BIM -->
 
     <!-- BIM-Proj  -->
@@ -387,7 +388,7 @@
                                     <img alt="image-location"
                                          class="lazyload"
                                          data-src="{{ project.image.url }}"
-                                         src="{{ category.image.url }}"
+                                         src="{{ project.image.url }}"
                                     />
                                 </a>
                                 <div class="content">
@@ -581,12 +582,13 @@
             <div class="swiper-button-next"></div>
         </div>
         <br>
-        <div class="text-center">
+
+    </section>
+    <div class="text-center">
             <a class="tf-btn btn-view primary size-1 hover-btn-view" href="{% url 'Software:index' %}"
             >مشاهده بیشتر<span class="icon icon-arrow-left2"></span
             ></a>
         </div>
-    </section>
     <br>
     {% block extra_js %}
         <script src="{% static 'js/slider.js' %}" type="text/javascript"></script>

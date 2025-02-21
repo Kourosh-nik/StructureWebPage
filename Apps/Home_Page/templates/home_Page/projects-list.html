@@ -1,12 +1,13 @@
-{% for project in projects|slice:":9" %} <!-- Show only 9 projects -->
+{% for project in projects %}
     <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
         <div class="homelengo-box card border rounded shadow-sm">
             <div class="archive-top position-relative">
                 <a class="images-group" href="{{ project.get_absolute_url }}">
                     <div class="images-style">
-                        <img alt="img" class="lazyload img-fluid rounded-top"
+                        <img alt="{{ project.title }}"
                              data-src="{{ project.image.url }}" src="{{ project.image.url }}"/>
                     </div>
+
                 </a>
             </div>
             <div class="archive-bottom p-3">
@@ -14,10 +15,7 @@
                     <a class="link text-dark fw-bold"
                        href="{{ project.get_absolute_url }}">{{ project.title }}</a>
                 </h6>
-                <div class="d-flex justify-content-between text-muted small mt-2">
-                    <span>🏠 {{ project.gravity_loading_sys }} سیسستم باربری کف</span>
-                    <span>🛏 {{ project.lateral_loading_sys }}سیستم باربری جانبی</span>
-                </div>
+
             </div>
         </div>
     </div>
