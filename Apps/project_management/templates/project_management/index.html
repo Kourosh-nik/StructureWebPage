@@ -56,20 +56,19 @@
     <!-- End Wellcome to this page section -->
     <br>
     <br>
-    {#    <!-- Search -->#}
     <div class="flat-control-search abs">
         <div class="container">
             <div class="flat-tab flat-tab-form">
                 <div class="tab-content">
                     <div class="tab-pane fade active show" role="tabpanel">
                         <div class="form-sl">
-                            <form method="post">
+                            <form method="get" action="{% url 'home_Page:search' %}">
                                 <div class="wd-find-select shadow-3">
                                     <div class="inner-group">
                                         <div class="form-group-2 form-style">
                                             <label>محل</label>
                                             <div class="group-ip">
-                                                <input class="form-control" name="s"
+                                                <input class="form-control" name="search"
                                                        placeholder="محل جستجو"
                                                        required=""
                                                        title="Search for"
